@@ -3,5 +3,6 @@ import pandas as pd
 import matplotlib as plt
 import json
 
-st.title("Hello!")
+st.markdown("# Main page 🎈")
+st.sidebar.markdown("# Main page 🎈")
 
