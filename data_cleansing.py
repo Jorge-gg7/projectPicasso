@@ -2,7 +2,7 @@ import pandas as pd
 
 pd.set_option('display.max_columns', None)
 
-######################################        First Dataset        #####################################################
+######################################        First Dataset        ####################################################
 
 ### Getting the raw data by web scraping
 url_link1 = 'https://fbref.com/en/squads/19538871/2022-2023/all_comps/Manchester-United-Stats-All-Competitions'
@@ -47,7 +47,7 @@ renaming = {'Cmp.1': 'Cmp_Shrt', 'Att.1': 'Att_Shrt', 'Cmp%.1': 'Cmp%_Shrt',
             '1/3_41': '1/3_Carr', '1/3': '1/3_Pass'}
 df_2022_2023.rename(columns=renaming, inplace=True)
 
-### Joining last data frame to the main data frame and editing any repeat columns
+### Joining last dataset to the main dataset and editing any repeat columns
 df_misc_2023 = df_unclean_2022_2023[51]
 df_misc_2023.drop(columns=['Player', 'Nation', 'Pos', '90s', 'Matches', 'Age'], axis=1, inplace=True)
 df_2022_2023 = df_2022_2023.join(df_misc_2023, how="outer", rsuffix='_ms')
@@ -61,7 +61,7 @@ df_2022_2023.fillna(0, inplace=True)
 ### Taking out new players from the main dataframe and adding it into a new data frame.
 new_players = ['Casemiro', 'Lisandro Martínez', 'Tyrell Malacia',
                'Marcel Sabitzer', 'Wout Weghorst', 'Antony',
-               'Christian Eriksen']
+               'Christian Eriksen', 'Kobbie Mainoo']
 
 df_2022_2023_new = df_2022_2023.loc[df_2022_2023["Player"].isin(new_players)].reset_index(drop=True)
 df_2022_2023 = df_2022_2023[~df_2022_2023["Player"].isin(new_players)].reset_index(drop=True)
@@ -70,8 +70,8 @@ df_2022_2023 = df_2022_2023[~df_2022_2023["Player"].isin(new_players)].reset_ind
 ### competitions, I decided to delete the other goalkeepers.
 df_gk_2022_2023 = df_unclean_2022_2023[11]
 df_gk_2022_2023.dropna(subset=['FK'], inplace=True)
-renaming2 = {'Att': 'Att_Launch', 'Att.1': 'Att_Pass', 'Att.2': 'Att_GKicks', 'AvgLen': 'AvgLen_Pass', 'AvgLen.1': 'AvgLen_GKicks',
-             'Launch%': 'Launch%_Pass', 'Launch%.1': 'Launch%_GKicks'}
+renaming2 = {'Att': 'Att_Launch', 'Att.1': 'Att_Pass', 'Att.2': 'Att_GKicks', 'AvgLen': 'AvgLen_Pass', 'AvgLen.1':
+             'AvgLen_GKicks', 'Launch%': 'Launch%_Pass', 'Launch%.1': 'Launch%_GKicks'}
 df_gk_2022_2023.rename(columns=renaming2, inplace=True)
 
 df_2022_2023.to_csv('./data/data_2022_2023.csv', index=True)
@@ -103,6 +103,3 @@ df_gk_2021_2022.rename(columns=renaming2, inplace=True)
 
 df_2021_2022.to_csv('./data/data_2021_2022.csv', index=True)
 df_gk_2021_2022.to_csv('./data/df_2021_2022_gk.csv', index=True)
-
-
-
