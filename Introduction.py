@@ -171,3 +171,4 @@ with row10_1:
                 "this new signing has either improve/worsen the team by analysing his stats and comparing the team's "
                 "stats from last season and this season. For example, **WORK IN PROGRESS**")
     #st.image()
+

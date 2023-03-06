@@ -33,7 +33,7 @@ renaming = {'Cmp.1': 'Cmp_Shrt', 'Att.1': 'Att_Shrt', 'Cmp%.1': 'Cmp%_Shrt',
             'Cmp.3': 'Cmp_Long', 'Att.3': 'Att_Long', 'Cmp%.3': 'Cmp%_Long',
             'FK_26': 'FK_Pass',
             'PassLive': 'PassLive_SCA', 'PassDead': 'PassDead_SCA', 'TO': 'TO_SCA', 'Sh_31': 'Sh_SCA', 'Fld': 'Fld_SCA',
-            'Def': 'Def_GCA',
+            'Def': 'Def_SCA',
             'PassLive.1': 'PassLive_GCA', 'PassDead.1': 'PassDead_GCA', 'TO.1': 'TO_GCA', 'Sh.1': 'Sh_GCA',
             'Fld.1': 'Fld_GCA',
             'Def.1': 'Def_GCA',
@@ -44,7 +44,7 @@ renaming = {'Cmp.1': 'Cmp_Shrt', 'Att.1': 'Att_Shrt', 'Cmp%.1': 'Cmp%_Shrt',
             'Live_41': 'Live_Tch', 'Att_41': 'Att_TakeOns',
             'TotDist': 'TotDist_Pass', 'PrgDist': 'PrgDist_Pass',
             'TotDist_41': 'TotDist_Carr', 'PrgDist_41': 'PrgDist_Carr',
-            '1/3_41': '1/3_Carr', '1/3': '1/3_Pass'}
+            '1/3_41': '1/3_Carr', '1/3': '1/3_Pass', 'On-Off.1': 'On-Off_xG'}
 df_2022_2023.rename(columns=renaming, inplace=True)
 
 ### Joining last dataset to the main dataset and editing any repeat columns
