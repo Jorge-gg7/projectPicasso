@@ -70,6 +70,7 @@ df_2022_2023 = df_2022_2023[~df_2022_2023["Player"].isin(new_players)].reset_ind
 ### competitions, I decided to delete the other goalkeepers.
 df_gk_2022_2023 = df_unclean_2022_2023[11]
 df_gk_2022_2023.dropna(subset=['FK'], inplace=True)
+df_gk_2022_2023.drop(columns=['Matches'], inplace=True)
 renaming2 = {'Att': 'Att_Launch', 'Att.1': 'Att_Pass', 'Att.2': 'Att_GKicks', 'AvgLen': 'AvgLen_Pass', 'AvgLen.1':
              'AvgLen_GKicks', 'Launch%': 'Launch%_Pass', 'Launch%.1': 'Launch%_GKicks'}
 df_gk_2022_2023.rename(columns=renaming2, inplace=True)

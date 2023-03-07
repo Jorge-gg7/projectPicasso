@@ -42,3 +42,19 @@ x.display()
 row2_spacer1, row2_1, row2_spacer2 = st.columns((.05, 3.2, .05))
 with row2_1:
     st.markdown("### Analysis")
+
+df1, df2 = x.filter_data()
+
+x.data_visuals(df1,df2)
+# if attribute == Adv GK
+#   if player == DdG
+#       x.data_visuals_gk(df1,df2)
+#   else
+#       warning message
+# elif attribute == Shooting or GCA
+#   if player == DdG
+#       warning message
+#   else
+#       x.data_visuals(df1,df2)
+# else:
+#   x.data_visuals(df1,df2)
