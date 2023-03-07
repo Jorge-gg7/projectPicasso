@@ -1,8 +1,12 @@
 import streamlit as st
 import pandas as pd
-import matplotlib as plt
 
 st.set_page_config(layout="wide")
+dataset1 = pd.read_csv('data/data_2022_2023.csv')
+dataset2 = pd.read_csv('data/data_2021_2022.csv')
+dataset3 = pd.read_csv('data/df_2022_2023_gk.csv')
+dataset4 = pd.read_csv('data/df_2021_2022_gk.csv')
+dataset5 = pd.read_csv('data/df_2022_2023_new_signings.csv')
 
 row0_spacer1, row0_1, row0_2, row0_spacer2, row0_3, row0_spacer3 = st.columns((.1, 0.5, 1, .1, 1, .1))
 with row0_1:
@@ -171,4 +175,27 @@ with row10_1:
                 "this new signing has either improve/worsen the team by analysing his stats and comparing the team's "
                 "stats from last season and this season. For example, **WORK IN PROGRESS**")
     #st.image()
+
+row11_spacer1, row11_1, row11_spacer2 = st.columns((.1, 3.2, .1))
+with row11_1:
+
+    st.markdown("#### Select and click on the dropdown menu to see the different raw datasets!")
+    input = st.radio(
+        "Which dataset do you want to see?",
+        ["Player Stats 2022/23", "Player Stats 2021/22", "New Signing Stats 2022/23",
+         "Advanced Goalkeeper Stats 2022/23", "Advanced Goalkeeper Stats 2021/23"],
+        horizontal=True
+    )
+    see_data1 = st.expander("Click here to see the dataset!")
+    with see_data1:
+        if input == "Player Stats 2022/23":
+            st.dataframe(data=dataset1.reset_index(drop=True))
+        elif input == "Player Stats 2021/22":
+            st.dataframe(data=dataset2.reset_index(drop=True))
+        elif input == "New Signing Stats 2022/23":
+            st.dataframe(data=dataset5.reset_index(drop=True))
+        elif input == "Advanced Goalkeeper Stats 2022/23":
+            st.dataframe(data=dataset3.reset_index(drop=True))
+        elif input == "Advanced Goalkeeper Stats 2021/23":
+            st.dataframe(data=dataset4.reset_index(drop=True))
 
