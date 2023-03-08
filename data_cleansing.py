@@ -61,7 +61,7 @@ df_2022_2023.fillna(0, inplace=True)
 ### Taking out new players from the main dataframe and adding it into a new data frame.
 new_players = ['Casemiro', 'Lisandro Martínez', 'Tyrell Malacia',
                'Marcel Sabitzer', 'Wout Weghorst', 'Antony',
-               'Christian Eriksen', 'Kobbie Mainoo']
+               'Christian Eriksen', 'Kobbie Mainoo', 'Facundo Pellistri']
 
 df_2022_2023_new = df_2022_2023.loc[df_2022_2023["Player"].isin(new_players)].reset_index(drop=True)
 df_2022_2023 = df_2022_2023[~df_2022_2023["Player"].isin(new_players)].reset_index(drop=True)

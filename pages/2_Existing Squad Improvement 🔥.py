@@ -33,6 +33,13 @@ with row0_1:
 with row0_2:
     st.title("Existing Squad Improvements 🔥")
 
+row3_spacer1, row3_1, row3_spacer2 = st.columns((.05, 3.2, .05))
+with row3_1:
+    st.markdown("This page analyses the statistics for the current players who were also part of the Manchester"
+                "United squad in the 2021/22 season. This page will compare statistics of the player of your choice's "
+                "in this season against the player's statistics in the previous season and/or against the team average"
+                "this season.")
+
 row1_spacer1, row1_1, row1_spacer2 = st.columns((.05, 3.2, .05))
 with row1_1:
     st.markdown("### Basic Information")
@@ -44,8 +51,8 @@ with row2_1:
     st.markdown("### Analysis")
 
 df1, df2 = x.filter_data()
-
 x.data_visuals(df1,df2)
+
 # if attribute == Adv GK
 #   if player == DdG
 #       x.data_visuals_gk(df1,df2)

@@ -25,9 +25,9 @@ class dataFunc1:
         df = self._dataset1.loc[self._dataset1['Player'] == str(self._name)]
         df1 = self._dataset2.loc[self._dataset2['Player'] == str(self._name)]
 
-        row0_spacer1, row0_1, row0_2, row0_3, row0_spacer2 = st.columns((.05, .5, 1, 1, .05))
+        row0_spacer1, row0_1, row0_2, row0_3, row0_spacer2 = st.columns((.05, .5, .5, 1.5, .05))
         with row0_1:
-            st.image('images/' + self._name + '.png', use_column_width=True)
+            st.image('images/' + self._name + '.png', width=170)
         with row0_2:
             st.markdown("##### Name:")
             st.markdown("##### Nationality:")
@@ -36,16 +36,16 @@ class dataFunc1:
             st.markdown("##### Matches Played:")
             st.markdown("##### Games Started:")
         with row0_3:
-            st.markdown("           " + str(df.iloc[0]["Player"]))
-            st.markdown("           " + str(df.iloc[0]["Nation"]))
-            st.markdown("           " + str(df.iloc[0]["Pos"]))
-            st.markdown("           " + str(df.iloc[0]["Age"]))
-            st.markdown("           " + str(df.iloc[0]["MP"]))
-            st.markdown("           " + str(df.iloc[0]["Starts"]))
+            st.markdown("#####           " + str(df.iloc[0]["Player"]))
+            st.markdown("#####           " + str(df.iloc[0]["Nation"]))
+            st.markdown("#####           " + str(df.iloc[0]["Pos"]))
+            st.markdown("#####           " + str(df.iloc[0]["Age"]))
+            st.markdown("#####           " + str(df.iloc[0]["MP"]))
+            st.markdown("#####           " + str(df.iloc[0]["Starts"]))
 
     def filter_data(self):
         ### Defining what data is in what attribute
-        att = {'Shooting 👟': ['Gls', 'Sh', 'SoT%', 'SoT/90', 'G/Sh', 'G/SoT', 'Dist', 'PK', 'PKatt', 'xG', 'npxG',
+        att = {'Shooting 👟': ['Gls', 'Sh', 'SoT%', 'SoT/90', 'G/Sh', 'Dist', 'PK', 'PKatt', 'xG', 'npxG',
                               'npxG/Sh', 'G-xG', 'np:G-xG'],
                'Passing ⚽': ['Att', 'Cmp%', 'TotDist_Pass', 'PrgDist_Pass', 'Att_Shrt', 'Cmp%_Shrt', 'Att_Med',
                              'Cmp%_Med', 'Att_Long', 'Cmp%_Long', 'Ast', 'xAG', 'xA', 'KP', '1/3_Pass', 'PPA', 'CrsPA',
@@ -100,99 +100,192 @@ class dataFunc1:
             row0_spacer1, row0_1, row0_spacer2 = st.columns((.05, 3.2, .05))
             with row0_1:
                 st.markdown("##### Actual Statistics - :green[↑]/:red[↓] from previous season")
-            row1_spacer1, row1_1, row1_2, row1_3, row1_4, row1_5, row1_spacer2 = st.columns((.1, 1, 1, 1, 1, 1, .1))
+            row1_spacer1, row1_1, row1_2, row1_3, row1_4, row1_5, row1_spacer2 = st.columns((.1, 1, 1, 1, 1, 2.4, .1))
             with row1_1:
-                st.markdown("#### Goals")
-                st.markdown("##  " + str(df1.iloc[0]["Gls"]))
                 diff1 = round(df1.iloc[0]["Gls"] - df2.iloc[0]["Gls"],2)
-                if diff1 > 0:
-                    st.markdown(":green[↑ %a]" % diff1)
-                elif diff1 == 0:
-                    st.markdown(diff1)
-                else:
-                    st.markdown(":red[↓ %a]" % diff1)
+                st.metric("Goals", str(df1.iloc[0]["Gls"]), diff1)
             with row1_2:
-                st.markdown("#### Shots")
-                st.markdown("##  " + str(df1.iloc[0]["Sh"]))
-                diff1 = round(df1.iloc[0]["Sh"] - df2.iloc[0]["Sh"],2)
-                if diff1 > 0:
-                    st.markdown(":green[↑ %a]" % diff1)
-                elif diff1 == 0:
-                    st.markdown(diff1)
-                else:
-                    st.markdown(":red[↓ %a]" % diff1)
+                diff1 = round(df1.iloc[0]["PK"] - df2.iloc[0]["PK"],2)
+                st.metric("PK", str(df1.iloc[0]["PK"]), diff1)
             with row1_3:
-                st.markdown("#### SoT%")
-                st.markdown("##  " + str(df1.iloc[0]["SoT%"]))
-                diff1 = round(df1.iloc[0]["SoT%"] - df2.iloc[0]["SoT%"],2)
-                if diff1 > 0:
-                    st.markdown(":green[↑ %a]" % diff1)
-                elif diff1 == 0:
-                    st.markdown(diff1)
-                else:
-                    st.markdown(":red[↓ %a]" % diff1)
-            with row1_4:
-                st.markdown("#### SoT/90")
-                st.markdown("##  " + str(df1.iloc[0]["SoT/90"]))
-                diff1 = round(df1.iloc[0]["SoT/90"] - df2.iloc[0]["SoT/90"],2)
-                if diff1 > 0:
-                    st.markdown(":green[↑ %a]" % diff1)
-                elif diff1 == 0:
-                    st.markdown(diff1)
-                else:
-                    st.markdown(":red[↓ %a]" % diff1)
-            with row1_5:
-                st.markdown("#### Goals/Shot")
-                st.markdown("##  " + str(df1.iloc[0]["G/Sh"]))
-                diff1 = round(df1.iloc[0]["G/Sh"] - df2.iloc[0]["G/Sh"], 2)
-                if diff1 > 0:
-                    st.markdown(":green[↑ %a]" % diff1)
-                elif diff1 == 0:
-                    st.markdown(diff1)
-                else:
-                    st.markdown(":red[↓ %a]" % diff1)
-            row2_spacer1, row2_1, row2_2, row2_3, row2_4, row2_spacer2 = st.columns((.5,1,1,1,1,.5))
-            with row2_1:
-                st.markdown("#### Goals/SoT")
-                st.markdown("##  " + str(df1.iloc[0]["G/SoT"]))
-                diff1 = round(df1.iloc[0]["G/SoT"] - df2.iloc[0]["G/SoT"], 2)
-                if diff1 > 0:
-                    st.markdown(":green[↑ %a]" % diff1)
-                elif diff1 == 0:
-                    st.markdown(diff1)
-                else:
-                    st.markdown(":red[↓ %a]" % diff1)
-            with row2_2:
-                st.markdown("#### Shot Dist")
-                st.markdown("##  " + str(df1.iloc[0]["Dist"]))
-                diff1 = round(df1.iloc[0]["Dist"] - df2.iloc[0]["Dist"], 2)
-                if diff1 > 0:
-                    st.markdown(":green[↑ %a]" % diff1)
-                elif diff1 == 0:
-                    st.markdown(diff1)
-                else:
-                    st.markdown(":red[↓ %a]" % diff1)
-            with row2_3:
-                st.markdown("#### PK")
-                st.markdown("##  " + str(df1.iloc[0]["PK"]))
-                diff1 = round(df1.iloc[0]["PK"] - df2.iloc[0]["PK"], 2)
-                if diff1 > 0:
-                    st.markdown(":green[↑ %a]" % diff1)
-                elif diff1 == 0:
-                    st.markdown(diff1)
-                else:
-                    st.markdown(":red[↓ %a]" % diff1)
-            with row2_4:
-                st.markdown("#### PKatt")
-                st.markdown("##  " + str(df1.iloc[0]["PKatt"]))
                 diff1 = round(df1.iloc[0]["PKatt"] - df2.iloc[0]["PKatt"], 2)
+                st.metric("PKatt", str(df1.iloc[0]["PKatt"]), diff1)
+            with row1_4:
+                diff1 = round(df1.iloc[0]["Sh"] - df2.iloc[0]["Sh"], 2)
+                st.metric("Shots", str(df1.iloc[0]["Sh"]), diff1)
+            with row1_5:
+                st.markdown("## ")
+                diff1 = round(df1.iloc[0]["Sh"] - self._dataset1["Sh"].mean(),2)
                 if diff1 > 0:
-                    st.markdown(":green[↑ %a]" % diff1)
+                    st.markdown("##### :green[↑ %a] more shots than team average." % diff1)
                 elif diff1 == 0:
-                    st.markdown(diff1)
+                    st.markdown("##### Similar to team average")
                 else:
-                    st.markdown(":red[↓ %a]" % diff1)
+                    st.markdown("##### :red[↓ %a] less shots than team average." % diff1)
+            row2_spacer1, row2_1, row2_2, row2_3, row2_4, row2_spacer2 = st.columns((0.1, .7, 2, 0.9, 2.1, 0.1))
+            with row2_1:
+                diff1 = round(df1.iloc[0]["SoT%"] - df2.iloc[0]["SoT%"], 2)
+                st.metric("SoT%", str(df1.iloc[0]["SoT%"]) + " %", str(diff1) + " %")
+                diff1 = round(df1.iloc[0]["SoT/90"] - df2.iloc[0]["SoT/90"], 2)
+                st.metric("SoT/90", str(df1.iloc[0]["SoT/90"]), diff1)
+            with row2_2:
+                st.markdown("## ")
+                diff1 = round(df1.iloc[0]["SoT%"] - self._dataset1["SoT%"].mean(), 2)
+                if diff1 > 0:
+                    st.markdown("##### :green[↑ %a] more accurate than team average." % diff1)
+                elif diff1 == 0:
+                    st.markdown("##### Similar to team average")
+                else:
+                    st.markdown("##### :red[↓ %a] less accurate than team average." % diff1)
+                st.markdown("# ")
+                diff1 = round(df1.iloc[0]["SoT/90"] - self._dataset1["SoT/90"].mean(), 2)
+                if diff1 > 0:
+                    st.markdown("##### :green[↑ %a] more accurate than team average." % diff1)
+                elif diff1 == 0:
+                    st.markdown("##### Similar to team average")
+                else:
+                    st.markdown("##### :red[↓ %a] less accurate than team average." % diff1)
+            with row2_3:
+                diff1 = round(df1.iloc[0]["G/Sh"] - df2.iloc[0]["G/Sh"], 2)
+                st.metric("Goals/Shots", str(df1.iloc[0]["G/Sh"]), diff1)
+                diff1 = round(df1.iloc[0]["Dist"] - df2.iloc[0]["Dist"], 2)
+                st.metric("Avg Shot Distance", str(df1.iloc[0]["Dist"]) + " yrds", str(diff1) + " yrds")
+            with row2_4:
+                st.markdown("## ")
+                diff1 = round(df1.iloc[0]["G/Sh"] - self._dataset1["G/Sh"].mean(), 2)
+                if diff1 > 0:
+                    st.markdown("##### :green[↑ %a] more than team average." % diff1)
+                elif diff1 == 0:
+                    st.markdown("##### Similar to team average")
+                else:
+                    st.markdown("##### :red[↓ %a] less than team average." % diff1)
+                st.markdown("# ")
+                st.markdown("# ")
+                diff1 = round(df1.iloc[0]["Dist"] - self._dataset1["Dist"].mean(), 2)
+                if diff1 > 0:
+                    st.markdown("##### :green[↑ %a] yards further than team average." % diff1)
+                elif diff1 == 0:
+                    st.markdown("##### Similar to team average")
+                else:
+                    st.markdown("##### :red[↓ %a] yards nearer than team average." % diff1)
+
             row3_spacer1, row3_1, row3_spacer2 = st.columns((.05, 3.2, .05))
             with row3_1:
                 st.markdown("##### Expected Results     -    :green[↑]/:red[↓] from previous season")
+            row4_spacer1, row4_1, row4_2, row4_spacer2 = st.columns((.05, 1, 2.2, .05))
+            with row4_1:
+                diff1 = round(df1.iloc[0]["xG"] - df2.iloc[0]["xG"], 2)
+                st.metric("Expected Goals", str(df1.iloc[0]["xG"]), diff1)
+                diff1 = round(df1.iloc[0]["npxG"] - df2.iloc[0]["npxG"], 2)
+                st.metric("Non-Penalty Expected Goals", str(df1.iloc[0]["npxG"]), str(diff1))
+                diff1 = round(df1.iloc[0]["npxG/Sh"] - df2.iloc[0]["npxG/Sh"], 2)
+                st.metric("Non-Penalty Expected Goals/Shot", str(df1.iloc[0]["npxG/Sh"]), str(diff1))
+                diff1 = round(df1.iloc[0]["G-xG"] - df2.iloc[0]["G-xG"], 2)
+                st.metric("Goals - xGoals", str(df1.iloc[0]["G-xG"]), str(diff1))
+                diff1 = round(df1.iloc[0]["np:G-xG"] - df2.iloc[0]["np:G-xG"], 2)
+                st.metric("Non-Penalty Goals - xG", str(df1.iloc[0]["np:G-xG"]), str(diff1))
+            with row4_2:
+                st.markdown("## ")
+                diff1 = round(df1.iloc[0]["xG"] - self._dataset1["xG"].mean(), 2)
+                if diff1 > 0:
+                    st.markdown("##### :green[↑ %a] more than team average." % diff1)
+                elif diff1 == 0:
+                    st.markdown("##### Similar to team average")
+                else:
+                    st.markdown("##### :red[↓ %a] less than team average." % diff1)
+                st.markdown("# ")
+                st.markdown("# ")
+                diff1 = round(df1.iloc[0]["npxG"] - self._dataset1["npxG"].mean(), 2)
+                if diff1 > 0:
+                    st.markdown("##### :green[↑ %a] more than team average." % diff1)
+                elif diff1 == 0:
+                    st.markdown("##### Similar to team average")
+                else:
+                    st.markdown("##### :red[↓ %a] less than team average." % diff1)
+                st.markdown("# ")
+                st.markdown("# ")
+                diff1 = round(df1.iloc[0]["npxG/Sh"] - self._dataset1["npxG/Sh"].mean(), 2)
+                if diff1 > 0:
+                    st.markdown("##### :green[↑ %a] more expected accuracy than team average." % diff1)
+                elif diff1 == 0:
+                    st.markdown("##### Similar to team average")
+                else:
+                    st.markdown("##### :red[↓ %a] less expected accuracy than team average." % diff1)
+                st.markdown("# ")
+                st.markdown("## ")
+                diff1 = round(df1.iloc[0]["G-xG"] - self._dataset1["G-xG"].mean(), 2)
+                if diff1 > 0:
+                    st.markdown("##### :green[↑ %a] more than team average." % diff1)
+                elif diff1 == 0:
+                    st.markdown("##### Similar to team average")
+                else:
+                    st.markdown("##### :red[↓ %a] less than team average." % diff1)
+                st.markdown("# ")
+                st.markdown("## ")
+                diff1 = round(df1.iloc[0]["np:G-xG"] - self._dataset1["np:G-xG"].mean(), 2)
+                if diff1 > 0:
+                    st.markdown("##### :green[↑ %a] more than team average." % diff1)
+                elif diff1 == 0:
+                    st.markdown("##### Similar to team average")
+                else:
+                    st.markdown("##### :red[↓ %a] less than team average." % diff1)
+        elif self._attribute == 'Passing ⚽':
+
+            row0_spacer1, row0_1, row0_spacer2 = st.columns((.05, 3.2, .05))
+            with row0_1:
+                st.markdown("##### Actual Statistics - :green[↑]/:red[↓] from previous season")
+            row1_spacer1, row1_1, row1_2, row1_3, row1_4, row1_spacer2 = st.columns((.1, 1.35, 1.75, 1.2, 2, 0.1))
+            with row1_1:
+                diff1 = round(df1.iloc[0]["Att"] - df2.iloc[0]["Att"], 2)
+                st.metric("Passess Attempted", str(df1.iloc[0]["Att"]), diff1)
+                diff1 = round(df1.iloc[0]["TotDist_Pass"] - df2.iloc[0]["TotDist_Pass"], 2)
+                st.metric("Total Distance Passed", str(df1.iloc[0]["TotDist_Pass"]) + " yrds", str(diff1) + " yrds")
+            with row1_2:
+                st.markdown("## ")
+                diff1 = round(df1.iloc[0]["Att"] - self._dataset1["Att"].mean(), 2)
+                if diff1 > 0:
+                    st.markdown("##### :green[↑ %a] more than team average." % diff1)
+                elif diff1 == 0:
+                    st.markdown("##### Similar to team average")
+                else:
+                    st.markdown("##### :red[↓ %a] less than team average." % diff1)
+                st.markdown("##### ")
+                st.markdown("##### ")
+                diff1 = round(df1.iloc[0]["TotDist_Pass"] - self._dataset1["TotDist_Pass"].mean(), 2)
+                if diff1 > 0:
+                    st.markdown("##### :green[↑ %a] yards further than team average." % diff1)
+                elif diff1 == 0:
+                    st.markdown("##### Similar to team average")
+                else:
+                    st.markdown("##### :red[↓ %a] yards nearer than team average." % diff1)
+            with row1_3:
+                diff1 = round(df1.iloc[0]["Cmp%"] - df2.iloc[0]["Cmp%"], 2)
+                st.metric("Passess Completed %", str(df1.iloc[0]["Cmp%"]) + " %", diff1)
+                diff1 = round(df1.iloc[0]["PrgDist_Pass"] - df2.iloc[0]["PrgDist_Pass"], 2)
+                st.metric("Total Progressive Distance Passed", str(df1.iloc[0]["PrgDist_Pass"]) + " yrds", str(diff1) +
+                          " yrds")
+            with row1_4:
+                st.markdown("## ")
+                diff1 = round(df1.iloc[0]["Att"] - self._dataset1["Att"].mean(), 2)
+                if diff1 > 0:
+                    st.markdown("##### :green[↑ %a] more than team average." % diff1)
+                elif diff1 == 0:
+                    st.markdown("##### Similar to team average")
+                else:
+                    st.markdown("##### :red[↓ %a] less than team average." % diff1)
+                st.markdown("# ")
+                st.markdown("##### ")
+                diff1 = round(df1.iloc[0]["PrgDist_Pass"] - self._dataset1["PrgDist_Pass"].mean(), 2)
+                if diff1 > 0:
+                    st.markdown("##### :green[↑ %a] yards further than team average." % diff1)
+                elif diff1 == 0:
+                    st.markdown("##### Similar to team average")
+                else:
+                    st.markdown("##### :red[↓ %a] yards nearer than team average." % diff1)
+
+                row2_spacer1, row2_1, row2_spacer2 = st.columns((.05, 3.2, .05))
+                with row2_1:
+                    st.markdown("")
+        else:
+            st.markdown("# WORK IN PROGRESS")
     # def data_visuals_gk(self, df1, df2):
