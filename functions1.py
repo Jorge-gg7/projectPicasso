@@ -362,6 +362,38 @@ class dataFunc1:
                 ))
                 st.plotly_chart(fig, use_container_width=True, width=500)
 
+            row3_spacer1, row3_1, row3_spacer2, row3_2, row3_spacer3 = st.columns((.1,1.5,2,1.25,.1))
+            with row3_1:
+                stat = ['Expected Assists Goals', 'Expected Assists', 'Key Passes', 'Passes into Final Third',
+                        'Passes into Penalty Area', 'Crosses into Penalty Area','Progressive Passes']
+                see = st.selectbox("Select the stat that you want to see! 👋", stat)
+            with row3_2:
+                if see == 'Expected Assists Goals':
+                    diff1 = round(df1.iloc[0]["xAG"] - df2.iloc[0]["xAG"], 2)
+                    st.metric("Exp Assisted Goals", df1.iloc[0]["xAG"], diff1)
+                elif see == 'Expected Assists':
+                    diff1 = round(df1.iloc[0]["xA"] - df2.iloc[0]["xA"], 2)
+                    st.metric("Exp Assists", df1.iloc[0]["xA"], diff1)
+                elif see == 'Key Passes':
+                    diff1 = round(df1.iloc[0]["KP"] - df2.iloc[0]["KP"], 2)
+                    st.metric("Key Passes", df1.iloc[0]["KP"], diff1)
+                elif see == 'Passes into Final Third':
+                    diff1 = round(df1.iloc[0]["1/3_Pass"] - df2.iloc[0]["1/3_Pass"], 2)
+                    st.metric("1/3 Pass", df1.iloc[0]["1/3_Pass"], diff1)
+                elif see == 'Passes into Penalty Area':
+                    diff1 = round(df1.iloc[0]["PPA"] - df2.iloc[0]["PPA"], 2)
+                    st.metric("Passes into Pen", df1.iloc[0]["PPA"], diff1)
+                elif see == 'Crosses into Penalty Area':
+                    diff1 = round(df1.iloc[0]["CrsPA"] - df2.iloc[0]["CrsPA"], 2)
+                    st.metric("Crosses into Pen", df1.iloc[0]["CrsPA"], diff1)
+                elif see == 'Progressive Passes':
+                    diff1 = round(df1.iloc[0]["PrgP"] - df2.iloc[0]["PrgP"], 2)
+                    st.metric("Prgsv Pass", df1.iloc[0]["PrgP"], diff1)
+
+            row4_spacer1, row4_1, row4_spacer2 = st.columns((.1,3.2,.1))
+            with row4_1:
+                print(self._dataset1)
+
         else:
             st.markdown("# WORK IN PROGRESS")
     # def data_visuals_gk(self, df1, df2):
