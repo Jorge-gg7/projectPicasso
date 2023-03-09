@@ -45,37 +45,32 @@ class dataFunc1:
 
     def filter_data(self):
         ### Defining what data is in what attribute
-        att = {'Shooting 👟': ['Gls', 'Sh', 'SoT%', 'SoT/90', 'G/Sh', 'Dist', 'PK', 'PKatt', 'xG', 'npxG',
+        att = {'Shooting 👟': ['Player', 'Gls', 'Sh', 'SoT%', 'SoT/90', 'G/Sh', 'Dist', 'PK', 'PKatt', 'xG', 'npxG',
                               'npxG/Sh', 'G-xG', 'np:G-xG'],
-               'Passing ⚽': ['Att', 'Cmp%', 'TotDist_Pass', 'PrgDist_Pass', 'Att_Shrt', 'Cmp%_Shrt', 'Att_Med',
-                             'Cmp%_Med', 'Att_Long', 'Cmp%_Long', 'Ast', 'xAG', 'xA', 'KP', '1/3_Pass', 'PPA', 'CrsPA',
-                             'PrgP'],
-               'Pass Types 🛒': ['Live_Pass', 'Dead', 'FK_Pass', 'TB', 'Sw', 'Crs', 'TI', 'CK', 'In', 'Out', 'Str',
-                                'Off',
-                                'Blocks'],
-               'Shot-Creating Actions 😎': ['SCA', 'SCA90', 'PassLive_SCA', 'PassDead_SCA', 'TO_SCA', 'Sh_SCA',
-                                           'Fld_SCA',
-                                           'Def_SCA'],
-               'Goal-Creating Actions 🫡': ['GCA', 'GCA90', 'PassLive_GCA', 'PassDead_GCA', 'TO_GCA', 'Sh_GCA',
-                                           'Fld_GCA',
-                                           'Def_GCA'],
-               'Defensive Actions 💪': ['Tkl', 'TklW', 'Def 3rd_Tkls', 'Mid 3rd_Tkls', 'Att 3rd_Tkls', 'Att_Chl', 'Tkl%',
-                                       'Lost', 'Blocks_Def', 'Blocks_Sh', 'Pass', 'Int', 'Clr', 'Err'],
-               'Possession 👻': ['Touches', 'Def Pen', 'Def 3rd_Tch', 'Mid 3rd_Tch', 'Att 3rd_Tch', 'Att Pen',
-                                'Live_Tch',
-                                'Att_TakeOns', 'Succ', 'Succ%', 'Tkld', 'Tkld%', 'Carries', 'TotDist_Carr',
+               'Passing ⚽': ['Player', 'Att', 'Cmp%', 'TotDist_Pass', 'PrgDist_Pass', 'Att_Shrt', 'Cmp%_Shrt',
+                             'Att_Med','Cmp%_Med', 'Att_Long', 'Cmp%_Long', 'Ast', 'xAG', 'xA', 'KP', '1/3_Pass', 'PPA',
+                             'CrsPA','PrgP'],
+               'Pass Types 🛒': ['Player', 'Live_Pass', 'Dead', 'FK_Pass', 'TB', 'Sw', 'Crs', 'TI', 'CK', 'In', 'Out',
+                                'Str', 'Off', 'Blocks'],
+               'Shot-Creating Actions 😎': ['Player', 'SCA', 'SCA90', 'PassLive_SCA', 'PassDead_SCA', 'TO_SCA', 'Sh_SCA',
+                                           'Fld_SCA', 'Def_SCA'],
+               'Goal-Creating Actions 🫡': ['Player', 'GCA', 'GCA90', 'PassLive_GCA', 'PassDead_GCA', 'TO_GCA', 'Sh_GCA',
+                                           'Fld_GCA', 'Def_GCA'],
+               'Defensive Actions 💪': ['Player', 'Tkl', 'TklW', 'Def 3rd_Tkls', 'Mid 3rd_Tkls', 'Att 3rd_Tkls',
+                                       'Att_Chl', 'Tkl%','Lost', 'Blocks_Def', 'Blocks_Sh', 'Pass', 'Int', 'Clr',
+                                       'Err'],
+               'Possession 👻': ['Player', 'Touches', 'Def Pen', 'Def 3rd_Tch', 'Mid 3rd_Tch', 'Att 3rd_Tch', 'Att Pen',
+                                'Live_Tch', 'Att_TakeOns', 'Succ', 'Succ%', 'Tkld', 'Tkld%', 'Carries', 'TotDist_Carr',
                                 'PrgDist_Carr', 'PrgC', '1/3_Carr', 'CPA', 'Mis', 'Dis', 'Rec', 'PrgR'],
-               'Team Success with & without 🎇': ['MP', 'Min', 'Min%', 'Starts', 'Mn/Start', 'Compl', 'Subs', 'Mn/Sub',
-                                                 'unSub', 'PPM', 'onG', 'onGA', '+/-', '+/-90', 'On-Off', 'onxG',
-                                                 'onxGA',
-                                                 'xG+/-', 'xG+/-90', 'On-Off_xG'],
-               'Miscellaneous 🏆': ['CrdY', 'CrdR', '2CrdY', 'Fls', 'Fld', 'Offsd', 'PKwon', 'PKcon', 'OG', 'Recov',
-                                   'Won_AD', 'Lost_AD', 'Won%'],
-               'Advanced Goalkeeping 🥅': ['GA',
-                                          'PKA', 'FK', 'CK', 'OG', 'PSxG', 'PSxG/SoT', 'PSxG+/-', '/90', 'Cmp',
-                                          'Att_Launch', 'Cmp%', 'Att_Pass',
-                                          'Thr', 'Launch%_Pass', 'AvgLen_Pass', 'Att_GKicks', 'Launch%_GKicks',
-                                          'AvgLen_GKicks', 'Opp', 'Stp', 'Stp%', '#OPA', '#OPA/90', 'AvgDist']}
+               'Team Success with & without 🎇': ['Player', 'MP', 'Min', 'Min%', 'Starts', 'Mn/Start', 'Compl', 'Subs',
+                                                 'Mn/Sub', 'unSub', 'PPM', 'onG', 'onGA', '+/-', '+/-90', 'On-Off',
+                                                 'onxG', 'onxGA', 'xG+/-', 'xG+/-90', 'On-Off_xG'],
+               'Miscellaneous 🏆': ['Player', 'CrdY', 'CrdR', '2CrdY', 'Fls', 'Fld', 'Offsd', 'PKwon', 'PKcon', 'OG',
+                                   'Recov', 'Won_AD', 'Lost_AD', 'Won%'],
+               'Advanced Goalkeeping 🥅': ['Player', 'GA','PKA', 'FK', 'CK', 'OG', 'PSxG', 'PSxG/SoT', 'PSxG+/-', '/90',
+                                          'Cmp', 'Att_Launch', 'Cmp%', 'Att_Pass','Thr', 'Launch%_Pass', 'AvgLen_Pass',
+                                          'Att_GKicks', 'Launch%_GKicks', 'AvgLen_GKicks', 'Opp', 'Stp', 'Stp%', '#OPA',
+                                          '#OPA/90', 'AvgDist']}
         ### Filtering data based off the attribute. However, if the attribute is Advanced Goalkeeping, only DdG has
         ### data and other players will have an empty dataset.
         if self._attribute == 'Advanced Goalkeeping 🥅':
@@ -92,7 +87,6 @@ class dataFunc1:
             df1 = df1.loc[:, att[self._attribute]]
             df2 = self._dataset2.loc[self._dataset2['Player'] == str(self._name)]
             df2 = df2.loc[:, att[self._attribute]]
-
         return df1, df2
 
     def data_visuals(self, df1, df2):
@@ -102,10 +96,10 @@ class dataFunc1:
                 st.markdown("##### Actual Statistics - :green[↑]/:red[↓] from previous season")
             row1_spacer1, row1_1, row1_2, row1_3, row1_4, row1_5, row1_spacer2 = st.columns((.1, 1, 1, 1, 1, 2.4, .1))
             with row1_1:
-                diff1 = round(df1.iloc[0]["Gls"] - df2.iloc[0]["Gls"],2)
+                diff1 = round(df1.iloc[0]["Gls"] - df2.iloc[0]["Gls"], 2)
                 st.metric("Goals", str(df1.iloc[0]["Gls"]), diff1)
             with row1_2:
-                diff1 = round(df1.iloc[0]["PK"] - df2.iloc[0]["PK"],2)
+                diff1 = round(df1.iloc[0]["PK"] - df2.iloc[0]["PK"], 2)
                 st.metric("PK", str(df1.iloc[0]["PK"]), diff1)
             with row1_3:
                 diff1 = round(df1.iloc[0]["PKatt"] - df2.iloc[0]["PKatt"], 2)
@@ -115,7 +109,7 @@ class dataFunc1:
                 st.metric("Shots", str(df1.iloc[0]["Sh"]), diff1)
             with row1_5:
                 st.markdown("## ")
-                diff1 = round(df1.iloc[0]["Sh"] - self._dataset1["Sh"].mean(),2)
+                diff1 = round(df1.iloc[0]["Sh"] - self._dataset1["Sh"].mean(), 2)
                 if diff1 > 0:
                     st.markdown("##### :green[↑ %a] more shots than team average." % diff1)
                 elif diff1 == 0:
@@ -236,12 +230,23 @@ class dataFunc1:
                 st.markdown("##### Actual Statistics - :green[↑]/:red[↓] from previous season")
             row1_spacer1, row1_1, row1_2, row1_3, row1_4, row1_spacer2 = st.columns((.1, 1.35, 1.75, 1.2, 2, 0.1))
             with row1_1:
+                diff1 = round(df1.iloc[0]["Ast"] - df2.iloc[0]["Ast"], 2)
+                st.metric("Assists", str(df1.iloc[0]["Ast"]), diff1)
                 diff1 = round(df1.iloc[0]["Att"] - df2.iloc[0]["Att"], 2)
                 st.metric("Passess Attempted", str(df1.iloc[0]["Att"]), diff1)
                 diff1 = round(df1.iloc[0]["TotDist_Pass"] - df2.iloc[0]["TotDist_Pass"], 2)
                 st.metric("Total Distance Passed", str(df1.iloc[0]["TotDist_Pass"]) + " yrds", str(diff1) + " yrds")
             with row1_2:
                 st.markdown("## ")
+                diff1 = round(df1.iloc[0]["Ast"] - self._dataset1["Ast"].mean(), 2)
+                if diff1 > 0:
+                    st.markdown("##### :green[↑ %a] more than team average." % diff1)
+                elif diff1 == 0:
+                    st.markdown("##### Similar to team average")
+                else:
+                    st.markdown("##### :red[↓ %a] less than team average." % diff1)
+                st.markdown("##### ")
+                st.markdown("##### ")
                 diff1 = round(df1.iloc[0]["Att"] - self._dataset1["Att"].mean(), 2)
                 if diff1 > 0:
                     st.markdown("##### :green[↑ %a] more than team average." % diff1)
@@ -283,9 +288,80 @@ class dataFunc1:
                 else:
                     st.markdown("##### :red[↓ %a] yards nearer than team average." % diff1)
 
-                row2_spacer1, row2_1, row2_spacer2 = st.columns((.05, 3.2, .05))
-                with row2_1:
-                    st.markdown("")
+            row2_spacer1, row2_1, row2_2, row2_spacer2 = st.columns((.1, 3, 3, .1))
+            with row2_1:
+                dff = df1.loc[:, ['Player', 'Att_Shrt', 'Att_Med', 'Att_Long']]
+                dff = dff.replace(self._name, str(self._name) + " 2022/23")
+                dff2 = df2.loc[:, ['Player', 'Att_Shrt', 'Att_Med', 'Att_Long']]
+                dff2 = dff2.replace(self._name, str(self._name) + " 2021/22")
+                dff = dff.append(dff2, ignore_index=True)
+
+                dff_avg1 = self._dataset1.reset_index()
+                dff_avg1.loc['Average 2022/23'] = dff_avg1.mean()
+                dff_avg1 = dff_avg1.loc['Average 2022/23', ['Player', 'Att_Shrt', 'Att_Med', 'Att_Long']]
+                dff = dff.append(dff_avg1, ignore_index=True)
+                dff = dff.fillna("Team Average 2022/23")
+
+                dff_avg2 = self._dataset2.reset_index()
+                dff_avg2.loc['Average 2021/22'] = dff_avg2.mean()
+                dff_avg2 = dff_avg2.loc['Average 2021/22', ['Player', 'Att_Shrt', 'Att_Med', 'Att_Long']]
+                dff = dff.append(dff_avg2, ignore_index=True)
+                dff = dff.fillna("Team Average 2021/22")
+
+                fig = px.bar(dff, x='Player', y=['Att_Shrt', 'Att_Med',
+                                                 'Att_Long'], labels={'value': 'Number of Pass Attempts',
+                                                                      'variable': 'Variable'}, title='Attempted Passes')
+                new_names = {'Att_Shrt': 'Short Pass Atmpt', 'Att_Med': 'Medium Pass Atmpt',
+                             'Att_Long': 'Long Pass Atmpt'}
+                fig.for_each_trace(lambda t: t.update(name=new_names[t.name],
+                                                      legendgroup=new_names[t.name],
+                                                      hovertemplate=t.hovertemplate.replace(t.name, new_names[t.name])
+                                                      ))
+                fig.update_layout(barmode='group', legend=dict(
+                    orientation="h",
+                    yanchor="bottom",
+                    y=1,
+                    xanchor="right",
+                    x=1
+                ))
+                st.plotly_chart(fig, use_container_width=True, width=500)
+            with row2_2:
+                dff = df1.loc[:, ['Player', 'Cmp%_Shrt', 'Cmp%_Med', 'Cmp%_Long']]
+                dff = dff.replace(self._name, str(self._name) + " 2022/23")
+                dff2 = df2.loc[:, ['Player', 'Cmp%_Shrt', 'Cmp%_Med', 'Cmp%_Long']]
+                dff2 = dff2.replace(self._name, str(self._name) + " 2021/22")
+                dff = dff.append(dff2, ignore_index=True)
+
+                dff_avg1 = self._dataset1.reset_index()
+                dff_avg1.loc['Average 2022/23'] = dff_avg1.mean()
+                dff_avg1 = dff_avg1.loc['Average 2022/23', ['Player', 'Cmp%_Shrt', 'Cmp%_Med', 'Cmp%_Long']]
+                dff = dff.append(dff_avg1, ignore_index=True)
+                dff = dff.fillna("Team Average 2022/23")
+
+                dff_avg2 = self._dataset2.reset_index()
+                dff_avg2.loc['Average 2021/22'] = dff_avg2.mean()
+                dff_avg2 = dff_avg2.loc['Average 2021/22', ['Player', 'Cmp%_Shrt', 'Cmp%_Med', 'Cmp%_Long']]
+                dff = dff.append(dff_avg2, ignore_index=True)
+                dff = dff.fillna("Team Average 2021/22")
+
+                fig = px.bar(dff, x='Player', y=['Player', 'Cmp%_Shrt', 'Cmp%_Med', 'Cmp%_Long'], labels={'value': '%',
+                            'variable': 'Variable'},
+                             title='Pass Completion Rate %')
+                new_names = {'Cmp%_Shrt': 'Pass Completion % Short', 'Cmp%_Med': 'Pass Completion % Medium',
+                             'Cmp%_Long': 'Pass Completion % Long'}
+                fig.for_each_trace(lambda t: t.update(name=new_names[t.name],
+                                                      legendgroup=new_names[t.name],
+                                                      hovertemplate=t.hovertemplate.replace(t.name, new_names[t.name])
+                                                      ))
+                fig.update_layout(barmode='group', legend=dict(
+                    orientation="v",
+                    yanchor="bottom",
+                    y=1,
+                    xanchor="right",
+                    x=1
+                ))
+                st.plotly_chart(fig, use_container_width=True, width=500)
+
         else:
             st.markdown("# WORK IN PROGRESS")
     # def data_visuals_gk(self, df1, df2):
