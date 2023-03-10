@@ -24,31 +24,7 @@ att_list = ['Shooting 👟', 'Passing ⚽', 'Pass Types 🛒', 'Shot-Creating Ac
 attribute = st.sidebar.selectbox('Select the attribute that you want to analyse', att_list)
 drop_gloss = st.sidebar.expander("Metric Glossary")
 with drop_gloss:
-    if attribute == 'Shooting 👟':
-        st.markdown("""
-            <style>
-                u {
-                    text-decoration: underline;
-                    text-decoration-color: #fa4d00;
-                    }
-                m {
-                    font-size: 14px;
-                    }
-                </style>
-            <u>**Actual Stats**</u>
-            
-            **Gls -- Goals**
-            
-            <m>Goals scored or allowed</m>
-            
-            ---
-            
-            **Sh -- Shots Total**
-            
-            Shots Total
-            Does not include penalty kicks
-        """,
-                    unsafe_allow_html=True)
+    st.markdown("Metric Glossary")
 
 x = f1.dataFunc1(player, attribute, dataset1, dataset2, dataset3, dataset4)
 
