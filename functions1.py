@@ -1,3 +1,6 @@
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
+
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
@@ -392,8 +395,105 @@ class dataFunc1:
 
             row4_spacer1, row4_1, row4_spacer2 = st.columns((.1,3.2,.1))
             with row4_1:
-                print(self._dataset1)
-
+                dff1 = self._dataset1
+                if see == 'Expected Assists Goals':
+                    dff1['xAG_Rank'] = dff1['xAG'].rank(ascending=False)
+                    dff1 = dff1.sort_values("xAG_Rank")
+                    dff1 = dff1.reset_index(drop=True)
+                    index = dff1[dff1['Player'] == self._name].index.values[0]
+                    colours = ['lightslategrey',] * 17
+                    colours[index] = '#DA291C'
+                    x = dff1['Player'].values.tolist()
+                    y = dff1['xAG'].values.tolist()
+                    fig = go.Figure(data=[go.Bar(x=x,y=y,marker_color=colours)])
+                    fig.update_layout(title_text='Expected Assists Goals Ranking', title_font_size = 30)
+                    fig.update_xaxes(title_text="Player")
+                    fig.update_yaxes(title_text="Expected Assists Goals")
+                    st.plotly_chart(fig, use_container_width=True)
+                elif see == "Expected Assists":
+                    dff1['xA_Rank'] = dff1['xA'].rank(ascending=False)
+                    dff1 = dff1.sort_values("xA_Rank")
+                    dff1 = dff1.reset_index(drop=True)
+                    index = dff1[dff1['Player'] == self._name].index.values[0]
+                    colours = ['lightslategrey', ] * 17
+                    colours[index] = '#DA291C'
+                    x = dff1['Player'].values.tolist()
+                    y = dff1['xA'].values.tolist()
+                    fig = go.Figure(data=[go.Bar(x=x, y=y, marker_color=colours)])
+                    fig.update_layout(title_text='Expected Assists Ranking', title_font_size=30)
+                    fig.update_xaxes(title_text="Player")
+                    fig.update_yaxes(title_text="Expected Assists")
+                    st.plotly_chart(fig, use_container_width=True)
+                elif see == 'Key Passes':
+                    dff1['KP_Rank'] = dff1['KP'].rank(ascending=False)
+                    dff1 = dff1.sort_values("KP_Rank")
+                    dff1 = dff1.reset_index(drop=True)
+                    index = dff1[dff1['Player'] == self._name].index.values[0]
+                    colours = ['lightslategrey', ] * 17
+                    colours[index] = '#DA291C'
+                    x = dff1['Player'].values.tolist()
+                    y = dff1['KP'].values.tolist()
+                    fig = go.Figure(data=[go.Bar(x=x, y=y, marker_color=colours)])
+                    fig.update_layout(title_text='Key Passes Ranking', title_font_size=30)
+                    fig.update_xaxes(title_text="Player")
+                    fig.update_yaxes(title_text="Key Passes")
+                    st.plotly_chart(fig, use_container_width=True)
+                elif see == 'Passes into Final Third':
+                    dff1['1/3_Rank'] = dff1['1/3_Pass'].rank(ascending=False)
+                    dff1 = dff1.sort_values("1/3_Rank")
+                    dff1 = dff1.reset_index(drop=True)
+                    index = dff1[dff1['Player'] == self._name].index.values[0]
+                    colours = ['lightslategrey', ] * 17
+                    colours[index] = '#DA291C'
+                    x = dff1['Player'].values.tolist()
+                    y = dff1['1/3_Pass'].values.tolist()
+                    fig = go.Figure(data=[go.Bar(x=x, y=y, marker_color=colours)])
+                    fig.update_layout(title_text='Final Third Passes Ranking', title_font_size=30)
+                    fig.update_xaxes(title_text="Player")
+                    fig.update_yaxes(title_text="Final Third Passes")
+                    st.plotly_chart(fig, use_container_width=True)
+                elif see == "Passes into Penalty Area":
+                    dff1['PPA_Rank'] = dff1['PPA'].rank(ascending=False)
+                    dff1 = dff1.sort_values("PPA_Rank")
+                    dff1 = dff1.reset_index(drop=True)
+                    index = dff1[dff1['Player'] == self._name].index.values[0]
+                    colours = ['lightslategrey', ] * 17
+                    colours[index] = '#DA291C'
+                    x = dff1['Player'].values.tolist()
+                    y = dff1['PPA'].values.tolist()
+                    fig = go.Figure(data=[go.Bar(x=x, y=y, marker_color=colours)])
+                    fig.update_layout(title_text='Passes into Penalty Area Ranking', title_font_size=30)
+                    fig.update_xaxes(title_text="Player")
+                    fig.update_yaxes(title_text="Passes into Penalty Area")
+                    st.plotly_chart(fig, use_container_width=True)
+                elif see == 'Crosses into Penalty Area':
+                    dff1['CrsPA_Rank'] = dff1['CrsPA'].rank(ascending=False)
+                    dff1 = dff1.sort_values("CrsPA_Rank")
+                    dff1 = dff1.reset_index(drop=True)
+                    index = dff1[dff1['Player'] == self._name].index.values[0]
+                    colours = ['lightslategrey', ] * 17
+                    colours[index] = '#DA291C'
+                    x = dff1['Player'].values.tolist()
+                    y = dff1['CrsPA'].values.tolist()
+                    fig = go.Figure(data=[go.Bar(x=x, y=y, marker_color=colours)])
+                    fig.update_layout(title_text='Crosses into Penalty Area Ranking', title_font_size=30)
+                    fig.update_xaxes(title_text="Player")
+                    fig.update_yaxes(title_text="Crosses into Penalty Area")
+                    st.plotly_chart(fig, use_container_width=True)
+                elif see == 'Progressive Passes':
+                    dff1['PrgP_Rank'] = dff1['PrgP'].rank(ascending=False)
+                    dff1 = dff1.sort_values("PrgP_Rank")
+                    dff1 = dff1.reset_index(drop=True)
+                    index = dff1[dff1['Player'] == self._name].index.values[0]
+                    colours = ['lightslategrey', ] * 17
+                    colours[index] = '#DA291C'
+                    x = dff1['Player'].values.tolist()
+                    y = dff1['PrgP'].values.tolist()
+                    fig = go.Figure(data=[go.Bar(x=x, y=y, marker_color=colours)])
+                    fig.update_layout(title_text='Progressive Passess Ranking', title_font_size=30)
+                    fig.update_xaxes(title_text="Player")
+                    fig.update_yaxes(title_text="Progressive Passes")
+                    st.plotly_chart(fig, use_container_width=True)
         else:
             st.markdown("# WORK IN PROGRESS")
     # def data_visuals_gk(self, df1, df2):
