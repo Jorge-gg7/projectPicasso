@@ -1,4 +1,5 @@
 import warnings
+
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 import pandas as pd
@@ -8,7 +9,7 @@ import streamlit as st
 
 
 class dataFunc1:
-    def __init__(self, name, attribute, dataset1, dataset2, dataset3, dataset4):
+    def __init__(self, name, attribute, dataset1, dataset2, dataset3, dataset4, dataset5):
         """Used to create a new data set from the given user input
         :param name: Name of the player
         :param attribute: Attribute of the player like Shooting and Goalkeeping that the user is interested
@@ -16,6 +17,7 @@ class dataFunc1:
         :param dataset2: Second dataset used to extract data - 2021/22 dataset
         :param dataset3: Third dataset used to extract data - 2022/23 gk dataset
         :param dataset4: Fourth dataset used to extract data - 2021/22 gk dataset
+        :param dataset5: Fifth dataset used to extract data - 2022/23 new signings dataset
         """
         self._name = name
         self._attribute = attribute
@@ -23,6 +25,7 @@ class dataFunc1:
         self._dataset2 = dataset2
         self._dataset3 = dataset3
         self._dataset4 = dataset4
+        self._dataset5 = dataset5
 
     def display(self):
         df = self._dataset1.loc[self._dataset1['Player'] == str(self._name)]
@@ -51,16 +54,17 @@ class dataFunc1:
         att = {'Shooting 👟': ['Player', 'Gls', 'Sh', 'SoT%', 'SoT/90', 'G/Sh', 'Dist', 'PK', 'xG', 'npxG',
                               'npxG/Sh', 'G-xG', 'np:G-xG'],
                'Passing ⚽': ['Player', 'Att', 'Cmp%', 'TotDist_Pass', 'PrgDist_Pass', 'Att_Shrt', 'Cmp%_Shrt',
-                             'Att_Med','Cmp%_Med', 'Att_Long', 'Cmp%_Long', 'Ast', 'xAG', 'xA', 'KP', '1/3_Pass', 'PPA',
-                             'CrsPA','PrgP'],
-               'Pass Types 🛒': ['Player', 'Live_Pass', 'Dead', 'FK_Pass', 'TB', 'Sw', 'Crs', 'TI', 'CK', 'In', 'Out',
-                                'Str', 'Off', 'Blocks'],
+                             'Att_Med', 'Cmp%_Med', 'Att_Long', 'Cmp%_Long', 'Ast', 'xAG', 'xA', 'KP', '1/3_Pass',
+                             'PPA',
+                             'CrsPA', 'PrgP'],
+               'Pass Types 🛒': ['Player', 'Att', 'Live_Pass', 'Dead', 'FK_Pass', 'TB', 'Sw', 'Crs', 'TI', 'CK', 'In',
+                                'Out', 'Str', 'Off', 'Blocks'],
                'Shot-Creating Actions 😎': ['Player', 'SCA', 'SCA90', 'PassLive_SCA', 'PassDead_SCA', 'TO_SCA', 'Sh_SCA',
                                            'Fld_SCA', 'Def_SCA'],
                'Goal-Creating Actions 🫡': ['Player', 'GCA', 'GCA90', 'PassLive_GCA', 'PassDead_GCA', 'TO_GCA', 'Sh_GCA',
                                            'Fld_GCA', 'Def_GCA'],
                'Defensive Actions 💪': ['Player', 'Tkl', 'TklW', 'Def 3rd_Tkls', 'Mid 3rd_Tkls', 'Att 3rd_Tkls',
-                                       'Att_Chl', 'Tkl%','Lost', 'Blocks_Def', 'Blocks_Sh', 'Pass', 'Int', 'Clr',
+                                       'Att_Chl', 'Tkl%', 'Lost', 'Blocks_Def', 'Blocks_Sh', 'Pass', 'Int', 'Clr',
                                        'Err'],
                'Possession 👻': ['Player', 'Touches', 'Def Pen', 'Def 3rd_Tch', 'Mid 3rd_Tch', 'Att 3rd_Tch', 'Att Pen',
                                 'Live_Tch', 'Att_TakeOns', 'Succ', 'Succ%', 'Tkld', 'Tkld%', 'Carries', 'TotDist_Carr',
@@ -70,8 +74,8 @@ class dataFunc1:
                                                  'onxG', 'onxGA', 'xG+/-', 'xG+/-90', 'On-Off_xG'],
                'Miscellaneous 🏆': ['Player', 'CrdY', 'CrdR', '2CrdY', 'Fls', 'Fld', 'Offsd', 'PKwon', 'PKcon', 'OG',
                                    'Recov', 'Won_AD', 'Lost_AD', 'Won%'],
-               'Advanced Goalkeeping 🥅': ['Player', 'GA','PKA', 'FK', 'CK', 'OG', 'PSxG', 'PSxG/SoT', 'PSxG+/-', '/90',
-                                          'Cmp', 'Att_Launch', 'Cmp%', 'Att_Pass','Thr', 'Launch%_Pass', 'AvgLen_Pass',
+               'Advanced Goalkeeping 🥅': ['Player', 'GA', 'PKA', 'FK', 'CK', 'OG', 'PSxG', 'PSxG/SoT', 'PSxG+/-', '/90',
+                                          'Cmp', 'Att_Launch', 'Cmp%', 'Att_Pass', 'Thr', 'Launch%_Pass', 'AvgLen_Pass',
                                           'Att_GKicks', 'Launch%_GKicks', 'AvgLen_GKicks', 'Opp', 'Stp', 'Stp%', '#OPA',
                                           '#OPA/90', 'AvgDist']}
         ### Filtering data based off the attribute. However, if the attribute is Advanced Goalkeeping, only DdG has
@@ -93,15 +97,22 @@ class dataFunc1:
         return df1, df2
 
     def data_visuals(self, df1, df2):
+        """
+
+        :param df1: Filtered dataframe of dataset1
+        :param df2: Filtered dataframe of dataset2
+        :return:
+        """
         if self._attribute == 'Shooting 👟':
             row0_spacer1, row0_1, row0_spacer2 = st.columns((.05, 3.2, .05))
             with row0_1:
                 st.markdown("##### Actual Statistics - :green[↑]/:red[↓] from previous season")
 
-            row1_spacer1, row1_1, row1_spacer2, row1_2, row1_3, row1_spacer3 =st.columns((.1,1.5,1.5,.8, 1.7,.1))
+            row1_spacer1, row1_1, row1_spacer2, row1_2, row1_3, row1_spacer3 = st.columns((.1, 1.5, 1.5, .8, 1.7, .1))
             with row1_1:
                 stat = ['Goals', 'Shots', 'Shots on Target%', 'Shots on Target per 90', 'Goals per Shot', 'Average'
-                        ' Shot Distance', 'Penalty Kick Goals']
+                                                                                                          ' Shot Distance',
+                        'Penalty Kick Goals']
                 see = st.selectbox("Select the stat that you want to see! 👋", stat)
             with row1_2:
                 if see == "Goals":
@@ -112,7 +123,7 @@ class dataFunc1:
                     st.metric("Shots", df1.iloc[0]["Sh"], diff1)
                 elif see == "Shots on Target%":
                     diff1 = round(df1.iloc[0]["SoT%"] - df2.iloc[0]["SoT%"], 2)
-                    st.metric("Shots on Target%", str(df1.iloc[0]["SoT%"]) + " %", str(diff1) +" %")
+                    st.metric("Shots on Target%", str(df1.iloc[0]["SoT%"]) + " %", str(diff1) + " %")
                 elif see == "Shots on Target per 90":
                     diff1 = round(df1.iloc[0]["SoT/90"] - df2.iloc[0]["SoT/90"], 2)
                     st.metric("SoT/90", df1.iloc[0]["SoT/90"], diff1)
@@ -128,7 +139,8 @@ class dataFunc1:
             with row1_3:
                 if see == 'Goals':
                     st.markdown("## ")
-                    diff1 = round(df1.iloc[0]["Gls"] - self._dataset1["Gls"].mean(), 2)
+                    diff1 = round(df1.iloc[0]["Gls"] - (self._dataset1["Gls"].sum() + self._dataset5["Gls"].sum()) / 26,
+                                  2)
                     if diff1 > 0:
                         st.markdown("##### :green[↑ %a] more than team average." % diff1)
                     elif diff1 == 0:
@@ -137,7 +149,7 @@ class dataFunc1:
                         st.markdown("##### :red[↓ %a] less than team average." % diff1)
                 elif see == "Shots":
                     st.markdown("## ")
-                    diff1 = round(df1.iloc[0]["Sh"] - self._dataset1["Sh"].mean(), 2)
+                    diff1 = round(df1.iloc[0]["Sh"] - (self._dataset1["Sh"].sum() + self._dataset5["Sh"].sum()) / 26, 2)
                     if diff1 > 0:
                         st.markdown("##### :green[↑ %a] more than team average." % diff1)
                     elif diff1 == 0:
@@ -155,7 +167,8 @@ class dataFunc1:
                         st.markdown("##### :red[↓ %a] less accurate than team average." % diff1)
                 elif see == "Shots on Target per 90":
                     st.markdown("## ")
-                    diff1 = round(df1.iloc[0]["SoT/90"] - self._dataset1["SoT/90"].mean(), 2)
+                    diff1 = round(df1.iloc[0]["SoT/90"] - (self._dataset1["SoT/90"].sum() +
+                                                           self._dataset5["SoT/90"].sum()) / 26, 2)
                     if diff1 > 0:
                         st.markdown("##### :green[↑ %a] more accurate than team average." % diff1)
                     elif diff1 == 0:
@@ -164,7 +177,8 @@ class dataFunc1:
                         st.markdown("##### :red[↓ %a] less accurate than team average." % diff1)
                 elif see == "Goals per Shot":
                     st.markdown("## ")
-                    diff1 = round(df1.iloc[0]["G/Sh"] - self._dataset1["G/Sh"].mean(), 2)
+                    diff1 = round(
+                        df1.iloc[0]["G/Sh"] - (self._dataset1["G/Sh"].sum() + self._dataset5["G/Sh"].sum()) / 26, 2)
                     if diff1 > 0:
                         st.markdown("##### :green[↑ %a] more than team average." % diff1)
                     elif diff1 == 0:
@@ -173,7 +187,8 @@ class dataFunc1:
                         st.markdown("##### :red[↓ %a] less than team average." % diff1)
                 elif see == "Average Shot Distance":
                     st.markdown("## ")
-                    diff1 = round(df1.iloc[0]["Dist"] - self._dataset1["Dist"].mean(), 2)
+                    diff1 = round(
+                        df1.iloc[0]["Dist"] - (self._dataset1["Dist"].sum() + self._dataset5["Dist"].sum()) / 26, 2)
                     if diff1 > 0:
                         st.markdown("##### :green[↑ %a] more than team average." % diff1)
                     elif diff1 == 0:
@@ -182,7 +197,7 @@ class dataFunc1:
                         st.markdown("##### :red[↓ %a] less than team average." % diff1)
                 elif see == "Penalty Kick Goals":
                     st.markdown("## ")
-                    diff1 = round(df1.iloc[0]["PK"] - self._dataset1["PK"].mean(), 2)
+                    diff1 = round(df1.iloc[0]["PK"] - (self._dataset1["PK"].sum() + self._dataset5["PK"].sum()) / 26, 2)
                     if diff1 > 0:
                         st.markdown("##### :green[↑ %a] more than team average." % diff1)
                     elif diff1 == 0:
@@ -192,15 +207,16 @@ class dataFunc1:
             with row1_spacer2:
                 st.metric("Example Stat", "Value", "↑/↓ from prev season")
 
-            row2_spacer1, row2_1, row2_spacer2 = st.columns((.1,3.2,.1))
+            row2_spacer1, row2_1, row2_spacer2 = st.columns((.1, 5, .1))
             with row2_1:
                 dff1 = self._dataset1
+                dff1 = pd.concat([dff1, self._dataset5]).reset_index(drop=True)
                 if see == 'Goals':
                     dff1['Gls_Rank'] = dff1['Gls'].rank(ascending=False)
                     dff1 = dff1.sort_values("Gls_Rank")
                     dff1 = dff1.reset_index(drop=True)
                     index = dff1[dff1['Player'] == self._name].index.values[0]
-                    colours = ['lightslategrey', ] * 17
+                    colours = ['lightslategrey', ] * 26
                     colours[index] = '#DA291C'
                     x = dff1['Player'].values.tolist()
                     y = dff1['Gls'].values.tolist()
@@ -214,7 +230,7 @@ class dataFunc1:
                     dff1 = dff1.sort_values("Sh_Rank")
                     dff1 = dff1.reset_index(drop=True)
                     index = dff1[dff1['Player'] == self._name].index.values[0]
-                    colours = ['lightslategrey', ] * 17
+                    colours = ['lightslategrey', ] * 26
                     colours[index] = '#DA291C'
                     x = dff1['Player'].values.tolist()
                     y = dff1['Sh'].values.tolist()
@@ -228,7 +244,7 @@ class dataFunc1:
                     dff1 = dff1.sort_values("SoT%_Rank")
                     dff1 = dff1.reset_index(drop=True)
                     index = dff1[dff1['Player'] == self._name].index.values[0]
-                    colours = ['lightslategrey', ] * 17
+                    colours = ['lightslategrey', ] * 26
                     colours[index] = '#DA291C'
                     x = dff1['Player'].values.tolist()
                     y = dff1['SoT%'].values.tolist()
@@ -242,7 +258,7 @@ class dataFunc1:
                     dff1 = dff1.sort_values("SoT/90_Rank")
                     dff1 = dff1.reset_index(drop=True)
                     index = dff1[dff1['Player'] == self._name].index.values[0]
-                    colours = ['lightslategrey', ] * 17
+                    colours = ['lightslategrey', ] * 26
                     colours[index] = '#DA291C'
                     x = dff1['Player'].values.tolist()
                     y = dff1['SoT/90'].values.tolist()
@@ -256,7 +272,7 @@ class dataFunc1:
                     dff1 = dff1.sort_values("G/Sh_Rank")
                     dff1 = dff1.reset_index(drop=True)
                     index = dff1[dff1['Player'] == self._name].index.values[0]
-                    colours = ['lightslategrey', ] * 17
+                    colours = ['lightslategrey', ] * 26
                     colours[index] = '#DA291C'
                     x = dff1['Player'].values.tolist()
                     y = dff1['G/Sh'].values.tolist()
@@ -270,7 +286,7 @@ class dataFunc1:
                     dff1 = dff1.sort_values("Dist_Rank")
                     dff1 = dff1.reset_index(drop=True)
                     index = dff1[dff1['Player'] == self._name].index.values[0]
-                    colours = ['lightslategrey', ] * 17
+                    colours = ['lightslategrey', ] * 26
                     colours[index] = '#DA291C'
                     x = dff1['Player'].values.tolist()
                     y = dff1['Dist'].values.tolist()
@@ -284,7 +300,7 @@ class dataFunc1:
                     dff1 = dff1.sort_values("PK_Rank")
                     dff1 = dff1.reset_index(drop=True)
                     index = dff1[dff1['Player'] == self._name].index.values[0]
-                    colours = ['lightslategrey', ] * 17
+                    colours = ['lightslategrey', ] * 26
                     colours[index] = '#DA291C'
                     x = dff1['Player'].values.tolist()
                     y = dff1['PK'].values.tolist()
@@ -297,7 +313,8 @@ class dataFunc1:
             row3_spacer1, row3_1, row3_spacer2 = st.columns((.05, 3.2, .05))
             with row3_1:
                 st.markdown("##### Expected Results     -    :green[↑]/:red[↓] from previous season")
-            row4_spacer1, row4_1, row4_spacer2, row4_2, row4_3, row4_spacer3 = st.columns((.1,2,1,.8, 1.5,.1))
+
+            row4_spacer1, row4_1, row4_spacer2, row4_2, row4_3, row4_spacer3 = st.columns((.1, 2, 1, .8, 1.5, .1))
             with row4_1:
                 stat = ['Expected Goals', 'Non-Penalty Expected Goals', 'Non-Penalty Expected Goals per Shot',
                         'Goals minus Expected Goals', 'Non-Penalty Expected Goals minus Expected Goals']
@@ -323,7 +340,7 @@ class dataFunc1:
             with row4_3:
                 if see == 'Expected Goals':
                     st.markdown("## ")
-                    diff1 = round(df1.iloc[0]["xG"] - self._dataset1["xG"].mean(), 2)
+                    diff1 = round(df1.iloc[0]["xG"] - (self._dataset1["xG"].sum() + self._dataset5["xG"].sum()) / 26, 2)
                     if diff1 > 0:
                         st.markdown("##### :green[↑ %a] more than team average." % diff1)
                     elif diff1 == 0:
@@ -332,7 +349,8 @@ class dataFunc1:
                         st.markdown("##### :red[↓ %a] less than team average." % diff1)
                 elif see == 'Non-Penalty Expected Goals':
                     st.markdown("## ")
-                    diff1 = round(df1.iloc[0]["npxG"] - self._dataset1["npxG"].mean(), 2)
+                    diff1 = round(
+                        df1.iloc[0]["npxG"] - (self._dataset1["npxG"].sum() + self._dataset5["npxG"].sum()) / 26, 2)
                     if diff1 > 0:
                         st.markdown("##### :green[↑ %a] more than team average." % diff1)
                     elif diff1 == 0:
@@ -341,7 +359,8 @@ class dataFunc1:
                         st.markdown("##### :red[↓ %a] less than team average." % diff1)
                 elif see == "Non-Penalty Expected Goals per Shot":
                     st.markdown("## ")
-                    diff1 = round(df1.iloc[0]["npxG/Sh"] - self._dataset1["npxG/Sh"].mean(), 2)
+                    diff1 = round(df1.iloc[0]["npxG/Sh"] - (
+                                self._dataset1["npxG/Sh"].sum() + self._dataset5["npxG/Sh"].sum()) / 26, 2)
                     if diff1 > 0:
                         st.markdown("##### :green[↑ %a] more expected accuracy than team average." % diff1)
                     elif diff1 == 0:
@@ -350,7 +369,8 @@ class dataFunc1:
                         st.markdown("##### :red[↓ %a] less expected accuracy than team average." % diff1)
                 elif see == "Goals minus Expected Goals":
                     st.markdown("## ")
-                    diff1 = round(df1.iloc[0]["G-xG"] - self._dataset1["G-xG"].mean(), 2)
+                    diff1 = round(
+                        df1.iloc[0]["G-xG"] - (self._dataset1["G-xG"].sum() + self._dataset5["G-xG"].sum()) / 26, 2)
                     if diff1 > 0:
                         st.markdown("##### :green[↑ %a] more than team average." % diff1)
                     elif diff1 == 0:
@@ -359,7 +379,8 @@ class dataFunc1:
                         st.markdown("##### :red[↓ %a] less than team average." % diff1)
                 elif see == 'Non-Penalty Expected Goals minus Expected Goals':
                     st.markdown("## ")
-                    diff1 = round(df1.iloc[0]["np:G-xG"] - self._dataset1["np:G-xG"].mean(), 2)
+                    diff1 = round(df1.iloc[0]["np:G-xG"] - (
+                                self._dataset1["np:G-xG"].sum() + self._dataset5["np:G-xG"].sum()) / 26, 2)
                     if diff1 > 0:
                         st.markdown("##### :green[↑ %a] more than team average." % diff1)
                     elif diff1 == 0:
@@ -367,15 +388,16 @@ class dataFunc1:
                     else:
                         st.markdown("##### :red[↓ %a] less than team average." % diff1)
 
-            row5_spacer1, row5_1, row5_spacer2 = st.columns((.05, 3.2, .05))
+            row5_spacer1, row5_1, row5_spacer2 = st.columns((.05, 5, .05))
             with row5_1:
                 dff1 = self._dataset1
+                dff1 = pd.concat([dff1, self._dataset5]).reset_index(drop=True)
                 if see == "Expected Goals":
                     dff1['xG_Rank'] = dff1['xG'].rank(ascending=False)
                     dff1 = dff1.sort_values("xG_Rank")
                     dff1 = dff1.reset_index(drop=True)
                     index = dff1[dff1['Player'] == self._name].index.values[0]
-                    colours = ['lightslategrey', ] * 17
+                    colours = ['lightslategrey', ] * 26
                     colours[index] = '#DA291C'
                     x = dff1['Player'].values.tolist()
                     y = dff1['xG'].values.tolist()
@@ -389,7 +411,7 @@ class dataFunc1:
                     dff1 = dff1.sort_values("npxG_Rank")
                     dff1 = dff1.reset_index(drop=True)
                     index = dff1[dff1['Player'] == self._name].index.values[0]
-                    colours = ['lightslategrey', ] * 17
+                    colours = ['lightslategrey', ] * 26
                     colours[index] = '#DA291C'
                     x = dff1['Player'].values.tolist()
                     y = dff1['npxG'].values.tolist()
@@ -403,7 +425,7 @@ class dataFunc1:
                     dff1 = dff1.sort_values("npxG/Sh_Rank")
                     dff1 = dff1.reset_index(drop=True)
                     index = dff1[dff1['Player'] == self._name].index.values[0]
-                    colours = ['lightslategrey', ] * 17
+                    colours = ['lightslategrey', ] * 26
                     colours[index] = '#DA291C'
                     x = dff1['Player'].values.tolist()
                     y = dff1['npxG/Sh'].values.tolist()
@@ -417,7 +439,7 @@ class dataFunc1:
                     dff1 = dff1.sort_values("G-xG_Rank")
                     dff1 = dff1.reset_index(drop=True)
                     index = dff1[dff1['Player'] == self._name].index.values[0]
-                    colours = ['lightslategrey', ] * 17
+                    colours = ['lightslategrey', ] * 26
                     colours[index] = '#DA291C'
                     x = dff1['Player'].values.tolist()
                     y = dff1['G-xG'].values.tolist()
@@ -431,12 +453,13 @@ class dataFunc1:
                     dff1 = dff1.sort_values("np:G-xG_Rank")
                     dff1 = dff1.reset_index(drop=True)
                     index = dff1[dff1['Player'] == self._name].index.values[0]
-                    colours = ['lightslategrey', ] * 17
+                    colours = ['lightslategrey', ] * 26
                     colours[index] = '#DA291C'
                     x = dff1['Player'].values.tolist()
                     y = dff1['np:G-xG'].values.tolist()
                     fig = go.Figure(data=[go.Bar(x=x, y=y, marker_color=colours)])
-                    fig.update_layout(title_text='Non-Penalty Expected Goals - Expected Goals Ranking', title_font_size=30)
+                    fig.update_layout(title_text='Non-Penalty Expected Goals - Expected Goals Ranking',
+                                      title_font_size=30)
                     fig.update_xaxes(title_text="Player")
                     fig.update_yaxes(title_text="npxG - xG")
                     st.plotly_chart(fig, use_container_width=True)
@@ -457,25 +480,26 @@ class dataFunc1:
                 st.metric("Total Distance Passed", str(df1.iloc[0]["TotDist_Pass"]) + " yrds", str(diff1) + " yrds")
             with row1_2:
                 st.markdown("## ")
-                diff1 = round(df1.iloc[0]["Ast"] - self._dataset1["Ast"].mean(), 2)
+                diff1 = round(df1.iloc[0]["Ast"] - (self._dataset1["Ast"].sum() + self._dataset5["Ast"].sum()) / 26, 2)
                 if diff1 > 0:
                     st.markdown("##### :green[↑ %a] more than team average." % diff1)
                 elif diff1 == 0:
                     st.markdown("##### Similar to team average")
                 else:
                     st.markdown("##### :red[↓ %a] less than team average." % diff1)
-                st.markdown("##### ")
-                st.markdown("##### ")
-                diff1 = round(df1.iloc[0]["Att"] - self._dataset1["Att"].mean(), 2)
+                st.markdown("## ")
+                st.markdown("### ")
+                diff1 = round(df1.iloc[0]["Att"] - (self._dataset1["Att"].sum() + self._dataset5["Att"].sum()) / 26, 2)
                 if diff1 > 0:
                     st.markdown("##### :green[↑ %a] more than team average." % diff1)
                 elif diff1 == 0:
                     st.markdown("##### Similar to team average")
                 else:
                     st.markdown("##### :red[↓ %a] less than team average." % diff1)
-                st.markdown("##### ")
-                st.markdown("##### ")
-                diff1 = round(df1.iloc[0]["TotDist_Pass"] - self._dataset1["TotDist_Pass"].mean(), 2)
+                st.markdown("### ")
+                st.markdown("### ")
+                diff1 = round(df1.iloc[0]["TotDist_Pass"] - (
+                            self._dataset1["TotDist_Pass"].sum() + self._dataset5["TotDist_Pass"].sum()) / 26, 2)
                 if diff1 > 0:
                     st.markdown("##### :green[↑ %a] yards further than team average." % diff1)
                 elif diff1 == 0:
@@ -490,7 +514,8 @@ class dataFunc1:
                           " yrds")
             with row1_4:
                 st.markdown("## ")
-                diff1 = round(df1.iloc[0]["Att"] - self._dataset1["Att"].mean(), 2)
+                diff1 = round(df1.iloc[0]["Cmp%"] - (self._dataset1["Cmp%"].sum() + self._dataset5["Cmp%"].sum()) / 26,
+                              2)
                 if diff1 > 0:
                     st.markdown("##### :green[↑ %a] more than team average." % diff1)
                 elif diff1 == 0:
@@ -499,7 +524,8 @@ class dataFunc1:
                     st.markdown("##### :red[↓ %a] less than team average." % diff1)
                 st.markdown("# ")
                 st.markdown("##### ")
-                diff1 = round(df1.iloc[0]["PrgDist_Pass"] - self._dataset1["PrgDist_Pass"].mean(), 2)
+                diff1 = round(df1.iloc[0]["PrgDist_Pass"] - (
+                            self._dataset1["PrgDist_Pass"].sum() + self._dataset5["PrgDist_Pass"].sum()) / 26, 2)
                 if diff1 > 0:
                     st.markdown("##### :green[↑ %a] yards further than team average." % diff1)
                 elif diff1 == 0:
@@ -515,7 +541,7 @@ class dataFunc1:
                 dff2 = dff2.replace(self._name, str(self._name) + " 2021/22")
                 dff = dff.append(dff2, ignore_index=True)
 
-                dff_avg1 = self._dataset1.reset_index()
+                dff_avg1 = pd.concat([self._dataset1, self._dataset5]).reset_index(drop=True)
                 dff_avg1.loc['Average 2022/23'] = dff_avg1.mean()
                 dff_avg1 = dff_avg1.loc['Average 2022/23', ['Player', 'Att_Shrt', 'Att_Med', 'Att_Long']]
                 dff = dff.append(dff_avg1, ignore_index=True)
@@ -551,7 +577,7 @@ class dataFunc1:
                 dff2 = dff2.replace(self._name, str(self._name) + " 2021/22")
                 dff = dff.append(dff2, ignore_index=True)
 
-                dff_avg1 = self._dataset1.reset_index()
+                dff_avg1 = pd.concat([self._dataset1, self._dataset5]).reset_index(drop=True)
                 dff_avg1.loc['Average 2022/23'] = dff_avg1.mean()
                 dff_avg1 = dff_avg1.loc['Average 2022/23', ['Player', 'Cmp%_Shrt', 'Cmp%_Med', 'Cmp%_Long']]
                 dff = dff.append(dff_avg1, ignore_index=True)
@@ -564,7 +590,7 @@ class dataFunc1:
                 dff = dff.fillna("Team Average 2021/22")
 
                 fig = px.bar(dff, x='Player', y=['Player', 'Cmp%_Shrt', 'Cmp%_Med', 'Cmp%_Long'], labels={'value': '%',
-                            'variable': 'Variable'},
+                                                                                                          'variable': 'Variable'},
                              title='Pass Completion Rate %')
                 new_names = {'Cmp%_Shrt': 'Pass Completion % Short', 'Cmp%_Med': 'Pass Completion % Medium',
                              'Cmp%_Long': 'Pass Completion % Long'}
@@ -581,10 +607,10 @@ class dataFunc1:
                 ))
                 st.plotly_chart(fig, use_container_width=True, width=500)
 
-            row3_spacer1, row3_1, row3_spacer2, row3_2, row3_3, row3_spacer3 = st.columns((.1,1.5,1.3,1, 1.7,.1))
+            row3_spacer1, row3_1, row3_spacer2, row3_2, row3_3, row3_spacer3 = st.columns((.1, 1.5, 1.3, 1, 1.7, .1))
             with row3_1:
                 stat = ['Expected Assists Goals', 'Expected Assists', 'Key Passes', 'Passes into Final Third',
-                        'Passes into Penalty Area', 'Crosses into Penalty Area','Progressive Passes']
+                        'Passes into Penalty Area', 'Crosses into Penalty Area', 'Progressive Passes']
                 see = st.selectbox("Select the stat that you want to see! 👋", stat)
             with row3_spacer2:
                 st.metric("Example Stat", "Value", "↑/↓ from prev season")
@@ -613,7 +639,8 @@ class dataFunc1:
             with row3_3:
                 if see == 'Expected Assists Goals':
                     st.markdown("## ")
-                    diff1 = round(df1.iloc[0]["xAG"] - self._dataset1["xAG"].mean(), 2)
+                    diff1 = round(df1.iloc[0]["xAG"] - (self._dataset1["xAG"].sum() + self._dataset5["xAG"].sum()) / 26,
+                                  2)
                     if diff1 > 0:
                         st.markdown("##### :green[↑ %a] more than team average." % diff1)
                     elif diff1 == 0:
@@ -622,7 +649,7 @@ class dataFunc1:
                         st.markdown("##### :red[↓ %a] less than team average." % diff1)
                 elif see == 'Expected Assists':
                     st.markdown("## ")
-                    diff1 = round(df1.iloc[0]["xA"] - self._dataset1["xA"].mean(), 2)
+                    diff1 = round(df1.iloc[0]["xA"] - (self._dataset1["xA"].sum() + self._dataset5["xA"].sum()) / 26, 2)
                     if diff1 > 0:
                         st.markdown("##### :green[↑ %a] more than team average." % diff1)
                     elif diff1 == 0:
@@ -631,7 +658,7 @@ class dataFunc1:
                         st.markdown("##### :red[↓ %a] less than team average." % diff1)
                 elif see == 'Key Passes':
                     st.markdown("## ")
-                    diff1 = round(df1.iloc[0]["KP"] - self._dataset1["KP"].mean(), 2)
+                    diff1 = round(df1.iloc[0]["KP"] - (self._dataset1["KP"].sum() + self._dataset5["KP"].sum()) / 26, 2)
                     if diff1 > 0:
                         st.markdown("##### :green[↑ %a] more than team average." % diff1)
                     elif diff1 == 0:
@@ -640,7 +667,8 @@ class dataFunc1:
                         st.markdown("##### :red[↓ %a] less than team average." % diff1)
                 elif see == 'Passes into Final Third':
                     st.markdown("## ")
-                    diff1 = round(df1.iloc[0]["1/3_Pass"] - self._dataset1["1/3_Pass"].mean(), 2)
+                    diff1 = round(df1.iloc[0]["1/3_Pass"] - (
+                                self._dataset1["1/3_Pass"].sum() + self._dataset5["1/3_Pass"].sum()) / 26, 2)
                     if diff1 > 0:
                         st.markdown("##### :green[↑ %a] more than team average." % diff1)
                     elif diff1 == 0:
@@ -649,7 +677,8 @@ class dataFunc1:
                         st.markdown("##### :red[↓ %a] less than team average." % diff1)
                 elif see == 'Passes into Penalty Area':
                     st.markdown("## ")
-                    diff1 = round(df1.iloc[0]["PPA"] - self._dataset1["PPA"].mean(), 2)
+                    diff1 = round(df1.iloc[0]["PPA"] - (self._dataset1["PPA"].sum() + self._dataset5["PPA"].sum()) / 26,
+                                  2)
                     if diff1 > 0:
                         st.markdown("##### :green[↑ %a] more than team average." % diff1)
                     elif diff1 == 0:
@@ -658,7 +687,8 @@ class dataFunc1:
                         st.markdown("##### :red[↓ %a] less than team average." % diff1)
                 elif see == 'Crosses into Penalty Area':
                     st.markdown("## ")
-                    diff1 = round(df1.iloc[0]["CrsPA"] - self._dataset1["CrsPA"].mean(), 2)
+                    diff1 = round(
+                        df1.iloc[0]["CrsPA"] - (self._dataset1["CrsPA"].sum() + self._dataset5["CrsPA"].sum()) / 26, 2)
                     if diff1 > 0:
                         st.markdown("##### :green[↑ %a] more than team average." % diff1)
                     elif diff1 == 0:
@@ -667,7 +697,8 @@ class dataFunc1:
                         st.markdown("##### :red[↓ %a] less than team average." % diff1)
                 elif see == 'Progressive Passes':
                     st.markdown("## ")
-                    diff1 = round(df1.iloc[0]["PrgP"] - self._dataset1["PrgP"].mean(), 2)
+                    diff1 = round(
+                        df1.iloc[0]["PrgP"] - (self._dataset1["PrgP"].sum() + self._dataset5["PrgP"].sum()) / 26, 2)
                     if diff1 > 0:
                         st.markdown("##### :green[↑ %a] more than team average." % diff1)
                     elif diff1 == 0:
@@ -675,20 +706,21 @@ class dataFunc1:
                     else:
                         st.markdown("##### :red[↓ %a] less than team average." % diff1)
 
-            row4_spacer1, row4_1, row4_spacer2 = st.columns((.1,3.2,.1))
+            row4_spacer1, row4_1, row4_spacer2 = st.columns((.1, 3.2, .1))
             with row4_1:
                 dff1 = self._dataset1
+                dff1 = pd.concat([dff1, self._dataset5]).reset_index(drop=True)
                 if see == 'Expected Assists Goals':
                     dff1['xAG_Rank'] = dff1['xAG'].rank(ascending=False)
                     dff1 = dff1.sort_values("xAG_Rank")
                     dff1 = dff1.reset_index(drop=True)
                     index = dff1[dff1['Player'] == self._name].index.values[0]
-                    colours = ['lightslategrey',] * 17
+                    colours = ['lightslategrey', ] * 26
                     colours[index] = '#DA291C'
                     x = dff1['Player'].values.tolist()
                     y = dff1['xAG'].values.tolist()
-                    fig = go.Figure(data=[go.Bar(x=x,y=y,marker_color=colours)])
-                    fig.update_layout(title_text='Expected Assists Goals Ranking', title_font_size = 30)
+                    fig = go.Figure(data=[go.Bar(x=x, y=y, marker_color=colours)])
+                    fig.update_layout(title_text='Expected Assists Goals Ranking', title_font_size=30)
                     fig.update_xaxes(title_text="Player")
                     fig.update_yaxes(title_text="Expected Assists Goals")
                     st.plotly_chart(fig, use_container_width=True)
@@ -697,7 +729,7 @@ class dataFunc1:
                     dff1 = dff1.sort_values("xA_Rank")
                     dff1 = dff1.reset_index(drop=True)
                     index = dff1[dff1['Player'] == self._name].index.values[0]
-                    colours = ['lightslategrey', ] * 17
+                    colours = ['lightslategrey', ] * 26
                     colours[index] = '#DA291C'
                     x = dff1['Player'].values.tolist()
                     y = dff1['xA'].values.tolist()
@@ -711,7 +743,7 @@ class dataFunc1:
                     dff1 = dff1.sort_values("KP_Rank")
                     dff1 = dff1.reset_index(drop=True)
                     index = dff1[dff1['Player'] == self._name].index.values[0]
-                    colours = ['lightslategrey', ] * 17
+                    colours = ['lightslategrey', ] * 26
                     colours[index] = '#DA291C'
                     x = dff1['Player'].values.tolist()
                     y = dff1['KP'].values.tolist()
@@ -725,7 +757,7 @@ class dataFunc1:
                     dff1 = dff1.sort_values("1/3_Rank")
                     dff1 = dff1.reset_index(drop=True)
                     index = dff1[dff1['Player'] == self._name].index.values[0]
-                    colours = ['lightslategrey', ] * 17
+                    colours = ['lightslategrey', ] * 26
                     colours[index] = '#DA291C'
                     x = dff1['Player'].values.tolist()
                     y = dff1['1/3_Pass'].values.tolist()
@@ -739,7 +771,7 @@ class dataFunc1:
                     dff1 = dff1.sort_values("PPA_Rank")
                     dff1 = dff1.reset_index(drop=True)
                     index = dff1[dff1['Player'] == self._name].index.values[0]
-                    colours = ['lightslategrey', ] * 17
+                    colours = ['lightslategrey', ] * 26
                     colours[index] = '#DA291C'
                     x = dff1['Player'].values.tolist()
                     y = dff1['PPA'].values.tolist()
@@ -753,7 +785,7 @@ class dataFunc1:
                     dff1 = dff1.sort_values("CrsPA_Rank")
                     dff1 = dff1.reset_index(drop=True)
                     index = dff1[dff1['Player'] == self._name].index.values[0]
-                    colours = ['lightslategrey', ] * 17
+                    colours = ['lightslategrey', ] * 26
                     colours[index] = '#DA291C'
                     x = dff1['Player'].values.tolist()
                     y = dff1['CrsPA'].values.tolist()
@@ -767,7 +799,7 @@ class dataFunc1:
                     dff1 = dff1.sort_values("PrgP_Rank")
                     dff1 = dff1.reset_index(drop=True)
                     index = dff1[dff1['Player'] == self._name].index.values[0]
-                    colours = ['lightslategrey', ] * 17
+                    colours = ['lightslategrey', ] * 26
                     colours[index] = '#DA291C'
                     x = dff1['Player'].values.tolist()
                     y = dff1['PrgP'].values.tolist()
@@ -776,6 +808,13 @@ class dataFunc1:
                     fig.update_xaxes(title_text="Player")
                     fig.update_yaxes(title_text="Progressive Passes")
                     st.plotly_chart(fig, use_container_width=True)
+
+        elif self._attribute == 'Pass Types 🛒':
+            row0_spacer1, row0_1, row0_2, row0_spacer2 = st.columns((.05, 3, 3, .05))
+            with row0_1:
+                character = ['Att', 'Live_Pass', 'Dead', 'FK_Pass', 'TB', 'Sw', 'Crs', 'TI', 'CK', 'In', 'Out',
+                             'Str', 'Off', 'Blocks']
+
 
         else:
             st.markdown("# WORK IN PROGRESS")

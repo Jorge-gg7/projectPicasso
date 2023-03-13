@@ -9,6 +9,7 @@ dataset1 = pd.read_csv('data/data_2022_2023.csv', index_col='Unnamed: 0')
 dataset2 = pd.read_csv('data/data_2021_2022.csv', index_col='Unnamed: 0')
 dataset3 = pd.read_csv('data/df_2022_2023_gk.csv', index_col='Unnamed: 0')
 dataset4 = pd.read_csv('data/df_2021_2022_gk.csv', index_col='Unnamed: 0')
+dataset5 = pd.read_csv('data/df_2022_2023_new_signings.csv', index_col='Unnamed: 0')
 
 ### Sidebar customisation and input values
 st.sidebar.markdown("#  How does this work?")
@@ -26,7 +27,7 @@ drop_gloss = st.sidebar.expander("Metric Glossary")
 with drop_gloss:
     st.markdown("Metric Glossary")
 
-x = f1.dataFunc1(player, attribute, dataset1, dataset2, dataset3, dataset4)
+x = f1.dataFunc1(player, attribute, dataset1, dataset2, dataset3, dataset4, dataset5)
 
 row0_spacer1, row0_1, row0_2, row0_spacer2 = st.columns((.1, 1, 5,.1))
 with row0_1:
