@@ -57,8 +57,8 @@ class dataFunc1:
                              'Att_Med', 'Cmp%_Med', 'Att_Long', 'Cmp%_Long', 'Ast', 'xAG', 'xA', 'KP', '1/3_Pass',
                              'PPA',
                              'CrsPA', 'PrgP'],
-               'Pass Types 🛒': ['Player', 'Att', 'Live_Pass', 'Dead', 'FK_Pass', 'TB', 'Sw', 'Crs', 'TI', 'CK', 'In',
-                                'Out', 'Str', 'Off', 'Blocks'],
+               'Pass Types 🛒': ['Player', 'Att', 'Cmp', 'Cmp%','Live_Pass', 'Dead', 'FK_Pass', 'TB', 'Sw', 'Crs', 'TI',
+                                'CK', 'In', 'Out', 'Str', 'Off', 'Blocks'],
                'Shot-Creating Actions 😎': ['Player', 'SCA', 'SCA90', 'PassLive_SCA', 'PassDead_SCA', 'TO_SCA', 'Sh_SCA',
                                            'Fld_SCA', 'Def_SCA'],
                'Goal-Creating Actions 🫡': ['Player', 'GCA', 'GCA90', 'PassLive_GCA', 'PassDead_GCA', 'TO_GCA', 'Sh_GCA',
@@ -810,12 +810,39 @@ class dataFunc1:
                     st.plotly_chart(fig, use_container_width=True)
 
         elif self._attribute == 'Pass Types 🛒':
-            row0_spacer1, row0_1, row0_2, row0_spacer2 = st.columns((.05, 3, 3, .05))
+            row0_spacer1, row0_1, row0_spacer2 = st.columns((.05, 3.2, 5))
             with row0_1:
-                character = ['Att', 'Live_Pass', 'Dead', 'FK_Pass', 'TB', 'Sw', 'Crs', 'TI', 'CK', 'In', 'Out',
-                             'Str', 'Off', 'Blocks']
+                st.markdown("##### Actual Statistics - :green[↑]/:red[↓] from previous season")
 
+            row1_spacer1, row1_1, row1_2, row1_3, row1_spacer2 = st.columns((.05,2,2,5,2))
+            with row1_1:
+                diff1 = round(df1.iloc[0]["Att"] - df2.iloc[0]["Att"], 2)
+                st.metric("Attempted Passes", df1.iloc[0]["Att"], diff1)
+            with row1_2:
+                diff1 = round(df1.iloc[0]["Cmp"] - df2.iloc[0]["Cmp"], 2)
+                st.metric("Completed Passes", df1.iloc[0]["Cmp"], diff1)
+            with row1_3:
+                diff1 = round(df1.iloc[0]["Cmp%"] - df2.iloc[0]["Cmp%"], 2)
+                st.metric("Completed Passes %", str(df1.iloc[0]["Cmp%"]) + " %", str(diff1) + " %")
+            with row1_spacer2:
+                st.metric("Example Stat", "Value", "↑/↓ from prev season")
+
+            row2_spacer1, row2_1, row2_spacer2 = st.columns((.1,3.2,.1))
+            with row2_1:
+                dff1 = df1
+                dff1.replace(str(self._name), str(self._name) + " 2022/23", inplace=True)
+                dff2 = df2
+                dff2.replace(str(self._name), str(self._name) + " 2021/22", inplace=True)
+                dff = pd.concat([dff1, dff2], ignore_index=True)
+                print(dff)
+                fig = px.bar(dff, x='Player', y=['Live_Pass', 'Dead', 'FK_Pass', 'TB', 'Sw', 'Crs', 'TI',
+                                'CK'])
+                fig.update_layout(barmode='group')
+                st.plotly_chart(fig)
+                st.markdown("")
 
         else:
             st.markdown("# WORK IN PROGRESS")
     # def data_visuals_gk(self, df1, df2):
+
+
