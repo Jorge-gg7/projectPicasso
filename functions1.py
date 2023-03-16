@@ -29,9 +29,8 @@ class dataFunc1:
 
     def display(self):
         df = self._dataset1.loc[self._dataset1['Player'] == str(self._name)]
-        df1 = self._dataset2.loc[self._dataset2['Player'] == str(self._name)]
 
-        row0_spacer1, row0_1, row0_2, row0_3, row0_spacer2 = st.columns((.05, .5, .5, 1.5, .05))
+        row0_spacer1, row0_1, row0_2, row0_3, row0_4, row0_spacer2 = st.columns((.05, .5, .5, .5, 1, .05))
         with row0_1:
             st.image('images/' + self._name + '.png', width=170)
         with row0_2:
@@ -827,20 +826,56 @@ class dataFunc1:
             with row1_spacer2:
                 st.metric("Example Stat", "Value", "↑/↓ from prev season")
 
-            row2_spacer1, row2_1, row2_spacer2 = st.columns((.1,3.2,.1))
+            row2_spacer1, row2_1, row2_spacer2 = st.columns((.1,3.2,.01))
             with row2_1:
                 dff1 = df1
                 dff1.replace(str(self._name), str(self._name) + " 2022/23", inplace=True)
                 dff2 = df2
                 dff2.replace(str(self._name), str(self._name) + " 2021/22", inplace=True)
                 dff = pd.concat([dff1, dff2], ignore_index=True)
-                print(dff)
-                fig = px.bar(dff, x='Player', y=['Live_Pass', 'Dead', 'FK_Pass', 'TB', 'Sw', 'Crs', 'TI',
-                                'CK'])
-                fig.update_layout(barmode='group')
-                st.plotly_chart(fig)
-                st.markdown("")
 
+                dff = pd.melt(dff, id_vars=['Player'], value_vars=['Live_Pass', 'Dead', 'FK_Pass', 'TB', 'Sw', 'Crs',
+                        'TI','CK'], var_name='Statistic', value_name ='Amount of Passes')
+                dff.replace(['Live_Pass', 'Dead', 'FK_Pass', 'TB', 'Sw', 'Crs','TI','CK'],
+                            ['Live Pass', 'Dead Pass', 'Freekick Pass', 'Through Balls', 'Switches', 'Crosses',
+                             'Throw Ins', 'Corner Kicks'], inplace=True)
+
+                fig = px.bar(dff, x='Statistic', y='Amount of Passes', color='Player')
+                fig.update_layout(barmode='group', title='Pass Types')
+                st.plotly_chart(fig, use_container_width=True)
+
+            row3_spacer1, row3_1, row3_2, row3_3, row3_spacer2 = st.columns((.1,4,2,2,.1))
+            with row3_1:
+                dff1 = df1
+                dff1['Others'] = dff1['CK'] - dff1['In'] - dff1['Out'] - dff1['Str']
+                dff1 = pd.melt(dff1, id_vars='Player', value_vars=['CK', 'In', 'Out', 'Str', 'Others'], var_name='Statistic',
+                               value_name='Amount of Passes')
+
+                dff2 = df2
+                dff2['Others'] = dff2['CK'] - dff2['In'] - dff2['Out'] - dff2['Str']
+                dff2 = pd.melt(dff2, id_vars='Player', value_vars=['CK', 'In', 'Out', 'Str', 'Others'],
+                               var_name='Statistic', value_name='Amount of Passes')
+
+                dff = pd.concat([dff1, dff2], ignore_index=True)
+                dff.replace(['CK', 'In', 'Out', 'Str'],['Corner Kicks', 'In-Swing Corner', 'Out-Swing Corner',
+                                                        'Straight'], inplace=True)
+                fig = px.bar(dff, x='Statistic', y='Amount of Passes', color='Player')
+                fig.update_layout(legend=dict(orientation = 'h', yanchor="top", y=1.05, xanchor="right", x=1), barmode=
+                                  'group', title='Corner Kick Statistics')
+                st.plotly_chart(fig, use_container_width=True)
+
+            with row3_2:
+                diff1 = round(df1.iloc[0]['Off']-df2.iloc[0]['Off'],2)
+                st.markdown("### Pass Outcomes")
+                st.metric('Offside Passes', df1.iloc[0]['Off'], diff1)
+            with row3_3:
+                diff1 = round(df1.iloc[0]['Blocks'] - df2.iloc[0]['Blocks'], 2)
+                st.markdown("## ")
+                st.markdown("#### ")
+                st.metric('Blocked Passes', df1.iloc[0]['Blocks'], diff1)
+
+        elif self._attribute == 'Shot-Creating Actions 😎':
+            st.markdown("")
         else:
             st.markdown("# WORK IN PROGRESS")
     # def data_visuals_gk(self, df1, df2):
