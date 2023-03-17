@@ -28,9 +28,9 @@ class dataFunc1:
         self._dataset5 = dataset5
 
     def display(self):
-        df = self._dataset1.loc[self._dataset1['Player'] == str(self._name)]
+        df = self._dataset1.loc[self._dataset1['Player'] == str(self._name)].reset_index(drop=True)
 
-        row0_spacer1, row0_1, row0_2, row0_3, row0_4, row0_spacer2 = st.columns((.05, .5, .5, .5, 1, .05))
+        row0_spacer1, row0_1, row0_2, row0_3, row0_4, row0_spacer2 = st.columns((.05, .5, .5, .5, 1.25, .05))
         with row0_1:
             st.image('images/' + self._name + '.png', width=170)
         with row0_2:
@@ -47,6 +47,21 @@ class dataFunc1:
             st.markdown("#####           " + str(df.iloc[0]["Age"]))
             st.markdown("#####           " + str(df.iloc[0]["MP"]))
             st.markdown("#####           " + str(df.iloc[0]["Starts"]))
+        with row0_4:
+            df.at[0, 'SoT%'] = df.at[0, 'SoT%'] / 100
+            df['Dribbling'] = (df.at[0,'Succ%'] + df.at[0,'Tkld%']) / 200
+            df.at[0, 'Tkl%'] = df.at[0,'Tkl%'] / 100
+            df.at[0, 'Succ%'] = df.at[0, 'Succ%'] / 100
+            df.at[0, 'Cmp%'] = df.at[0, 'Cmp%'] / 100
+            dff = pd.melt(df, id_vars = 'Player', value_vars=['SoT%', 'Cmp%' , 'Dribbling', 'Tkl%', 'Succ%'],
+                          var_name='Attributes', value_name='Rating')
+            dff.replace(['SoT%', 'Cmp%', 'Tkl%', 'Succ%'], ['Shooting', 'Passing', 'Defending', 'Possession'], inplace=True)
+            fig = px.line_polar(dff, r='Rating', theta='Attributes', line_close=True, height=221, width = 400,
+                                color_discrete_sequence=['orange'])
+            fig.update_traces(fill='toself')
+            fig.update_layout(margin=dict(t=20,b=0), font_size = 11, plot_bgcolor='#0e1117')
+            st.plotly_chart(fig, use_container_width=True, theme='streamlit')
+            st.markdown("")
 
     def filter_data(self):
         ### Defining what data is in what attribute
