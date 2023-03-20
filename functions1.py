@@ -57,11 +57,10 @@ class dataFunc1:
                           var_name='Attributes', value_name='Rating')
             dff.replace(['SoT%', 'Cmp%', 'Tkl%', 'Succ%'], ['Shooting', 'Passing', 'Defending', 'Possession'], inplace=True)
             fig = px.line_polar(dff, r='Rating', theta='Attributes', line_close=True, height=221, width = 400,
-                                color_discrete_sequence=['orange'])
+                                color_discrete_sequence=['orange'], range_r=[0,1])
             fig.update_traces(fill='toself')
-            fig.update_layout(margin=dict(t=20,b=0), font_size = 11, plot_bgcolor='#0e1117')
+            fig.update_layout(margin=dict(t=20,b=0), font_size = 12, plot_bgcolor='#0e1117', font_color="grey")
             st.plotly_chart(fig, use_container_width=True, theme='streamlit')
-            st.markdown("")
 
     def filter_data(self):
         ### Defining what data is in what attribute
@@ -156,68 +155,68 @@ class dataFunc1:
                     diff1 = round(df1.iloc[0]["Gls"] - (self._dataset1["Gls"].sum() + self._dataset5["Gls"].sum()) / 26,
                                   2)
                     if diff1 > 0:
-                        st.markdown("##### :green[↑ %a] more than team average." % diff1)
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
                     elif diff1 == 0:
-                        st.markdown("##### Similar to team average")
+                        st.markdown("##### Similar to team average this season.")
                     else:
-                        st.markdown("##### :red[↓ %a] less than team average." % diff1)
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
                 elif see == "Shots":
                     st.markdown("## ")
                     diff1 = round(df1.iloc[0]["Sh"] - (self._dataset1["Sh"].sum() + self._dataset5["Sh"].sum()) / 26, 2)
                     if diff1 > 0:
-                        st.markdown("##### :green[↑ %a] more than team average." % diff1)
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
                     elif diff1 == 0:
-                        st.markdown("##### Similar to team average")
+                        st.markdown("##### Similar to team average this season.")
                     else:
-                        st.markdown("##### :red[↓ %a] less than team average." % diff1)
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
                 elif see == "Shots on Target%":
                     st.markdown("## ")
                     diff1 = round(df1.iloc[0]["SoT%"] - self._dataset1["SoT%"].mean(), 2)
                     if diff1 > 0:
-                        st.markdown("##### :green[↑ %a] more accurate than team average." % diff1)
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
                     elif diff1 == 0:
-                        st.markdown("##### Similar to team average")
+                        st.markdown("##### Similar to team average this season.")
                     else:
-                        st.markdown("##### :red[↓ %a] less accurate than team average." % diff1)
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
                 elif see == "Shots on Target per 90":
                     st.markdown("## ")
                     diff1 = round(df1.iloc[0]["SoT/90"] - (self._dataset1["SoT/90"].sum() +
                                                            self._dataset5["SoT/90"].sum()) / 26, 2)
                     if diff1 > 0:
-                        st.markdown("##### :green[↑ %a] more accurate than team average." % diff1)
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
                     elif diff1 == 0:
-                        st.markdown("##### Similar to team average")
+                        st.markdown("##### Similar to team average this season.")
                     else:
-                        st.markdown("##### :red[↓ %a] less accurate than team average." % diff1)
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
                 elif see == "Goals per Shot":
                     st.markdown("## ")
                     diff1 = round(
                         df1.iloc[0]["G/Sh"] - (self._dataset1["G/Sh"].sum() + self._dataset5["G/Sh"].sum()) / 26, 2)
                     if diff1 > 0:
-                        st.markdown("##### :green[↑ %a] more than team average." % diff1)
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
                     elif diff1 == 0:
-                        st.markdown("##### Similar to team average")
+                        st.markdown("##### Similar to team average this season.")
                     else:
-                        st.markdown("##### :red[↓ %a] less than team average." % diff1)
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
                 elif see == "Average Shot Distance":
                     st.markdown("## ")
                     diff1 = round(
                         df1.iloc[0]["Dist"] - (self._dataset1["Dist"].sum() + self._dataset5["Dist"].sum()) / 26, 2)
                     if diff1 > 0:
-                        st.markdown("##### :green[↑ %a] more than team average." % diff1)
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
                     elif diff1 == 0:
-                        st.markdown("##### Similar to team average")
+                        st.markdown("##### Similar to team average this season.")
                     else:
-                        st.markdown("##### :red[↓ %a] less than team average." % diff1)
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
                 elif see == "Penalty Kick Goals":
                     st.markdown("## ")
                     diff1 = round(df1.iloc[0]["PK"] - (self._dataset1["PK"].sum() + self._dataset5["PK"].sum()) / 26, 2)
                     if diff1 > 0:
-                        st.markdown("##### :green[↑ %a] more than team average." % diff1)
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
                     elif diff1 == 0:
-                        st.markdown("##### Similar to team average")
+                        st.markdown("##### Similar to team average this season.")
                     else:
-                        st.markdown("##### :red[↓ %a] less than team average." % diff1)
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
             with row1_spacer2:
                 st.metric("Example Stat", "Value", "↑/↓ from prev season")
 
@@ -356,21 +355,21 @@ class dataFunc1:
                     st.markdown("## ")
                     diff1 = round(df1.iloc[0]["xG"] - (self._dataset1["xG"].sum() + self._dataset5["xG"].sum()) / 26, 2)
                     if diff1 > 0:
-                        st.markdown("##### :green[↑ %a] more than team average." % diff1)
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
                     elif diff1 == 0:
-                        st.markdown("##### Similar to team average")
+                        st.markdown("##### Similar to team average this season.")
                     else:
-                        st.markdown("##### :red[↓ %a] less than team average." % diff1)
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
                 elif see == 'Non-Penalty Expected Goals':
                     st.markdown("## ")
                     diff1 = round(
                         df1.iloc[0]["npxG"] - (self._dataset1["npxG"].sum() + self._dataset5["npxG"].sum()) / 26, 2)
                     if diff1 > 0:
-                        st.markdown("##### :green[↑ %a] more than team average." % diff1)
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
                     elif diff1 == 0:
-                        st.markdown("##### Similar to team average")
+                        st.markdown("##### Similar to team average this season.")
                     else:
-                        st.markdown("##### :red[↓ %a] less than team average." % diff1)
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
                 elif see == "Non-Penalty Expected Goals per Shot":
                     st.markdown("## ")
                     diff1 = round(df1.iloc[0]["npxG/Sh"] - (
@@ -378,29 +377,29 @@ class dataFunc1:
                     if diff1 > 0:
                         st.markdown("##### :green[↑ %a] more expected accuracy than team average." % diff1)
                     elif diff1 == 0:
-                        st.markdown("##### Similar to team average")
+                        st.markdown("##### Similar to team average this season.")
                     else:
-                        st.markdown("##### :red[↓ %a] less expected accuracy than team average." % diff1)
+                        st.markdown("##### :red[↓ %a] less expected accuracy than team average this season." % diff1)
                 elif see == "Goals minus Expected Goals":
                     st.markdown("## ")
                     diff1 = round(
                         df1.iloc[0]["G-xG"] - (self._dataset1["G-xG"].sum() + self._dataset5["G-xG"].sum()) / 26, 2)
                     if diff1 > 0:
-                        st.markdown("##### :green[↑ %a] more than team average." % diff1)
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
                     elif diff1 == 0:
-                        st.markdown("##### Similar to team average")
+                        st.markdown("##### Similar to team average this season.")
                     else:
-                        st.markdown("##### :red[↓ %a] less than team average." % diff1)
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
                 elif see == 'Non-Penalty Expected Goals minus Expected Goals':
                     st.markdown("## ")
                     diff1 = round(df1.iloc[0]["np:G-xG"] - (
                                 self._dataset1["np:G-xG"].sum() + self._dataset5["np:G-xG"].sum()) / 26, 2)
                     if diff1 > 0:
-                        st.markdown("##### :green[↑ %a] more than team average." % diff1)
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
                     elif diff1 == 0:
-                        st.markdown("##### Similar to team average")
+                        st.markdown("##### Similar to team average this season.")
                     else:
-                        st.markdown("##### :red[↓ %a] less than team average." % diff1)
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
 
             row5_spacer1, row5_1, row5_spacer2 = st.columns((.05, 5, .05))
             with row5_1:
@@ -496,30 +495,30 @@ class dataFunc1:
                 st.markdown("## ")
                 diff1 = round(df1.iloc[0]["Ast"] - (self._dataset1["Ast"].sum() + self._dataset5["Ast"].sum()) / 26, 2)
                 if diff1 > 0:
-                    st.markdown("##### :green[↑ %a] more than team average." % diff1)
+                    st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
                 elif diff1 == 0:
-                    st.markdown("##### Similar to team average")
+                    st.markdown("##### Similar to team average this season.")
                 else:
-                    st.markdown("##### :red[↓ %a] less than team average." % diff1)
+                    st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
                 st.markdown("## ")
                 st.markdown("### ")
                 diff1 = round(df1.iloc[0]["Att"] - (self._dataset1["Att"].sum() + self._dataset5["Att"].sum()) / 26, 2)
                 if diff1 > 0:
-                    st.markdown("##### :green[↑ %a] more than team average." % diff1)
+                    st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
                 elif diff1 == 0:
-                    st.markdown("##### Similar to team average")
+                    st.markdown("##### Similar to team average this season.")
                 else:
-                    st.markdown("##### :red[↓ %a] less than team average." % diff1)
+                    st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
                 st.markdown("### ")
                 st.markdown("### ")
                 diff1 = round(df1.iloc[0]["TotDist_Pass"] - (
                             self._dataset1["TotDist_Pass"].sum() + self._dataset5["TotDist_Pass"].sum()) / 26, 2)
                 if diff1 > 0:
-                    st.markdown("##### :green[↑ %a] yards further than team average." % diff1)
+                    st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
                 elif diff1 == 0:
-                    st.markdown("##### Similar to team average")
+                    st.markdown("##### Similar to team average this season.")
                 else:
-                    st.markdown("##### :red[↓ %a] yards nearer than team average." % diff1)
+                    st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
             with row1_3:
                 diff1 = round(df1.iloc[0]["Cmp%"] - df2.iloc[0]["Cmp%"], 2)
                 st.metric("Passess Completed %", str(df1.iloc[0]["Cmp%"]) + " %", diff1)
@@ -531,21 +530,21 @@ class dataFunc1:
                 diff1 = round(df1.iloc[0]["Cmp%"] - (self._dataset1["Cmp%"].sum() + self._dataset5["Cmp%"].sum()) / 26,
                               2)
                 if diff1 > 0:
-                    st.markdown("##### :green[↑ %a] more than team average." % diff1)
+                    st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
                 elif diff1 == 0:
-                    st.markdown("##### Similar to team average")
+                    st.markdown("##### Similar to team average this season.")
                 else:
-                    st.markdown("##### :red[↓ %a] less than team average." % diff1)
+                    st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
                 st.markdown("# ")
                 st.markdown("##### ")
                 diff1 = round(df1.iloc[0]["PrgDist_Pass"] - (
                             self._dataset1["PrgDist_Pass"].sum() + self._dataset5["PrgDist_Pass"].sum()) / 26, 2)
                 if diff1 > 0:
-                    st.markdown("##### :green[↑ %a] yards further than team average." % diff1)
+                    st.markdown("##### :green[↑ %a] yards further than team average this seaosn." % diff1)
                 elif diff1 == 0:
-                    st.markdown("##### Similar to team average")
+                    st.markdown("##### Similar to team average this season.")
                 else:
-                    st.markdown("##### :red[↓ %a] yards nearer than team average." % diff1)
+                    st.markdown("##### :red[↓ %a] yards nearer than team average this season." % diff1)
 
             row2_spacer1, row2_1, row2_2, row2_spacer2 = st.columns((.1, 3, 3, .1))
             with row2_1:
@@ -656,69 +655,69 @@ class dataFunc1:
                     diff1 = round(df1.iloc[0]["xAG"] - (self._dataset1["xAG"].sum() + self._dataset5["xAG"].sum()) / 26,
                                   2)
                     if diff1 > 0:
-                        st.markdown("##### :green[↑ %a] more than team average." % diff1)
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
                     elif diff1 == 0:
-                        st.markdown("##### Similar to team average")
+                        st.markdown("##### Similar to team average this season.")
                     else:
-                        st.markdown("##### :red[↓ %a] less than team average." % diff1)
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
                 elif see == 'Expected Assists':
                     st.markdown("## ")
                     diff1 = round(df1.iloc[0]["xA"] - (self._dataset1["xA"].sum() + self._dataset5["xA"].sum()) / 26, 2)
                     if diff1 > 0:
-                        st.markdown("##### :green[↑ %a] more than team average." % diff1)
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
                     elif diff1 == 0:
-                        st.markdown("##### Similar to team average")
+                        st.markdown("##### Similar to team average this season.")
                     else:
-                        st.markdown("##### :red[↓ %a] less than team average." % diff1)
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
                 elif see == 'Key Passes':
                     st.markdown("## ")
                     diff1 = round(df1.iloc[0]["KP"] - (self._dataset1["KP"].sum() + self._dataset5["KP"].sum()) / 26, 2)
                     if diff1 > 0:
-                        st.markdown("##### :green[↑ %a] more than team average." % diff1)
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
                     elif diff1 == 0:
-                        st.markdown("##### Similar to team average")
+                        st.markdown("##### Similar to team average this season.")
                     else:
-                        st.markdown("##### :red[↓ %a] less than team average." % diff1)
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
                 elif see == 'Passes into Final Third':
                     st.markdown("## ")
                     diff1 = round(df1.iloc[0]["1/3_Pass"] - (
                                 self._dataset1["1/3_Pass"].sum() + self._dataset5["1/3_Pass"].sum()) / 26, 2)
                     if diff1 > 0:
-                        st.markdown("##### :green[↑ %a] more than team average." % diff1)
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
                     elif diff1 == 0:
-                        st.markdown("##### Similar to team average")
+                        st.markdown("##### Similar to team average this season.")
                     else:
-                        st.markdown("##### :red[↓ %a] less than team average." % diff1)
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
                 elif see == 'Passes into Penalty Area':
                     st.markdown("## ")
                     diff1 = round(df1.iloc[0]["PPA"] - (self._dataset1["PPA"].sum() + self._dataset5["PPA"].sum()) / 26,
                                   2)
                     if diff1 > 0:
-                        st.markdown("##### :green[↑ %a] more than team average." % diff1)
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
                     elif diff1 == 0:
-                        st.markdown("##### Similar to team average")
+                        st.markdown("##### Similar to team average this season.")
                     else:
-                        st.markdown("##### :red[↓ %a] less than team average." % diff1)
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
                 elif see == 'Crosses into Penalty Area':
                     st.markdown("## ")
                     diff1 = round(
                         df1.iloc[0]["CrsPA"] - (self._dataset1["CrsPA"].sum() + self._dataset5["CrsPA"].sum()) / 26, 2)
                     if diff1 > 0:
-                        st.markdown("##### :green[↑ %a] more than team average." % diff1)
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
                     elif diff1 == 0:
-                        st.markdown("##### Similar to team average")
+                        st.markdown("##### Similar to team average this season.")
                     else:
-                        st.markdown("##### :red[↓ %a] less than team average." % diff1)
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
                 elif see == 'Progressive Passes':
                     st.markdown("## ")
                     diff1 = round(
                         df1.iloc[0]["PrgP"] - (self._dataset1["PrgP"].sum() + self._dataset5["PrgP"].sum()) / 26, 2)
                     if diff1 > 0:
-                        st.markdown("##### :green[↑ %a] more than team average." % diff1)
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
                     elif diff1 == 0:
-                        st.markdown("##### Similar to team average")
+                        st.markdown("##### Similar to team average this season.")
                     else:
-                        st.markdown("##### :red[↓ %a] less than team average." % diff1)
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
 
             row4_spacer1, row4_1, row4_spacer2 = st.columns((.1, 3.2, .1))
             with row4_1:
@@ -890,7 +889,447 @@ class dataFunc1:
                 st.metric('Blocked Passes', df1.iloc[0]['Blocks'], diff1)
 
         elif self._attribute == 'Shot-Creating Actions 😎':
-            st.markdown("")
+            row0_spacer1, row0_1, row0_spacer2 = st.columns((.05, 3.2, 5))
+            with row0_1:
+                st.markdown("##### Actual Statistics - :green[↑]/:red[↓] from previous season")
+
+            row1_spacer1, row1_1, row1_2, row1_3, row1_spacer2 = st.columns((.05, 1, 2, 4, .05))
+            with row1_1:
+                diff = round(df1.iloc[0]['SCA'] - df2.iloc[0]['SCA'], 2)
+                st.metric('Shot Creating Actions', df1.iloc[0]['SCA'], diff)
+                st.markdown(" ")
+                diff = round(df1.iloc[0]['SCA90'] - df2.iloc[0]['SCA90'], 2)
+                st.metric('SCA per 90', df1.iloc[0]['SCA90'], diff)
+                st.markdown(" ")
+                st.metric('Example Stat', 'Value', '↑/↓ from prev season')
+            with row1_2:
+                st.markdown("# ")
+                diff1 = round(df1.iloc[0]["SCA"] - (self._dataset1["SCA"].sum() + self._dataset5["SCA"].sum()) / 26, 2)
+                if diff1 > 0:
+                    st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
+                elif diff1 == 0:
+                    st.markdown("##### Similar to team average this season.")
+                else:
+                    st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
+                st.markdown("# ")
+                st.markdown("## ")
+                diff1 = round(df1.iloc[0]["SCA90"] - (self._dataset1["SCA90"].sum() + self._dataset5["SCA90"].sum()) / 26, 2)
+                if diff1 > 0:
+                    st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
+                elif diff1 == 0:
+                    st.markdown("##### Similar to team average this season.")
+                else:
+                    st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
+            with row1_3:
+                dff1 = pd.melt(df1, id_vars='Player', value_vars=["PassLive_SCA", 'PassDead_SCA', 'TO_SCA', 'Sh_SCA',
+                                                                  'Fld_SCA', 'Def_SCA'], var_name='SCA', value_name=
+                               'Actions')
+                dff1.replace(["PassLive_SCA", 'PassDead_SCA', 'TO_SCA', 'Sh_SCA','Fld_SCA', 'Def_SCA'],
+                             ['Live Passes', 'Dead Passes', 'Take-Ons', 'Shots', 'Fouls Drawn', 'Defensive Actions'],
+                             inplace=True)
+                fig = px.pie(dff1, values='Actions', names='SCA', title='% of Different Shot Creating Actions Created by'
+                                                                       ' Player')
+                fig.update_layout(margin=dict(t=30, b=20), height=350)
+                st.plotly_chart(fig, use_container_width=True)
+
+            row3_spacer1, row3_1, row3_spacer2, row3_2, row3_3, row3_spacer3 = st.columns((.1, 1.5, 1.3, 1, 1.7, .1))
+            with row3_1:
+                stat = ['Live Passes', 'Dead Passes', 'Take-Ons', 'Shots', 'Fouls Drawn', 'Defensive Actions']
+                see = st.selectbox("Select the stat that you want to see! 👋", stat)
+            with row3_spacer2:
+                st.metric("Example Stat", "Value", "↑/↓ from prev season")
+            with row3_2:
+                if see == 'Live Passes':
+                    diff1 = round(df1.iloc[0]["PassLive_SCA"] - df2.iloc[0]["PassLive_SCA"], 2)
+                    st.metric("Live Passes to Shot", df1.iloc[0]["PassLive_SCA"], diff1)
+                elif see == 'Dead Passes':
+                    diff1 = round(df1.iloc[0]["PassDead_SCA"] - df2.iloc[0]["PassDead_SCA"], 2)
+                    st.metric("Dead Passes to Shot", df1.iloc[0]["PassDead_SCA"], diff1)
+                elif see == 'Take-Ons':
+                    diff1 = round(df1.iloc[0]["TO_SCA"] - df2.iloc[0]["TO_SCA"], 2)
+                    st.metric("Take-Ons to Shot", df1.iloc[0]["TO_SCA"], diff1)
+                elif see == 'Shots':
+                    diff1 = round(df1.iloc[0]["Sh_SCA"] - df2.iloc[0]["Sh_SCA"], 2)
+                    st.metric("Shots Leading to Shot", df1.iloc[0]["Sh_SCA"], diff1)
+                elif see == 'Fouls Drawn':
+                    diff1 = round(df1.iloc[0]["Fld_SCA"] - df2.iloc[0]["Fld_SCA"], 2)
+                    st.metric("Fouls Drawn to Shot", df1.iloc[0]["Fld_SCA"], diff1)
+                elif see == 'Defensive Actions':
+                    diff1 = round(df1.iloc[0]["Def_SCA"] - df2.iloc[0]["Def_SCA"], 2)
+                    st.metric("Defensive Actions to Shot", df1.iloc[0]["Def_SCA"], diff1)
+            with row3_3:
+                if see == 'Live Passes':
+                    st.markdown("## ")
+                    diff1 = round(df1.iloc[0]["PassLive_SCA"] - (self._dataset1["PassLive_SCA"].sum() + self._dataset5["PassLive_SCA"].sum()) / 26,
+                                  2)
+                    if diff1 > 0:
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
+                    elif diff1 == 0:
+                        st.markdown("##### Similar to team average this season.")
+                    else:
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
+                elif see == 'Dead Passes':
+                    st.markdown("## ")
+                    diff1 = round(df1.iloc[0]["PassDead_SCA"] - (self._dataset1["PassDead_SCA"].sum() + self._dataset5["PassDead_SCA"].sum()) / 26, 2)
+                    if diff1 > 0:
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
+                    elif diff1 == 0:
+                        st.markdown("##### Similar to team average this season.")
+                    else:
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
+                elif see == 'Take-Ons':
+                    st.markdown("## ")
+                    diff1 = round(df1.iloc[0]["TO_SCA"] - (self._dataset1["TO_SCA"].sum() + self._dataset5["TO_SCA"].sum()) / 26, 2)
+                    if diff1 > 0:
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
+                    elif diff1 == 0:
+                        st.markdown("##### Similar to team average this season.")
+                    else:
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
+                elif see == 'Fouls Drawn':
+                    st.markdown("## ")
+                    diff1 = round(df1.iloc[0]["Fld_SCA"] - (
+                            self._dataset1["Fld_SCA"].sum() + self._dataset5["Fld_SCA"].sum()) / 26, 2)
+                    if diff1 > 0:
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
+                    elif diff1 == 0:
+                        st.markdown("##### Similar to team average this season.")
+                    else:
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
+                elif see == 'Shots':
+                    st.markdown("## ")
+                    diff1 = round(df1.iloc[0]["Sh_SCA"] - (self._dataset1["Sh_SCA"].sum() + self._dataset5["Sh_SCA"].sum()) / 26,
+                                  2)
+                    if diff1 > 0:
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
+                    elif diff1 == 0:
+                        st.markdown("##### Similar to team average this season.")
+                    else:
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
+                elif see == 'Defensive Actions':
+                    st.markdown("## ")
+                    diff1 = round(
+                        df1.iloc[0]["Def_SCA"] - (self._dataset1["Def_SCA"].sum() + self._dataset5["Def_SCA"].sum()) / 26, 2)
+                    if diff1 > 0:
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
+                    elif diff1 == 0:
+                        st.markdown("##### Similar to team average this season.")
+                    else:
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
+
+            row4_spacer1, row4_1, row4_spacer2 = st.columns((.1, 3.2, .1))
+            with row4_1:
+                dff1 = self._dataset1
+                dff1 = pd.concat([dff1, self._dataset5]).reset_index(drop=True)
+                if see == 'Live Passes':
+                    dff1['LivePass_Rank'] = dff1['PassLive_SCA'].rank(ascending=False)
+                    dff1 = dff1.sort_values("LivePass_Rank")
+                    dff1 = dff1.reset_index(drop=True)
+                    index = dff1[dff1['Player'] == self._name].index.values[0]
+                    colours = ['lightslategrey', ] * 26
+                    colours[index] = '#DA291C'
+                    x = dff1['Player'].values.tolist()
+                    y = dff1['PassLive_SCA'].values.tolist()
+                    fig = go.Figure(data=[go.Bar(x=x, y=y, marker_color=colours)])
+                    fig.update_layout(title_text='Live Passes leading to Shot Ranking', title_font_size=30)
+                    fig.update_xaxes(title_text="Player")
+                    fig.update_yaxes(title_text="Passes")
+                    st.plotly_chart(fig, use_container_width=True)
+                elif see == "Dead Passes":
+                    dff1['DP_Rank'] = dff1['PassDead_SCA'].rank(ascending=False)
+                    dff1 = dff1.sort_values("DP_Rank")
+                    dff1 = dff1.reset_index(drop=True)
+                    index = dff1[dff1['Player'] == self._name].index.values[0]
+                    colours = ['lightslategrey', ] * 26
+                    colours[index] = '#DA291C'
+                    x = dff1['Player'].values.tolist()
+                    y = dff1['PassDead_SCA'].values.tolist()
+                    fig = go.Figure(data=[go.Bar(x=x, y=y, marker_color=colours)])
+                    fig.update_layout(title_text='Dead Passes leading to Shot Ranking', title_font_size=30)
+                    fig.update_xaxes(title_text="Player")
+                    fig.update_yaxes(title_text="Passes")
+                    st.plotly_chart(fig, use_container_width=True)
+                elif see == 'Take-Ons':
+                    dff1['TO_Rank'] = dff1['TO_SCA'].rank(ascending=False)
+                    dff1 = dff1.sort_values("TO_Rank")
+                    dff1 = dff1.reset_index(drop=True)
+                    index = dff1[dff1['Player'] == self._name].index.values[0]
+                    colours = ['lightslategrey', ] * 26
+                    colours[index] = '#DA291C'
+                    x = dff1['Player'].values.tolist()
+                    y = dff1['TO_SCA'].values.tolist()
+                    fig = go.Figure(data=[go.Bar(x=x, y=y, marker_color=colours)])
+                    fig.update_layout(title_text='Take-ons leading to Shot Ranking', title_font_size=30)
+                    fig.update_xaxes(title_text="Player")
+                    fig.update_yaxes(title_text="Passes")
+                    st.plotly_chart(fig, use_container_width=True)
+                elif see == 'Shots':
+                    dff1['Sh_Rank'] = dff1['Sh_SCA'].rank(ascending=False)
+                    dff1 = dff1.sort_values("Sh_Rank")
+                    dff1 = dff1.reset_index(drop=True)
+                    index = dff1[dff1['Player'] == self._name].index.values[0]
+                    colours = ['lightslategrey', ] * 26
+                    colours[index] = '#DA291C'
+                    x = dff1['Player'].values.tolist()
+                    y = dff1['Sh_SCA'].values.tolist()
+                    fig = go.Figure(data=[go.Bar(x=x, y=y, marker_color=colours)])
+                    fig.update_layout(title_text='Shots leading to other Shot Ranking', title_font_size=30)
+                    fig.update_xaxes(title_text="Player")
+                    fig.update_yaxes(title_text="Shots")
+                    st.plotly_chart(fig, use_container_width=True)
+                elif see == "Fouls Drawn":
+                    dff1['F_Rank'] = dff1['Fld_SCA'].rank(ascending=False)
+                    dff1 = dff1.sort_values("F_Rank")
+                    dff1 = dff1.reset_index(drop=True)
+                    index = dff1[dff1['Player'] == self._name].index.values[0]
+                    colours = ['lightslategrey', ] * 26
+                    colours[index] = '#DA291C'
+                    x = dff1['Player'].values.tolist()
+                    y = dff1['Fld_SCA'].values.tolist()
+                    fig = go.Figure(data=[go.Bar(x=x, y=y, marker_color=colours)])
+                    fig.update_layout(title_text='Fouls Drawn leading to Shot Ranking', title_font_size=30)
+                    fig.update_xaxes(title_text="Player")
+                    fig.update_yaxes(title_text="Fouls Drawn")
+                    st.plotly_chart(fig, use_container_width=True)
+                elif see == 'Defensive Actions':
+                    dff1['D_Rank'] = dff1['Def_SCA'].rank(ascending=False)
+                    dff1 = dff1.sort_values("D_Rank")
+                    dff1 = dff1.reset_index(drop=True)
+                    index = dff1[dff1['Player'] == self._name].index.values[0]
+                    colours = ['lightslategrey', ] * 26
+                    colours[index] = '#DA291C'
+                    x = dff1['Player'].values.tolist()
+                    y = dff1['Def_SCA'].values.tolist()
+                    fig = go.Figure(data=[go.Bar(x=x, y=y, marker_color=colours)])
+                    fig.update_layout(title_text='Defensive Actions leading to Shot Ranking', title_font_size=30)
+                    fig.update_xaxes(title_text="Player")
+                    fig.update_yaxes(title_text="Defensive Actions")
+                    st.plotly_chart(fig, use_container_width=True)
+
+        elif self._attribute == 'Goal-Creating Actions 🫡':
+            row0_spacer1, row0_1, row0_spacer2 = st.columns((.05, 3.2, 5))
+            with row0_1:
+                st.markdown("##### Actual Statistics - :green[↑]/:red[↓] from previous season")
+
+            row1_spacer1, row1_1, row1_2, row1_3, row1_spacer2 = st.columns((.05, 1, 2, 4, .05))
+            with row1_1:
+                diff = round(df1.iloc[0]['GCA'] - df2.iloc[0]['GCA'], 2)
+                st.metric('Goal Creating Actions', df1.iloc[0]['GCA'], diff)
+                st.markdown(" ")
+                diff = round(df1.iloc[0]['GCA90'] - df2.iloc[0]['GCA90'], 2)
+                st.metric('GCA per 90', df1.iloc[0]['GCA90'], diff)
+                st.markdown(" ")
+                st.metric('Example Stat', 'Value', '↑/↓ from prev season')
+            with row1_2:
+                st.markdown("# ")
+                diff1 = round(df1.iloc[0]["GCA"] - (self._dataset1["GCA"].sum() + self._dataset5["GCA"].sum()) / 26, 2)
+                if diff1 > 0:
+                    st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
+                elif diff1 == 0:
+                    st.markdown("##### Similar to team average this season.")
+                else:
+                    st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
+                st.markdown("# ")
+                st.markdown("## ")
+                diff1 = round(
+                    df1.iloc[0]["GCA90"] - (self._dataset1["GCA90"].sum() + self._dataset5["GCA90"].sum()) / 26, 2)
+                if diff1 > 0:
+                    st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
+                elif diff1 == 0:
+                    st.markdown("##### Similar to team average this season.")
+                else:
+                    st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
+            with row1_3:
+                dff1 = pd.melt(df1, id_vars='Player', value_vars=["PassLive_GCA", 'PassDead_GCA', 'TO_GCA', 'Sh_GCA',
+                                                                  'Fld_GCA', 'Def_GCA'], var_name='GCA', value_name=
+                               'Actions')
+                dff1.replace(["PassLive_GCA", 'PassDead_GCA', 'TO_GCA', 'Sh_GCA', 'Fld_GCA', 'Def_GCA'],
+                             ['Live Passes', 'Dead Passes', 'Take-Ons', 'Shots', 'Fouls Drawn', 'Defensive Actions'],
+                             inplace=True)
+                fig = px.pie(dff1, values='Actions', names='GCA', title='% of Different Goal Creating Actions Created by'
+                                                                       ' Player')
+                fig.update_layout(margin=dict(t=30, b=20), height=350)
+                st.plotly_chart(fig, use_container_width=True)
+
+            row3_spacer1, row3_1, row3_spacer2, row3_2, row3_3, row3_spacer3 = st.columns((.1, 1.5, 1.3, 1, 1.7, .1))
+            with row3_1:
+                stat = ['Live Passes', 'Dead Passes', 'Take-Ons', 'Shots', 'Fouls Drawn', 'Defensive Actions']
+                see = st.selectbox("Select the stat that you want to see! 👋", stat)
+            with row3_spacer2:
+                st.metric("Example Stat", "Value", "↑/↓ from prev season")
+            with row3_2:
+                if see == 'Live Passes':
+                    diff1 = round(df1.iloc[0]["PassLive_GCA"] - df2.iloc[0]["PassLive_GCA"], 2)
+                    st.metric("Live Passes to Shot", df1.iloc[0]["PassLive_GCA"], diff1)
+                elif see == 'Dead Passes':
+                    diff1 = round(df1.iloc[0]["PassDead_GCA"] - df2.iloc[0]["PassDead_GCA"], 2)
+                    st.metric("Dead Passes to Shot", df1.iloc[0]["PassDead_GCA"], diff1)
+                elif see == 'Take-Ons':
+                    diff1 = round(df1.iloc[0]["TO_GCA"] - df2.iloc[0]["TO_GCA"], 2)
+                    st.metric("Take-Ons to Shot", df1.iloc[0]["TO_GCA"], diff1)
+                elif see == 'Shots':
+                    diff1 = round(df1.iloc[0]["Sh_GCA"] - df2.iloc[0]["Sh_GCA"], 2)
+                    st.metric("Shots Leading to Shot", df1.iloc[0]["Sh_GCA"], diff1)
+                elif see == 'Fouls Drawn':
+                    diff1 = round(df1.iloc[0]["Fld_GCA"] - df2.iloc[0]["Fld_GCA"], 2)
+                    st.metric("Fouls Drawn to Shot", df1.iloc[0]["Fld_GCA"], diff1)
+                elif see == 'Defensive Actions':
+                    diff1 = round(df1.iloc[0]["Def_GCA"] - df2.iloc[0]["Def_GCA"], 2)
+                    st.metric("Defensive Actions to Shot", df1.iloc[0]["Def_GCA"], diff1)
+            with row3_3:
+                if see == 'Live Passes':
+                    st.markdown("## ")
+                    diff1 = round(df1.iloc[0]["PassLive_GCA"] - (
+                                self._dataset1["PassLive_GCA"].sum() + self._dataset5["PassLive_GCA"].sum()) / 26,
+                                  2)
+                    if diff1 > 0:
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
+                    elif diff1 == 0:
+                        st.markdown("##### Similar to team average this season.")
+                    else:
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
+                elif see == 'Dead Passes':
+                    st.markdown("## ")
+                    diff1 = round(df1.iloc[0]["PassDead_GCA"] - (
+                                self._dataset1["PassDead_GCA"].sum() + self._dataset5["PassDead_GCA"].sum()) / 26, 2)
+                    if diff1 > 0:
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
+                    elif diff1 == 0:
+                        st.markdown("##### Similar to team average this season.")
+                    else:
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
+                elif see == 'Take-Ons':
+                    st.markdown("## ")
+                    diff1 = round(
+                        df1.iloc[0]["TO_GCA"] - (self._dataset1["TO_GCA"].sum() + self._dataset5["TO_GCA"].sum()) / 26,
+                        2)
+                    if diff1 > 0:
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
+                    elif diff1 == 0:
+                        st.markdown("##### Similar to team average this season.")
+                    else:
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
+                elif see == 'Fouls Drawn':
+                    st.markdown("## ")
+                    diff1 = round(df1.iloc[0]["Fld_GCA"] - (
+                            self._dataset1["Fld_GCA"].sum() + self._dataset5["Fld_GCA"].sum()) / 26, 2)
+                    if diff1 > 0:
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
+                    elif diff1 == 0:
+                        st.markdown("##### Similar to team average this season.")
+                    else:
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
+                elif see == 'Shots':
+                    st.markdown("## ")
+                    diff1 = round(
+                        df1.iloc[0]["Sh_GCA"] - (self._dataset1["Sh_GCA"].sum() + self._dataset5["Sh_GCA"].sum()) / 26,
+                        2)
+                    if diff1 > 0:
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
+                    elif diff1 == 0:
+                        st.markdown("##### Similar to team average this season.")
+                    else:
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
+                elif see == 'Defensive Actions':
+                    st.markdown("## ")
+                    diff1 = round(
+                        df1.iloc[0]["Def_GCA"] - (
+                                    self._dataset1["Def_GCA"].sum() + self._dataset5["Def_GCA"].sum()) / 26, 2)
+                    if diff1 > 0:
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
+                    elif diff1 == 0:
+                        st.markdown("##### Similar to team average this season.")
+                    else:
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
+
+            row4_spacer1, row4_1, row4_spacer2 = st.columns((.1, 3.2, .1))
+            with row4_1:
+                dff1 = self._dataset1
+                dff1 = pd.concat([dff1, self._dataset5]).reset_index(drop=True)
+                if see == 'Live Passes':
+                    dff1['LivePass_Rank'] = dff1['PassLive_GCA'].rank(ascending=False)
+                    dff1 = dff1.sort_values("LivePass_Rank")
+                    dff1 = dff1.reset_index(drop=True)
+                    index = dff1[dff1['Player'] == self._name].index.values[0]
+                    colours = ['lightslategrey', ] * 26
+                    colours[index] = '#DA291C'
+                    x = dff1['Player'].values.tolist()
+                    y = dff1['PassLive_GCA'].values.tolist()
+                    fig = go.Figure(data=[go.Bar(x=x, y=y, marker_color=colours)])
+                    fig.update_layout(title_text='Live Passes leading to Goals Ranking', title_font_size=30)
+                    fig.update_xaxes(title_text="Player")
+                    fig.update_yaxes(title_text="Passes")
+                    st.plotly_chart(fig, use_container_width=True)
+                elif see == "Dead Passes":
+                    dff1['DP_Rank'] = dff1['PassDead_GCA'].rank(ascending=False)
+                    dff1 = dff1.sort_values("DP_Rank")
+                    dff1 = dff1.reset_index(drop=True)
+                    index = dff1[dff1['Player'] == self._name].index.values[0]
+                    colours = ['lightslategrey', ] * 26
+                    colours[index] = '#DA291C'
+                    x = dff1['Player'].values.tolist()
+                    y = dff1['PassDead_GCA'].values.tolist()
+                    fig = go.Figure(data=[go.Bar(x=x, y=y, marker_color=colours)])
+                    fig.update_layout(title_text='Dead Passes leading to Goals Ranking', title_font_size=30)
+                    fig.update_xaxes(title_text="Player")
+                    fig.update_yaxes(title_text="Passes")
+                    st.plotly_chart(fig, use_container_width=True)
+                elif see == 'Take-Ons':
+                    dff1['TO_Rank'] = dff1['TO_GCA'].rank(ascending=False)
+                    dff1 = dff1.sort_values("TO_Rank")
+                    dff1 = dff1.reset_index(drop=True)
+                    index = dff1[dff1['Player'] == self._name].index.values[0]
+                    colours = ['lightslategrey', ] * 26
+                    colours[index] = '#DA291C'
+                    x = dff1['Player'].values.tolist()
+                    y = dff1['TO_GCA'].values.tolist()
+                    fig = go.Figure(data=[go.Bar(x=x, y=y, marker_color=colours)])
+                    fig.update_layout(title_text='Take-ons leading to Goals Ranking', title_font_size=30)
+                    fig.update_xaxes(title_text="Player")
+                    fig.update_yaxes(title_text="Passes")
+                    st.plotly_chart(fig, use_container_width=True)
+                elif see == 'Shots':
+                    dff1['Sh_Rank'] = dff1['Sh_GCA'].rank(ascending=False)
+                    dff1 = dff1.sort_values("Sh_Rank")
+                    dff1 = dff1.reset_index(drop=True)
+                    index = dff1[dff1['Player'] == self._name].index.values[0]
+                    colours = ['lightslategrey', ] * 26
+                    colours[index] = '#DA291C'
+                    x = dff1['Player'].values.tolist()
+                    y = dff1['Sh_GCA'].values.tolist()
+                    fig = go.Figure(data=[go.Bar(x=x, y=y, marker_color=colours)])
+                    fig.update_layout(title_text='Shots leading to other Goals Ranking', title_font_size=30)
+                    fig.update_xaxes(title_text="Player")
+                    fig.update_yaxes(title_text="Shots")
+                    st.plotly_chart(fig, use_container_width=True)
+                elif see == "Fouls Drawn":
+                    dff1['F_Rank'] = dff1['Fld_GCA'].rank(ascending=False)
+                    dff1 = dff1.sort_values("F_Rank")
+                    dff1 = dff1.reset_index(drop=True)
+                    index = dff1[dff1['Player'] == self._name].index.values[0]
+                    colours = ['lightslategrey', ] * 26
+                    colours[index] = '#DA291C'
+                    x = dff1['Player'].values.tolist()
+                    y = dff1['Fld_GCA'].values.tolist()
+                    fig = go.Figure(data=[go.Bar(x=x, y=y, marker_color=colours)])
+                    fig.update_layout(title_text='Fouls Drawn leading to Goals Ranking', title_font_size=30)
+                    fig.update_xaxes(title_text="Player")
+                    fig.update_yaxes(title_text="Fouls Drawn")
+                    st.plotly_chart(fig, use_container_width=True)
+                elif see == 'Defensive Actions':
+                    dff1['D_Rank'] = dff1['Def_GCA'].rank(ascending=False)
+                    dff1 = dff1.sort_values("D_Rank")
+                    dff1 = dff1.reset_index(drop=True)
+                    index = dff1[dff1['Player'] == self._name].index.values[0]
+                    colours = ['lightslategrey', ] * 26
+                    colours[index] = '#DA291C'
+                    x = dff1['Player'].values.tolist()
+                    y = dff1['Def_GCA'].values.tolist()
+                    fig = go.Figure(data=[go.Bar(x=x, y=y, marker_color=colours)])
+                    fig.update_layout(title_text='Defensive Actions leading to Goals Ranking', title_font_size=30)
+                    fig.update_xaxes(title_text="Player")
+                    fig.update_yaxes(title_text="Defensive Actions")
+                    st.plotly_chart(fig, use_container_width=True)
         else:
             st.markdown("# WORK IN PROGRESS")
     # def data_visuals_gk(self, df1, df2):
