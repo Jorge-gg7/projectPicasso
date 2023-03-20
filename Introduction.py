@@ -39,6 +39,8 @@ with row1_1:
     st.markdown("* How to create a webapp using Streamlit.")
     st.markdown("* How to create a responsive data visualisation webapp that could show specific "
                 "data based on a user's input.")
+    st.markdown(" ")
+    st.markdown("Visit the [Github repository](https://github.com/Jorge-gg7/projectPicasso) here!")
 
 row2_spacer1, row2_1, row2_spacer2 = st.columns((.1, 3.2, .1))
 with row2_1:
