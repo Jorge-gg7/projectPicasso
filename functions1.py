@@ -1349,7 +1349,7 @@ class dataFunc1:
             with row0_1:
                 st.markdown("##### Actual Statistics - :green[↑]/:red[↓] from previous season")
 
-            row1_spacer1, row1_1, row1_2, row1_3, row1_spacer2 = st.columns((.05, 3, 2, 3, .05))
+            row1_spacer1, row1_1, row1_2, row1_3, row1_spacer2 = st.columns((.05, 2, 1, 3, .05))
             with row1_1:
                 df1 = df1.replace(str(self._name), str(self._name) + " 2022/23")
                 df2 = df2.replace(str(self._name), str(self._name) + " 2021/22")
@@ -1366,7 +1366,7 @@ class dataFunc1:
                 fig = px.bar(dff, x='Player', y='Height', color='Tackle Location',
                              hover_data={'Height': False,
                                          'Tackles': True})
-                fig.update_layout(height=590, width=300, title='Defensive Actions on each 1/3 of the Field',
+                fig.update_layout(height=590, width=300, title='Tackles on each 1/3 of the Field',
                                   showlegend=False, hoverlabel=dict(bgcolor='Black',
                                                                     font_size=15),
                                   margin=dict())
@@ -1391,23 +1391,23 @@ class dataFunc1:
                 )
                 st.plotly_chart(fig)
             with row1_2:
-                st.markdown("# ")
                 diff = df1.iloc[0]['Tkl'] - df2.iloc[0]['Tkl']
                 st.metric('Total Tackles', df1.iloc[0]['Tkl'], diff)
                 diff = df1.iloc[0]['TklW'] - df2.iloc[0]['TklW']
                 st.metric('Total Tackles Won', df1.iloc[0]['TklW'], diff)
-                df1['TklW%'] = round(df1.iloc[0]['TklW'] / df1.iloc[0]['Tkl'], 2)
-                df2['TklW%'] = round(df2.iloc[0]['TklW'] / df2.iloc[0]['Tkl'], 2)
-                diff = round(df1.iloc[0]['TklW%'] - df2.iloc[0]['TklW%'], 2)
-                st.metric('Tackles Won %', str(df1.iloc[0]['TklW%']) + ' %', str(diff) + " %")
+                diff = round(df1.iloc[0]['Int'] - df2.iloc[0]['Int'], 2)
+                st.metric('Interceptions', str(df1.iloc[0]['Int']), str(diff))
+                diff = round(df1.iloc[0]['Clr'] - df2.iloc[0]['Clr'], 2)
+                st.metric('Clearances', str(df1.iloc[0]['Clr']), str(diff))
+                diff = round(df1.iloc[0]['Err'] - df2.iloc[0]['Err'], 2)
+                st.metric('Errors', str(df1.iloc[0]['Err']), str(diff))
             with row1_3:
                 dff = pd.concat([self._dataset1, self._dataset5], ignore_index=True)
-                dff['TklW%'] = round(dff['TklW'] / dff['Tkl'], 2)
-                dff['TklW%'] = dff['TklW%'].fillna(0)
                 dff['Tkl_Rank'] = dff['Tkl'].rank(ascending=False, method='max')
                 dff['TklW_Rank'] = dff['TklW'].rank(ascending=False, method='max')
-                dff['TklW%_Rank'] = dff['TklW%'].rank(ascending=False, method='max')
-                st.markdown("# ")
+                dff['Int_Rank'] = dff['Int'].rank(ascending=False, method='max')
+                dff['Clr_Rank'] = dff['Clr'].rank(ascending=False, method='max')
+                dff['Err_Rank'] = dff['Err'].rank(ascending=False, method='max')
                 st.markdown("# ")
                 st.markdown("##### Rank " + str(dff[dff['Player'] == self._name]['Tkl_Rank'].item()) + " in the team.")
                 st.markdown("# ")
@@ -1415,11 +1415,16 @@ class dataFunc1:
                 st.markdown("##### Rank " + str(dff[dff['Player'] == self._name]['TklW_Rank'].item()) + " in the team.")
                 st.markdown("# ")
                 st.markdown("# ")
-                st.markdown(
-                    "##### Rank " + str(dff[dff['Player'] == self._name]['TklW%_Rank'].item()) + " in the team.")
-                st.markdown("")
+                st.markdown("##### Rank " + str(dff[dff['Player'] == self._name]['Int_Rank'].item()) + " in the team.")
+                st.markdown("# ")
+                st.markdown("# ")
+                st.markdown("##### Rank " + str(dff[dff['Player'] == self._name]['Clr_Rank'].item()) + " in the team.")
+                st.markdown("## ")
+                st.markdown("## ")
+                st.markdown("##### Rank " + str(dff[dff['Player'] == self._name]['Err_Rank'].item()) + " in the team.")
 
-            row2_spacer1, row2_1, row2_2, row2_3, row2_spacer2 = st.columns((.05, 3, 3, 3, .05))
+
+            row2_spacer1, row2_1, row2_2, row2_spacer2 = st.columns((.05, 3, 3, .05))
             with row2_1:
                 dff1 = pd.melt(df1, id_vars='Player', value_vars=['Tkl_Chl', 'Lost'], var_name='Challenges Won/Lost',
                                value_name='Tackles')
@@ -1439,7 +1444,29 @@ class dataFunc1:
 
                 st.plotly_chart(fig1, use_container_width=True)
                 st.plotly_chart(fig2, use_container_width=True)
-                st.markdown("")
+            with row2_2:
+                dff1 = pd.melt(df1, id_vars='Player', value_vars=['Blocks_Sh', 'Pass'], var_name='Ball Movement Type',
+                               value_name='Blocks')
+                dff1 = dff1.replace([str(self._name), 'Blocks_Sh', 'Pass'], [str(self._name) + " 2022/23", 'Shots blocked',
+                                                                             'Passes Blocked'])
+                fig1 = px.pie(dff1, values='Blocks', names='Ball Movement Type',
+                              color_discrete_sequence=px.colors.sequential.RdBu,
+                              title='Ball Movement Blocked by Player in 2022/23 Season')
+                fig1.update_layout(margin=dict(t=30, b=20), height=350)
+                fig1.update_traces(textposition='inside', textinfo='percent+label+value')
+
+                dff2 = pd.melt(df2, id_vars='Player', value_vars=['Blocks_Sh', 'Pass'], var_name='Ball Movement Type',
+                               value_name='Blocks')
+                dff2 = dff2.replace([str(self._name), 'Blocks_Sh', 'Pass'], [str(self._name) + " 2021/22", 'Shots blocked',
+                                                                             'Passes Blocked'])
+                fig2 = px.pie(dff2, values='Blocks', names='Ball Movement Type',
+                              color_discrete_sequence=px.colors.sequential.RdBu,
+                              title='Ball Movement Blocked by Player in 2021/22 Season')
+                fig2.update_layout(margin=dict(t=30, b=20), height=350)
+                fig2.update_traces(textposition='inside', textinfo='percent+label+value')
+
+                st.plotly_chart(fig1, use_container_width=True)
+                st.plotly_chart(fig2, use_container_width=True)
         else:
             st.markdown("# WORK IN PROGRESS")
     # def data_visuals_gk(self, df1, df2):
