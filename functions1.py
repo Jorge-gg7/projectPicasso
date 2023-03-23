@@ -1407,7 +1407,7 @@ class dataFunc1:
                 dff['TklW_Rank'] = dff['TklW'].rank(ascending=False, method='max')
                 dff['Int_Rank'] = dff['Int'].rank(ascending=False, method='max')
                 dff['Clr_Rank'] = dff['Clr'].rank(ascending=False, method='max')
-                dff['Err_Rank'] = dff['Err'].rank(ascending=False, method='max')
+                dff['Err_Rank'] = dff['Err'].rank(ascending=True, method='max')
                 st.markdown("# ")
                 st.markdown("##### Rank " + str(dff[dff['Player'] == self._name]['Tkl_Rank'].item()) + " in the team.")
                 st.markdown("# ")
