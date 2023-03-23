@@ -1367,9 +1367,11 @@ class dataFunc1:
                 fig = px.bar(dff, x='Player', y='Height', color='Tackle Location',
                              hover_data={'Height': False,
                                          'Tackles': True})
-                fig.update_layout(height=600, width=315, title='Defensive Actions on each 1/3 of the Field',
+                fig.update_layout(height=590, width=300, title='Defensive Actions on each 1/3 of the Field',
                                   showlegend=False, hoverlabel=dict(bgcolor='Black',
-                                                                    font_size=15))
+                                                                    font_size=15),
+                                  margin=dict())
+                fig.update_traces(width=1)
                 fig.update_yaxes(visible=False)
                 fig.add_layout_image(
                     dict(
@@ -1382,16 +1384,11 @@ class dataFunc1:
                         yanchor="top",
                         sizex=1,
                         sizey=1,
-                        layer='above'
+                        layer='above',
+                        opacity=0.5
                     ))
                 fig.add_shape(
-                    type='line', xref='x', yref='y', x0=.55, x1=.55, y0=0, y1=320, line_color='red'
-                )
-                fig.add_shape(
-                    type='line', xref='x', yref='y', x0=-.45, x1=1.5, y0=100, y1=100, line_color='red'
-                )
-                fig.add_shape(
-                    type='line', xref='x', yref='y', x0=-.45, x1=1.5, y0=200, y1=200, line_color='red'
+                    type='line', xref='x', yref='y', x0=.5, x1=.5, y0=0, y1=300, line_color='red'
                 )
                 st.plotly_chart(fig)
             with row1_2:
@@ -1425,17 +1422,21 @@ class dataFunc1:
 
             row2_spacer1, row2_1, row2_2, row2_3, row2_spacer2 = st.columns((.05, 3, 3, 3, .05))
             with row2_1:
-                dff1 = pd.melt(df1, id_vars='Player', value_vars=['Tkl_Chl', 'Lost'], var_name='Tackle Won/Lost',
+                dff1 = pd.melt(df1, id_vars='Player', value_vars=['Tkl_Chl', 'Lost'], var_name='Challenges Won/Lost',
                                value_name='Tackles')
                 dff1 = dff1.replace([str(self._name), 'Tkl_Chl'], [str(self._name) + " 2022/23", 'Won'])
-                fig1 = px.pie(dff1, values='Tackles', names='Tackle Won/Lost',
-                              color_discrete_sequence=px.colors.sequential.RdBu)
+                fig1 = px.pie(dff1, values='Tackles', names='Challenges Won/Lost',
+                              color_discrete_sequence=px.colors.sequential.RdBu, title='Challenges Win-Lost % in 2022/23 Season')
+                fig1.update_layout(margin=dict(t=30, b=20), height=350)
+                fig1.update_traces(textposition='inside', textinfo='percent+label+value')
 
-                dff2 = pd.melt(df2, id_vars='Player', value_vars=['Tkl_Chl', 'Lost'], var_name='Tackle Won/Lost',
+                dff2 = pd.melt(df2, id_vars='Player', value_vars=['Tkl_Chl', 'Lost'], var_name='Challenges Won/Lost',
                                value_name='Tackles')
                 dff2 = dff2.replace([str(self._name), 'Tkl_Chl'], [str(self._name) + " 2021/22", 'Won'])
-                fig2 = px.pie(dff2, values='Tackles', names='Tackle Won/Lost',
-                              color_discrete_sequence=px.colors.sequential.RdBu)
+                fig2 = px.pie(dff2, values='Tackles', names='Challenges Won/Lost',
+                              color_discrete_sequence=px.colors.sequential.RdBu, title='Challenges Win-Lost % in 2021/22 Season')
+                fig2.update_layout(margin=dict(t=30, b=20), height=350)
+                fig2.update_traces(textposition='inside', textinfo='percent+label+value')
 
                 st.plotly_chart(fig1, use_container_width=True)
                 st.plotly_chart(fig2, use_container_width=True)
