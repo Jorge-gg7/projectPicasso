@@ -7,7 +7,6 @@ import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
 from PIL import Image
-from plotly.subplots import make_subplots
 
 
 class dataFunc1:
