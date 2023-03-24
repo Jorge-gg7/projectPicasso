@@ -577,7 +577,7 @@ class dataFunc1:
                                                       legendgroup=new_names[t.name],
                                                       hovertemplate=t.hovertemplate.replace(t.name, new_names[t.name])
                                                       ))
-                fig.update_layout(barmode='group', legend=dict(
+                fig.update_layout(barmode='group',height=450, legend=dict(
                     orientation="h",
                     yanchor="bottom",
                     y=1,
@@ -897,13 +897,10 @@ class dataFunc1:
             with row0_1:
                 st.markdown("##### Actual Statistics - :green[↑]/:red[↓] from previous season")
 
-            row1_spacer1, row1_1, row1_2, row1_3, row1_spacer2 = st.columns((.05, 1, 2, 4, .05))
+            row1_spacer1, row1_1, row1_2, row1_3, row1_4, row1_spacer2 = st.columns((.05, 1, 2, 1, 2, .05))
             with row1_1:
                 diff = round(df1.iloc[0]['SCA'] - df2.iloc[0]['SCA'], 2)
                 st.metric('Shot Creating Actions', df1.iloc[0]['SCA'], diff)
-                st.markdown(" ")
-                diff = round(df1.iloc[0]['SCA90'] - df2.iloc[0]['SCA90'], 2)
-                st.metric('SCA per 90', df1.iloc[0]['SCA90'], diff)
                 st.markdown(" ")
                 st.metric('Example Stat', 'Value', '↑/↓ from prev season')
             with row1_2:
@@ -915,8 +912,11 @@ class dataFunc1:
                     st.markdown("##### Similar to team average this season.")
                 else:
                     st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
+            with row1_3:
+                diff = round(df1.iloc[0]['SCA90'] - df2.iloc[0]['SCA90'], 2)
+                st.metric('SCA per 90', df1.iloc[0]['SCA90'], diff)
+            with row1_4:
                 st.markdown("# ")
-                st.markdown("## ")
                 diff1 = round(
                     df1.iloc[0]["SCA90"] - (self._dataset1["SCA90"].sum() + self._dataset5["SCA90"].sum()) / 26, 2)
                 if diff1 > 0:
@@ -925,7 +925,9 @@ class dataFunc1:
                     st.markdown("##### Similar to team average this season.")
                 else:
                     st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
-            with row1_3:
+
+            row2_spacer1, row2_1, row2_2, row2_spacer2 = st.columns((.05,5,5,.05))
+            with row2_1:
                 dff1 = pd.melt(df1, id_vars='Player', value_vars=["PassLive_SCA", 'PassDead_SCA', 'TO_SCA', 'Sh_SCA',
                                                                   'Fld_SCA', 'Def_SCA'], var_name='SCA', value_name=
                                'Actions')
@@ -934,8 +936,22 @@ class dataFunc1:
                              inplace=True)
                 fig = px.pie(dff1, values='Actions', names='SCA',
                              title='% of Different Shot Creating Actions Created by'
-                                   ' Player')
-                fig.update_layout(margin=dict(t=30, b=20), height=350)
+                                   ' Player in 2022/23 Season')
+                fig.update_layout(margin=dict(t=30, b=20), height=350, title_font_size=14)
+                fig.update_traces(textposition='inside', textinfo='percent+label+value')
+                st.plotly_chart(fig, use_container_width=True)
+            with row2_2:
+                dff1 = pd.melt(df2, id_vars='Player', value_vars=["PassLive_SCA", 'PassDead_SCA', 'TO_SCA', 'Sh_SCA',
+                                                                  'Fld_SCA', 'Def_SCA'], var_name='SCA', value_name=
+                               'Actions')
+                dff1.replace(["PassLive_SCA", 'PassDead_SCA', 'TO_SCA', 'Sh_SCA', 'Fld_SCA', 'Def_SCA'],
+                             ['Live Passes', 'Dead Passes', 'Take-Ons', 'Shots', 'Fouls Drawn', 'Defensive Actions'],
+                             inplace=True)
+                fig = px.pie(dff1, values='Actions', names='SCA',
+                             title='% of Different Shot Creating Actions Created by'
+                                   ' Player in 2021/22 Season')
+                fig.update_layout(margin=dict(t=30, b=20), height=350, title_font_size=14)
+                fig.update_traces(textposition='inside', textinfo='percent+label+value')
                 st.plotly_chart(fig, use_container_width=True)
 
             row3_spacer1, row3_1, row3_spacer2, row3_2, row3_3, row3_spacer3 = st.columns((.1, 1.5, 1.3, 1, 1.7, .1))
@@ -1123,13 +1139,10 @@ class dataFunc1:
             with row0_1:
                 st.markdown("##### Actual Statistics - :green[↑]/:red[↓] from previous season")
 
-            row1_spacer1, row1_1, row1_2, row1_3, row1_spacer2 = st.columns((.05, 1, 2, 4, .05))
+            row1_spacer1, row1_1, row1_2, row1_3, row1_4, row1_spacer2 = st.columns((.05, 1, 2, 1, 2, .05))
             with row1_1:
                 diff = round(df1.iloc[0]['GCA'] - df2.iloc[0]['GCA'], 2)
                 st.metric('Goal Creating Actions', df1.iloc[0]['GCA'], diff)
-                st.markdown(" ")
-                diff = round(df1.iloc[0]['GCA90'] - df2.iloc[0]['GCA90'], 2)
-                st.metric('GCA per 90', df1.iloc[0]['GCA90'], diff)
                 st.markdown(" ")
                 st.metric('Example Stat', 'Value', '↑/↓ from prev season')
             with row1_2:
@@ -1141,8 +1154,11 @@ class dataFunc1:
                     st.markdown("##### Similar to team average this season.")
                 else:
                     st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
+            with row1_3:
+                diff = round(df1.iloc[0]['GCA90'] - df2.iloc[0]['GCA90'], 2)
+                st.metric('GCA per 90', df1.iloc[0]['GCA90'], diff)
+            with row1_4:
                 st.markdown("# ")
-                st.markdown("## ")
                 diff1 = round(
                     df1.iloc[0]["GCA90"] - (self._dataset1["GCA90"].sum() + self._dataset5["GCA90"].sum()) / 26, 2)
                 if diff1 > 0:
@@ -1151,7 +1167,9 @@ class dataFunc1:
                     st.markdown("##### Similar to team average this season.")
                 else:
                     st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
-            with row1_3:
+
+            row2_spacer1, row2_1, row2_2, row2_spacer2 = st.columns((.05, 5, 5, .05))
+            with row2_1:
                 dff1 = pd.melt(df1, id_vars='Player', value_vars=["PassLive_GCA", 'PassDead_GCA', 'TO_GCA', 'Sh_GCA',
                                                                   'Fld_GCA', 'Def_GCA'], var_name='GCA', value_name=
                                'Actions')
@@ -1160,8 +1178,22 @@ class dataFunc1:
                              inplace=True)
                 fig = px.pie(dff1, values='Actions', names='GCA',
                              title='% of Different Goal Creating Actions Created by'
-                                   ' Player')
-                fig.update_layout(margin=dict(t=30, b=20), height=350)
+                                   ' Player in 2022/23 Season')
+                fig.update_layout(margin=dict(t=30, b=20), height=350, title_font_size=14)
+                fig.update_traces(textposition='inside', textinfo='percent+label+value')
+                st.plotly_chart(fig, use_container_width=True)
+            with row2_2:
+                dff1 = pd.melt(df2, id_vars='Player', value_vars=["PassLive_GCA", 'PassDead_GCA', 'TO_GCA', 'Sh_GCA',
+                                                                  'Fld_GCA', 'Def_GCA'], var_name='GCA', value_name=
+                               'Actions')
+                dff1.replace(["PassLive_GCA", 'PassDead_GCA', 'TO_GCA', 'Sh_GCA', 'Fld_GCA', 'Def_GCA'],
+                             ['Live Passes', 'Dead Passes', 'Take-Ons', 'Shots', 'Fouls Drawn', 'Defensive Actions'],
+                             inplace=True)
+                fig = px.pie(dff1, values='Actions', names='GCA',
+                             title='% of Different Goal Creating Actions Created by'
+                                   ' Player in 2021/22 Season')
+                fig.update_layout(margin=dict(t=30, b=20), height=350, title_font_size=14)
+                fig.update_traces(textposition='inside', textinfo='percent+label+value')
                 st.plotly_chart(fig, use_container_width=True)
 
             row3_spacer1, row3_1, row3_spacer2, row3_2, row3_3, row3_spacer3 = st.columns((.1, 1.5, 1.3, 1, 1.7, .1))
@@ -1454,19 +1486,19 @@ class dataFunc1:
                 dff['Clr_Rank'] = dff['Clr'].rank(ascending=False, method='max')
                 dff['Err_Rank'] = dff['Err'].rank(ascending=False, method='max')
                 st.markdown("# ")
-                st.markdown("###### Rank " + str(dff[dff['Player'] == self._name]['Tkl_Rank'].item()) + " in the team.")
-                st.markdown("# ")
-                st.markdown("# ")
-                st.markdown("###### Rank " + str(dff[dff['Player'] == self._name]['TklW_Rank'].item()) + " in the team.")
-                st.markdown("# ")
-                st.markdown("# ")
-                st.markdown("###### Rank " + str(dff[dff['Player'] == self._name]['Int_Rank'].item()) + " in the team.")
-                st.markdown("# ")
-                st.markdown("# ")
-                st.markdown("###### Rank " + str(dff[dff['Player'] == self._name]['Clr_Rank'].item()) + " in the team.")
+                st.markdown("###### Rank " + str(dff[dff['Player'] == self._name]['Tkl_Rank'].item()) + " in the team this season.")
+                st.markdown("### ")
+                st.markdown("### ")
+                st.markdown("###### Rank " + str(dff[dff['Player'] == self._name]['TklW_Rank'].item()) + " in the team this season.")
+                st.markdown("## ")
+                st.markdown("### ")
+                st.markdown("###### Rank " + str(dff[dff['Player'] == self._name]['Int_Rank'].item()) + " in the team this season.")
                 st.markdown("## ")
                 st.markdown("## ")
-                st.markdown("###### Rank " + str(dff[dff['Player'] == self._name]['Err_Rank'].item()) + " in the team.")
+                st.markdown("###### Rank " + str(dff[dff['Player'] == self._name]['Clr_Rank'].item()) + " in the team this season.")
+                st.markdown("## ")
+                st.markdown("### ")
+                st.markdown("###### Rank " + str(dff[dff['Player'] == self._name]['Err_Rank'].item()) + " in the team this season.")
 
 
             row2_spacer1, row2_1, row2_2, row2_spacer2 = st.columns((.05, 3, 3, .05))
@@ -1512,6 +1544,13 @@ class dataFunc1:
 
                 st.plotly_chart(fig1, use_container_width=True)
                 st.plotly_chart(fig2, use_container_width=True)
+
+        elif self._attribute == 'Possession 👻':
+            row0_spacer1, row0_1, row0_spacer2 = st.columns((.05, 3.2, 5))
+            with row0_1:
+                st.markdown("##### Actual Statistics - :green[↑]/:red[↓] from previous season")
+                st.markdown("### Touches")
+
         else:
             st.markdown("# WORK IN PROGRESS")
     # def data_visuals_gk(self, df1, df2):
