@@ -1381,7 +1381,7 @@ class dataFunc1:
             with row0_1:
                 st.markdown("##### Actual Statistics - :green[↑]/:red[↓] from previous season")
 
-            row1_spacer1, row1_1, row1_2, row1_3, row1_4, row1_spacer2 = st.columns((.05, 1.6, 1.6, 1, 1, .05))
+            row1_spacer1, row1_1, row1_2, row1_3, row1_4, row1_spacer2 = st.columns((.05, 1.3, 1.3, 1, 1.5, .05))
             with row1_1:
                 df1 = df1.replace(str(self._name), str(self._name) + " 2022/23")
                 df2 = df2.replace(str(self._name), str(self._name) + " 2021/22")
@@ -1398,7 +1398,7 @@ class dataFunc1:
                 fig = px.bar(dff, x='Player', y='Height', color='Tackle Location',
                              hover_data={'Height': False,
                                          'Tackles': True}, text='Tackles')
-                fig.update_layout(height=590, width=280, title='Tackles on each 1/3 of the Field',
+                fig.update_layout(height=590, title='Tackles on each 1/3 of the Field',
                                   showlegend=False, hoverlabel=dict(bgcolor='Black',
                                                                     font_size=15),
                                   margin=dict())
@@ -1407,19 +1407,20 @@ class dataFunc1:
                 fig.add_layout_image(
                     dict(
                         source=img,
-                        xref="x",
+                        xref="x domain",
                         yref="y",
-                        x=-.5,
+                        x=-0,
                         y=300,
-                        sizex=3,
+                        sizex=1,
                         sizey=300,
+                        sizing='stretch',
                         layer='above',
                         opacity=0.3
                     ))
                 fig.add_shape(
                     type='line', xref='x', yref='y', x0=.5, x1=.5, y0=0, y1=300, line_color='red'
                 )
-                st.plotly_chart(fig)
+                st.plotly_chart(fig, use_container_width=True)
             with row1_2:
                 dff = pd.DataFrame(columns=['Player', 'Def 3rd_Tkls', 'Mid 3rd_Tkls', 'Att 3rd_Tkls'])
                 dff_avg1 = pd.concat([self._dataset1, self._dataset5]).reset_index(drop=True)
@@ -1445,7 +1446,7 @@ class dataFunc1:
                 fig = px.bar(dff, x='Player', y='Height', color='Tackle Location',
                              hover_data={'Height': False,
                                          'Tackles': True}, text='Tackles')
-                fig.update_layout(height=590, width=280,
+                fig.update_layout(height=590,
                                   showlegend=False, hoverlabel=dict(bgcolor='Black',
                                                                     font_size=15),
                                   margin=dict())
@@ -1454,19 +1455,20 @@ class dataFunc1:
                 fig.add_layout_image(
                     dict(
                         source=img,
-                        xref="x",
+                        xref="x domain",
                         yref="y",
-                        x=-.5,
+                        x=0,
                         y=300,
-                        sizex=3,
+                        sizex=1,
                         sizey=300,
+                        sizing='stretch',
                         layer='above',
                         opacity=0.3
                     ))
                 fig.add_shape(
                     type='line', xref='x', yref='y', x0=.5, x1=.5, y0=0, y1=300, line_color='red'
                 )
-                st.plotly_chart(fig)
+                st.plotly_chart(fig, use_container_width=True)
             with row1_3:
                 diff = df1.iloc[0]['Tkl'] - df2.iloc[0]['Tkl']
                 st.metric('Total Tackles', df1.iloc[0]['Tkl'], diff)
@@ -1486,19 +1488,19 @@ class dataFunc1:
                 dff['Clr_Rank'] = dff['Clr'].rank(ascending=False, method='max')
                 dff['Err_Rank'] = dff['Err'].rank(ascending=False, method='max')
                 st.markdown("# ")
-                st.markdown("###### Rank " + str(dff[dff['Player'] == self._name]['Tkl_Rank'].item()) + " in the team this season.")
-                st.markdown("### ")
-                st.markdown("### ")
-                st.markdown("###### Rank " + str(dff[dff['Player'] == self._name]['TklW_Rank'].item()) + " in the team this season.")
+                st.markdown("##### Rank " + str(dff[dff['Player'] == self._name]['Tkl_Rank'].item()) + " in the team this season.")
+                st.markdown("# ")
                 st.markdown("## ")
-                st.markdown("### ")
-                st.markdown("###### Rank " + str(dff[dff['Player'] == self._name]['Int_Rank'].item()) + " in the team this season.")
+                st.markdown("##### Rank " + str(dff[dff['Player'] == self._name]['TklW_Rank'].item()) + " in the team this season.")
+                st.markdown("# ")
                 st.markdown("## ")
+                st.markdown("##### Rank " + str(dff[dff['Player'] == self._name]['Int_Rank'].item()) + " in the team this season.")
+                st.markdown("# ")
                 st.markdown("## ")
-                st.markdown("###### Rank " + str(dff[dff['Player'] == self._name]['Clr_Rank'].item()) + " in the team this season.")
+                st.markdown("##### Rank " + str(dff[dff['Player'] == self._name]['Clr_Rank'].item()) + " in the team this season.")
+                st.markdown("# ")
                 st.markdown("## ")
-                st.markdown("### ")
-                st.markdown("###### Rank " + str(dff[dff['Player'] == self._name]['Err_Rank'].item()) + " in the team this season.")
+                st.markdown("##### Rank " + str(dff[dff['Player'] == self._name]['Err_Rank'].item()) + " in the team this season.")
 
 
             row2_spacer1, row2_1, row2_2, row2_spacer2 = st.columns((.05, 3, 3, .05))
@@ -1546,10 +1548,38 @@ class dataFunc1:
                 st.plotly_chart(fig2, use_container_width=True)
 
         elif self._attribute == 'Possession 👻':
-            row0_spacer1, row0_1, row0_spacer2 = st.columns((.05, 3.2, 5))
+            row0_spacer1, row0_1, row0_spacer2 = st.columns((.05, 3.2, .05))
             with row0_1:
                 st.markdown("##### Actual Statistics - :green[↑]/:red[↓] from previous season")
-                st.markdown("### Touches")
+                st.markdown("#### Touches")
+
+            row1_spacer1, row1_1, row1_2, row1_3, row1_4, row1_spacer2 = st.columns((.05, 1, 2, 1, 2, .05))
+            with row1_1:
+                diff = round(df1.iloc[0]['Touches'] - df2.iloc[0]['Touches'], 2)
+                st.metric('Total Touches', df1.iloc[0]['Touches'], diff)
+            with row1_2:
+                st.markdown("# ")
+                diff1 = round(df1.iloc[0]["Touches"] - (self._dataset1["Touches"].sum() + self._dataset5["Touches"].sum()) / 26, 2)
+                if diff1 > 0:
+                    st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
+                elif diff1 == 0:
+                    st.markdown("##### Similar to team average this season.")
+                else:
+                    st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
+            with row1_3:
+                diff = round(df1.iloc[0]['Live_Tch'] - df2.iloc[0]['Live_Tch'], 2)
+                st.metric('Total Live Touches', df1.iloc[0]['Live_Tch'], diff)
+            with row1_4:
+                st.markdown("# ")
+                diff1 = round(
+                    df1.iloc[0]["Live_Tch"] - (self._dataset1["Live_Tch"].sum() + self._dataset5["Live_Tch"].sum()) / 26,
+                    2)
+                if diff1 > 0:
+                    st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
+                elif diff1 == 0:
+                    st.markdown("##### Similar to team average this season.")
+                else:
+                    st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
 
         else:
             st.markdown("# WORK IN PROGRESS")
