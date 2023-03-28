@@ -1583,7 +1583,7 @@ class dataFunc1:
                 st.markdown("# ")
                 diff1 = round(
                     df1.iloc[0]["Live_Tch"] - (
-                                self._dataset1["Live_Tch"].sum() + self._dataset5["Live_Tch"].sum()) / 26,
+                            self._dataset1["Live_Tch"].sum() + self._dataset5["Live_Tch"].sum()) / 26,
                     2)
                 if diff1 > 0:
                     st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
@@ -1595,10 +1595,10 @@ class dataFunc1:
             row2_spacer1, row2_1, row2_2, row2_3, row2_spacer2 = st.columns((.05, 2.45, 6, 2.45, .05))
             with row2_1:
                 diff = round(df1.iloc[0]["Att Pen"] - (
-                                self._dataset1["Att Pen"].sum() + self._dataset5["Att Pen"].sum()) / 26,2)
+                        self._dataset1["Att Pen"].sum() + self._dataset5["Att Pen"].sum()) / 26, 2)
                 st.markdown("## ")
                 st.markdown("## ")
-                st.markdown("###### Attacking Penalty Box Touches 2022/23 Season")
+                st.markdown("###### Attacking Penalty Box Touches in 2022/23 Season")
                 if diff > 0:
                     st.markdown("###### :green[↑ %a] more than team average this season." % diff)
                 elif diff == 0:
@@ -1608,7 +1608,7 @@ class dataFunc1:
                 st.markdown("## ")
                 diff = round(df1.iloc[0]["Att 3rd_Tch"] - (
                         self._dataset1["Att 3rd_Tch"].sum() + self._dataset5["Att 3rd_Tch"].sum()) / 26, 2)
-                st.markdown("###### Attacking Third Touches 2022/23 Season")
+                st.markdown("###### Attacking Third Touches in 2022/23 Season")
                 if diff > 0:
                     st.markdown("###### :green[↑ %a] more than team average this season." % diff)
                 elif diff == 0:
@@ -1619,7 +1619,7 @@ class dataFunc1:
                 st.markdown("###### ")
                 diff = round(df1.iloc[0]["Mid 3rd_Tch"] - (
                         self._dataset1["Mid 3rd_Tch"].sum() + self._dataset5["Mid 3rd_Tch"].sum()) / 26, 2)
-                st.markdown("###### Middle Third Touches 2022/23 Season")
+                st.markdown("###### Middle Third Touches in 2022/23 Season")
                 if diff > 0:
                     st.markdown("###### :green[↑ %a] more than team average this season." % diff)
                 elif diff == 0:
@@ -1630,7 +1630,7 @@ class dataFunc1:
                 st.markdown("### ")
                 diff = round(df1.iloc[0]["Def 3rd_Tch"] - (
                         self._dataset1["Def 3rd_Tch"].sum() + self._dataset5["Def 3rd_Tch"].sum()) / 26, 2)
-                st.markdown("###### Defensive Third Touches 2022/23 Season")
+                st.markdown("###### Defensive Third Touches in 2022/23 Season")
                 if diff > 0:
                     st.markdown("###### :green[↑ %a] more than team average this season." % diff)
                 elif diff == 0:
@@ -1640,7 +1640,7 @@ class dataFunc1:
                 st.markdown("# ")
                 diff = round(df1.iloc[0]["Def Pen"] - (
                         self._dataset1["Def Pen"].sum() + self._dataset5["Def Pen"].sum()) / 26, 2)
-                st.markdown("###### Defensive Penalty Box Touches 2022/23 Season")
+                st.markdown("###### Defensive Penalty Box Touches in 2022/23 Season")
                 if diff > 0:
                     st.markdown("###### :green[↑ %a] more than team average this season." % diff)
                 elif diff == 0:
@@ -1671,15 +1671,15 @@ class dataFunc1:
                                        '2022/23 and 2021/22 Season',
                                  color_discrete_sequence=px.colors.sequential.RdBu,
                                  size_max=30)
-                fig.update_layout(height=750, margin=dict(t=50, b=0), title_font_size=14,legend=dict(
-                                                                    yanchor="bottom",
-                                                                    y=.815,
-                                                                    xanchor="right",
-                                                                    x=1,
-                                                                    bgcolor="Green",
-                                                                    bordercolor="White",
-                                                                    borderwidth=2
-                                                                ))
+                fig.update_layout(height=750, margin=dict(t=50, b=0), title_font_size=14, legend=dict(
+                    yanchor="bottom",
+                    y=.815,
+                    xanchor="right",
+                    x=1,
+                    bgcolor="Green",
+                    bordercolor="White",
+                    borderwidth=2
+                ))
                 fig.update_xaxes(range=[0, 5], visible=False)
                 fig.update_yaxes(range=[0, 10], visible=True, showticklabels=False)
                 fig.update_traces(mode='markers', marker=dict(sizemode='area',
@@ -1700,10 +1700,10 @@ class dataFunc1:
                 st.plotly_chart(fig, use_container_width=True)
             with row2_3:
                 diff = round(df2.iloc[0]["Att Pen"] - (
-                        self._dataset2["Att Pen"].mean()), 2)
+                    self._dataset2["Att Pen"].mean()), 2)
                 st.markdown("## ")
                 st.markdown("## ")
-                st.markdown("###### Attacking Penalty Box Touches 2021/22 Season")
+                st.markdown("###### Attacking Penalty Box Touches in 2021/22 Season")
                 if diff > 0:
                     st.markdown("###### :green[↑ %a] more than team average this season." % diff)
                 elif diff == 0:
@@ -1712,8 +1712,8 @@ class dataFunc1:
                     st.markdown("###### :red[↓ %a] less than team average this season." % diff)
                 st.markdown("## ")
                 diff = round(df2.iloc[0]["Att 3rd_Tch"] - (
-                        self._dataset2["Att 3rd_Tch"].mean()), 2)
-                st.markdown("###### Attacking Third Touches 2021/22 Season")
+                    self._dataset2["Att 3rd_Tch"].mean()), 2)
+                st.markdown("###### Attacking Third Touches in 2021/22 Season")
                 if diff > 0:
                     st.markdown("###### :green[↑ %a] more than team average this season." % diff)
                 elif diff == 0:
@@ -1723,8 +1723,8 @@ class dataFunc1:
                 st.markdown("# ")
                 st.markdown("###### ")
                 diff = round(df2.iloc[0]["Mid 3rd_Tch"] - (
-                        self._dataset2["Mid 3rd_Tch"].mean()), 2)
-                st.markdown("###### Middle Third Touches 2021/22 Season")
+                    self._dataset2["Mid 3rd_Tch"].mean()), 2)
+                st.markdown("###### Middle Third Touches in 2021/22 Season")
                 if diff > 0:
                     st.markdown("###### :green[↑ %a] more than team average this season." % diff)
                 elif diff == 0:
@@ -1734,8 +1734,8 @@ class dataFunc1:
                 st.markdown("## ")
                 st.markdown("### ")
                 diff = round(df1.iloc[0]["Def 3rd_Tch"] - (
-                        self._dataset2["Def 3rd_Tch"].mean()), 2)
-                st.markdown("###### Defensive Third Touches 2022/23 Season")
+                    self._dataset2["Def 3rd_Tch"].mean()), 2)
+                st.markdown("###### Defensive Third Touches in 2022/23 Season")
                 if diff > 0:
                     st.markdown("###### :green[↑ %a] more than team average this season." % diff)
                 elif diff == 0:
@@ -1744,8 +1744,8 @@ class dataFunc1:
                     st.markdown("###### :red[↓ %a] less than team average this season." % diff)
                 st.markdown("# ")
                 diff = round(df1.iloc[0]["Def Pen"] - (
-                        self._dataset2["Def Pen"].mean()), 2)
-                st.markdown("###### Defensive Penalty Box Touches 2021/22 Season")
+                    self._dataset2["Def Pen"].mean()), 2)
+                st.markdown("###### Defensive Penalty Box Touches in 2021/22 Season")
                 if diff > 0:
                     st.markdown("###### :green[↑ %a] more than team average this season." % diff)
                 elif diff == 0:
@@ -1761,14 +1761,15 @@ class dataFunc1:
             with row4_1:
                 dff = df1
                 dff['Unsucc'] = dff.iloc[0]['Att_TakeOns'] - dff.iloc[0]['Succ']
-                dff = pd.melt(dff, id_vars='Player', value_vars=['Succ', 'Unsucc'], var_name='Take-Ons', value_name='Win / Loss')
-                dff.replace(['Succ', 'Unsucc'],['Successful Take-Ons', 'Unsuccessful Take-Ons'], inplace=True)
+                dff = pd.melt(dff, id_vars='Player', value_vars=['Succ', 'Unsucc'], var_name='Take-Ons',
+                              value_name='Win / Loss')
+                dff.replace(['Succ', 'Unsucc'], ['Successful Take-Ons', 'Unsuccessful Take-Ons'], inplace=True)
 
                 fig = px.pie(dff, values='Win / Loss', names='Take-Ons',
                              color_discrete_sequence=px.colors.sequential.RdBu,
                              title='Take-Ons Win-Loss % in the 2022/23 Season')
                 fig.update_traces(textposition='inside', textinfo='percent+label+value')
-                fig.update_layout(margin=dict(t=40))
+                fig.update_layout(margin=dict(t=40, b=20), legend=dict(xanchor="right", x=0))
                 st.plotly_chart(fig, use_container_width=True)
             with row4_2:
                 st.metric("Total Take-Ons", df1.iloc[0]['Att_TakeOns'])
@@ -1783,8 +1784,332 @@ class dataFunc1:
                              color_discrete_sequence=px.colors.sequential.RdBu,
                              title='Tackled During Take-Ons % in the 2022/23 Season')
                 fig.update_traces(textposition='inside', textinfo='percent+label+value')
-                fig.update_layout(margin=dict(t=40))
+                fig.update_layout(margin=dict(t=40, b=20))
                 st.plotly_chart(fig, use_container_width=True)
+
+            row5_spacer1, row5_1, row5_2, row5_3, row5_spacer2 = st.columns((.05, 4, 1, 4, .05))
+            with row5_1:
+                dff = df2
+                dff['Unsucc'] = dff.iloc[0]['Att_TakeOns'] - dff.iloc[0]['Succ']
+                dff = pd.melt(dff, id_vars='Player', value_vars=['Succ', 'Unsucc'], var_name='Take-Ons',
+                              value_name='Win / Loss')
+                dff.replace(['Succ', 'Unsucc'], ['Successful Take-Ons', 'Unsuccessful Take-Ons'], inplace=True)
+
+                fig = px.pie(dff, values='Win / Loss', names='Take-Ons',
+                             color_discrete_sequence=px.colors.sequential.RdBu,
+                             title='Take-Ons Win-Loss % in the 2021/22 Season')
+                fig.update_traces(textposition='inside', textinfo='percent+label+value')
+                fig.update_layout(margin=dict(t=40, b=20), legend=dict(xanchor="right", x=0))
+                st.plotly_chart(fig, use_container_width=True)
+            with row5_2:
+                st.metric("Total Take-Ons", df2.iloc[0]['Att_TakeOns'])
+            with row5_3:
+                dff = df2
+                dff['Tkld_U'] = dff.iloc[0]['Att_TakeOns'] - dff.iloc[0]['Tkld']
+                dff = pd.melt(dff, id_vars='Player', value_vars=['Tkld', 'Tkld_U'], var_name='Take-Ons',
+                              value_name='Win / Loss')
+                dff.replace(['Tkld', 'Tkld_U'], ['Tackled During Take-Ons', 'Untackled Take-Ons'], inplace=True)
+
+                fig = px.pie(dff, values='Win / Loss', names='Take-Ons',
+                             color_discrete_sequence=px.colors.sequential.RdBu,
+                             title='Tackled During Take-Ons % in the 2021/22 Season')
+                fig.update_traces(textposition='inside', textinfo='percent+label+value')
+                fig.update_layout(margin=dict(t=40, b=20))
+                st.plotly_chart(fig, use_container_width=True)
+
+            row6_spacer1, row6_1, row6_spacer2 = st.columns((.05, 3.2, .05))
+            with row6_1:
+                st.markdown("#### Carries & Receiving Passes")
+
+            row7_spacer1, row7_1, row7_spacer2, row7_2, row7_3, row7_spacer3 = st.columns((.1, 1.5, 1.3, 1.2, 1.7, .1))
+            with row7_1:
+                stat = ['Total Carries', 'Total Distance Carried', 'Total Progressive Distance Carried', 'Total '
+                                                                                                         'Progressive Carries',
+                        'Carries into the Final Third', 'Carries into Attacking Penalty Area',
+                        'Miscontrols', 'Dispossessed', 'Passes Received', 'Progressive Passes Received']
+                see = st.selectbox("Select the stat that you want to see! 👋", stat)
+            with row7_spacer2:
+                st.metric("Example Stat", "Value", "↑/↓ from prev season")
+            with row7_2:
+                if see == 'Total Carries':
+                    diff1 = round(df1.iloc[0]["Carries"] - df2.iloc[0]["Carries"], 2)
+                    st.metric("Total Carries", df1.iloc[0]["Carries"], diff1)
+                elif see == 'Total Distance Carried':
+                    diff1 = round(df1.iloc[0]["TotDist_Carr"] - df2.iloc[0]["TotDist_Carr"], 2)
+                    st.metric("Total Distance Carried", str(df1.iloc[0]["TotDist_Carr"]) + " yrds",
+                              str(diff1) + " yrds")
+                elif see == 'Total Progressive Distance Carried':
+                    diff1 = round(df1.iloc[0]["PrgDist_Carr"] - df2.iloc[0]["PrgDist_Carr"], 2)
+                    st.metric("Total Prog Distance Carried", str(df1.iloc[0]["PrgDist_Carr"]) + " yrds",
+                              str(diff1) + " yrds")
+                elif see == 'Total Progressive Carries':
+                    diff1 = round(df1.iloc[0]["PrgC"] - df2.iloc[0]["PrgC"], 2)
+                    st.metric("Total Progressive Carries", df1.iloc[0]["PrgC"], diff1)
+                elif see == 'Carries into the Final Third':
+                    diff1 = round(df1.iloc[0]["1/3_Carr"] - df2.iloc[0]["1/3_Carr"], 2)
+                    st.metric("Carries into Final 1/3", df1.iloc[0]["1/3_Carr"], diff1)
+                elif see == 'Carries into Attacking Penalty Area':
+                    diff1 = round(df1.iloc[0]["CPA"] - df2.iloc[0]["CPA"], 2)
+                    st.metric("Carries into Attacking Pen.", df1.iloc[0]["CPA"], diff1)
+                elif see == 'Miscontrols':
+                    diff1 = round(df1.iloc[0]["Mis"] - df2.iloc[0]["Mis"], 2)
+                    st.metric("Miscontrols", df1.iloc[0]["Mis"], diff1)
+                elif see == 'Dispossessed':
+                    diff1 = round(df1.iloc[0]["Dis"] - df2.iloc[0]["Dis"], 2)
+                    st.metric("Dispossessed", df1.iloc[0]["Dis"], diff1)
+                elif see == 'Passes Received':
+                    diff1 = round(df1.iloc[0]["Rec"] - df2.iloc[0]["Rec"], 2)
+                    st.metric("Passes Received", df1.iloc[0]["Rec"], diff1)
+                elif see == 'Progressive Passes Received':
+                    diff1 = round(df1.iloc[0]["PrgR"] - df2.iloc[0]["PrgR"], 2)
+                    st.metric("Prog. Passes Received", df1.iloc[0]["PrgR"], diff1)
+            with row7_3:
+                if see == 'Total Carries':
+                    st.markdown("## ")
+                    diff1 = round(df1.iloc[0]["Carries"] - (
+                                self._dataset1["Carries"].sum() + self._dataset5["Carries"].sum()) / 26,
+                                  2)
+                    if diff1 > 0:
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
+                    elif diff1 == 0:
+                        st.markdown("##### Similar to team average this season.")
+                    else:
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
+                elif see == 'Total Distance Carried':
+                    st.markdown("## ")
+                    diff1 = round(df1.iloc[0]["TotDist_Carr"] - (
+                                self._dataset1["TotDist_Carr"].sum() + self._dataset5["TotDist_Carr"].sum()) / 26, 2)
+                    if diff1 > 0:
+                        st.markdown("##### :green[↑ %a] yards more than team average this season." % diff1)
+                    elif diff1 == 0:
+                        st.markdown("##### Similar to team average this season.")
+                    else:
+                        st.markdown("##### :red[↓ %a] yards less than team average this season." % diff1)
+                elif see == 'Total Progressive Distance Carried':
+                    st.markdown("## ")
+                    diff1 = round(df1.iloc[0]["PrgDist_Carr"] - (
+                                self._dataset1["PrgDist_Carr"].sum() + self._dataset5["PrgDist_Carr"].sum()) / 26, 2)
+                    if diff1 > 0:
+                        st.markdown("##### :green[↑ %a] yards more than team average this season." % diff1)
+                    elif diff1 == 0:
+                        st.markdown("##### Similar to team average this season.")
+                    else:
+                        st.markdown("##### :red[↓ %a] yards less than team average this season." % diff1)
+                elif see == 'Total Progressive Carries':
+                    st.markdown("## ")
+                    diff1 = round(
+                        df1.iloc[0]["PrgC"] - (self._dataset1["PrgC"].sum() + self._dataset5["PrgC"].sum()) / 26, 2)
+                    if diff1 > 0:
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
+                    elif diff1 == 0:
+                        st.markdown("##### Similar to team average this season.")
+                    else:
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
+                elif see == 'Carries into the Final Third':
+                    st.markdown("## ")
+                    diff1 = round(df1.iloc[0]["1/3_Carr"] - (
+                                self._dataset1["1/3_Carr"].sum() + self._dataset5["1/3_Carr"].sum()) / 26, 2)
+                    if diff1 > 0:
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
+                    elif diff1 == 0:
+                        st.markdown("##### Similar to team average this season.")
+                    else:
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
+                elif see == 'Carries into Attacking Penalty Area':
+                    st.markdown("## ")
+                    diff1 = round(df1.iloc[0]["CPA"] - (self._dataset1["CPA"].sum() + self._dataset5["CPA"].sum()) / 26,
+                                  2)
+                    if diff1 > 0:
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
+                    elif diff1 == 0:
+                        st.markdown("##### Similar to team average this season.")
+                    else:
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
+                elif see == 'Miscontrols':
+                    st.markdown("## ")
+                    diff1 = round(df1.iloc[0]["Mis"] - (self._dataset1["Mis"].sum() + self._dataset5["Mis"].sum()) / 26,
+                                  2)
+                    if diff1 > 0:
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
+                    elif diff1 == 0:
+                        st.markdown("##### Similar to team average this season.")
+                    else:
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
+                elif see == 'Dispossessed':
+                    st.markdown("## ")
+                    diff1 = round(df1.iloc[0]["Dis"] - (self._dataset1["Dis"].sum() + self._dataset5["Dis"].sum()) / 26,
+                                  2)
+                    if diff1 > 0:
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
+                    elif diff1 == 0:
+                        st.markdown("##### Similar to team average this season.")
+                    else:
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
+                elif see == 'Passes Received':
+                    st.markdown("## ")
+                    diff1 = round(df1.iloc[0]["Rec"] - (self._dataset1["Rec"].sum() + self._dataset5["Rec"].sum()) / 26,
+                                  2)
+                    if diff1 > 0:
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
+                    elif diff1 == 0:
+                        st.markdown("##### Similar to team average this season.")
+                    else:
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
+                elif see == 'Progressive Passes Received':
+                    st.markdown("## ")
+                    diff1 = round(
+                        df1.iloc[0]["PrgR"] - (self._dataset1["PrgR"].sum() + self._dataset5["PrgR"].sum()) / 26, 2)
+                    if diff1 > 0:
+                        st.markdown("##### :green[↑ %a] more than team average this season." % diff1)
+                    elif diff1 == 0:
+                        st.markdown("##### Similar to team average this season.")
+                    else:
+                        st.markdown("##### :red[↓ %a] less than team average this season." % diff1)
+
+            row8_spacer1, row8_1, row8_spacer2 = st.columns((.1, 3.2, .1))
+            with row8_1:
+                dff1 = self._dataset1
+                dff1 = pd.concat([dff1, self._dataset5]).reset_index(drop=True)
+                if see == 'Total Carries':
+                    dff1['Carr_Rank'] = dff1['Carries'].rank(ascending=False)
+                    dff1 = dff1.sort_values("Carr_Rank")
+                    dff1 = dff1.reset_index(drop=True)
+                    index = dff1[dff1['Player'] == self._name].index.values[0]
+                    colours = ['lightslategrey', ] * 26
+                    colours[index] = '#DA291C'
+                    x = dff1['Player'].values.tolist()
+                    y = dff1['Carries'].values.tolist()
+                    fig = go.Figure(data=[go.Bar(x=x, y=y, marker_color=colours)])
+                    fig.update_layout(title_text='Total Carries Ranking', title_font_size=30)
+                    fig.update_xaxes(title_text="Player")
+                    fig.update_yaxes(title_text="Carries")
+                    st.plotly_chart(fig, use_container_width=True)
+                elif see == 'Total Distance Carried':
+                    dff1['Rank'] = dff1['TotDist_Carr'].rank(ascending=False)
+                    dff1 = dff1.sort_values("Rank")
+                    dff1 = dff1.reset_index(drop=True)
+                    index = dff1[dff1['Player'] == self._name].index.values[0]
+                    colours = ['lightslategrey', ] * 26
+                    colours[index] = '#DA291C'
+                    x = dff1['Player'].values.tolist()
+                    y = dff1['TotDist_Carr'].values.tolist()
+                    fig = go.Figure(data=[go.Bar(x=x, y=y, marker_color=colours)])
+                    fig.update_layout(title_text='Total Distance Carries Ranking', title_font_size=30)
+                    fig.update_xaxes(title_text="Player")
+                    fig.update_yaxes(title_text="Yards")
+                    st.plotly_chart(fig, use_container_width=True)
+                elif see == 'Total Progressive Distance Carried':
+                    dff1['Rank'] = dff1['PrgDist_Carr'].rank(ascending=False)
+                    dff1 = dff1.sort_values("Rank")
+                    dff1 = dff1.reset_index(drop=True)
+                    index = dff1[dff1['Player'] == self._name].index.values[0]
+                    colours = ['lightslategrey', ] * 26
+                    colours[index] = '#DA291C'
+                    x = dff1['Player'].values.tolist()
+                    y = dff1['PrgDist_Carr'].values.tolist()
+                    fig = go.Figure(data=[go.Bar(x=x, y=y, marker_color=colours)])
+                    fig.update_layout(title_text='Total Progressive Distance Carries Ranking', title_font_size=30)
+                    fig.update_xaxes(title_text="Player")
+                    fig.update_yaxes(title_text="Yards")
+                    st.plotly_chart(fig, use_container_width=True)
+                elif see == 'Total Progressive Carries':
+                    dff1['Rank'] = dff1['PrgC'].rank(ascending=False)
+                    dff1 = dff1.sort_values("Rank")
+                    dff1 = dff1.reset_index(drop=True)
+                    index = dff1[dff1['Player'] == self._name].index.values[0]
+                    colours = ['lightslategrey', ] * 26
+                    colours[index] = '#DA291C'
+                    x = dff1['Player'].values.tolist()
+                    y = dff1['PrgC'].values.tolist()
+                    fig = go.Figure(data=[go.Bar(x=x, y=y, marker_color=colours)])
+                    fig.update_layout(title_text='Total Distance Carries Ranking', title_font_size=30)
+                    fig.update_xaxes(title_text="Player")
+                    fig.update_yaxes(title_text="Progressive Carries")
+                    st.plotly_chart(fig, use_container_width=True)
+                elif see == 'Carries into the Final Third':
+                    dff1['Rank'] = dff1['1/3_Carr'].rank(ascending=False)
+                    dff1 = dff1.sort_values("Rank")
+                    dff1 = dff1.reset_index(drop=True)
+                    index = dff1[dff1['Player'] == self._name].index.values[0]
+                    colours = ['lightslategrey', ] * 26
+                    colours[index] = '#DA291C'
+                    x = dff1['Player'].values.tolist()
+                    y = dff1['1/3_Carr'].values.tolist()
+                    fig = go.Figure(data=[go.Bar(x=x, y=y, marker_color=colours)])
+                    fig.update_layout(title_text='Carries into the Final Third Ranking', title_font_size=30)
+                    fig.update_xaxes(title_text="Player")
+                    fig.update_yaxes(title_text="Carries")
+                    st.plotly_chart(fig, use_container_width=True)
+                elif see == 'Carries into Attacking Penalty Area':
+                    dff1['Rank'] = dff1['CPA'].rank(ascending=False)
+                    dff1 = dff1.sort_values("Rank")
+                    dff1 = dff1.reset_index(drop=True)
+                    index = dff1[dff1['Player'] == self._name].index.values[0]
+                    colours = ['lightslategrey', ] * 26
+                    colours[index] = '#DA291C'
+                    x = dff1['Player'].values.tolist()
+                    y = dff1['CPA'].values.tolist()
+                    fig = go.Figure(data=[go.Bar(x=x, y=y, marker_color=colours)])
+                    fig.update_layout(title_text='Carries into Attacking Penalty Area Ranking', title_font_size=30)
+                    fig.update_xaxes(title_text="Player")
+                    fig.update_yaxes(title_text="Carries")
+                    st.plotly_chart(fig, use_container_width=True)
+                elif see == 'Miscontrols':
+                    dff1['Rank'] = dff1['Mis'].rank(ascending=False)
+                    dff1 = dff1.sort_values("Rank")
+                    dff1 = dff1.reset_index(drop=True)
+                    index = dff1[dff1['Player'] == self._name].index.values[0]
+                    colours = ['lightslategrey', ] * 26
+                    colours[index] = '#DA291C'
+                    x = dff1['Player'].values.tolist()
+                    y = dff1['Mis'].values.tolist()
+                    fig = go.Figure(data=[go.Bar(x=x, y=y, marker_color=colours)])
+                    fig.update_layout(title_text='Miscontrols Ranking', title_font_size=30)
+                    fig.update_xaxes(title_text="Player")
+                    fig.update_yaxes(title_text="Miscontrols")
+                    st.plotly_chart(fig, use_container_width=True)
+                elif see == 'Dispossessed':
+                    dff1['Rank'] = dff1['Dis'].rank(ascending=False)
+                    dff1 = dff1.sort_values("Rank")
+                    dff1 = dff1.reset_index(drop=True)
+                    index = dff1[dff1['Player'] == self._name].index.values[0]
+                    colours = ['lightslategrey', ] * 26
+                    colours[index] = '#DA291C'
+                    x = dff1['Player'].values.tolist()
+                    y = dff1['Dis'].values.tolist()
+                    fig = go.Figure(data=[go.Bar(x=x, y=y, marker_color=colours)])
+                    fig.update_layout(title_text='Dispossession Ranking', title_font_size=30)
+                    fig.update_xaxes(title_text="Player")
+                    fig.update_yaxes(title_text="Dispossessed")
+                    st.plotly_chart(fig, use_container_width=True)
+                elif see == 'Passes Received':
+                    dff1['Rank'] = dff1['Rec'].rank(ascending=False)
+                    dff1 = dff1.sort_values("Rank")
+                    dff1 = dff1.reset_index(drop=True)
+                    index = dff1[dff1['Player'] == self._name].index.values[0]
+                    colours = ['lightslategrey', ] * 26
+                    colours[index] = '#DA291C'
+                    x = dff1['Player'].values.tolist()
+                    y = dff1['Rec'].values.tolist()
+                    fig = go.Figure(data=[go.Bar(x=x, y=y, marker_color=colours)])
+                    fig.update_layout(title_text='Passes Received Ranking', title_font_size=30)
+                    fig.update_xaxes(title_text="Player")
+                    fig.update_yaxes(title_text="Passes Received")
+                    st.plotly_chart(fig, use_container_width=True)
+                elif see == 'Progressive Passes Received':
+                    dff1['Rank'] = dff1['PrgR'].rank(ascending=False)
+                    dff1 = dff1.sort_values("Rank")
+                    dff1 = dff1.reset_index(drop=True)
+                    index = dff1[dff1['Player'] == self._name].index.values[0]
+                    colours = ['lightslategrey', ] * 26
+                    colours[index] = '#DA291C'
+                    x = dff1['Player'].values.tolist()
+                    y = dff1['PrgR'].values.tolist()
+                    fig = go.Figure(data=[go.Bar(x=x, y=y, marker_color=colours)])
+                    fig.update_layout(title_text='Progressive Passes Received Ranking', title_font_size=30)
+                    fig.update_xaxes(title_text="Player")
+                    fig.update_yaxes(title_text="Passes Received")
+                    st.plotly_chart(fig, use_container_width=True)
         else:
             st.markdown("# WORK IN PROGRESS")
     # def data_visuals_gk(self, df1, df2):
