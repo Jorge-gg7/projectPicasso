@@ -7,6 +7,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
 from PIL import Image
+from plotly.subplots import make_subplots
 
 
 class dataFunc1:
@@ -84,7 +85,7 @@ class dataFunc1:
                'Possession 👻': ['Player', 'Touches', 'Def Pen', 'Def 3rd_Tch', 'Mid 3rd_Tch', 'Att 3rd_Tch', 'Att Pen',
                                 'Live_Tch', 'Att_TakeOns', 'Succ', 'Succ%', 'Tkld', 'Tkld%', 'Carries', 'TotDist_Carr',
                                 'PrgDist_Carr', 'PrgC', '1/3_Carr', 'CPA', 'Mis', 'Dis', 'Rec', 'PrgR'],
-               'Team Success with & without 🎇': ['Player', 'MP', 'Min', 'Min%', 'Starts', 'Mn/Start', 'Compl', 'Subs',
+               'Team Success with & without 🎇': ['Player', 'MP', 'Min', 'Mn/MP', 'Min%', 'Starts', 'Mn/Start', 'Compl', 'Subs',
                                                  'Mn/Sub', 'unSub', 'PPM', 'onG', 'onGA', '+/-', '+/-90', 'On-Off',
                                                  'onxG', 'onxGA', 'xG+/-', 'xG+/-90', 'On-Off_xG'],
                'Miscellaneous 🏆': ['Player', 'CrdY', 'CrdR', '2CrdY', 'Fls', 'Fld', 'Offsd', 'PKwon', 'PKcon', 'OG',
@@ -2110,6 +2111,121 @@ class dataFunc1:
                     fig.update_xaxes(title_text="Player")
                     fig.update_yaxes(title_text="Passes Received")
                     st.plotly_chart(fig, use_container_width=True)
+
+        elif self._attribute == 'Team Success with & without 🎇':
+            row0_spacer1, row0_1, row0_spacer2 = st.columns((.05, 3.2, .05))
+            with row0_1:
+                st.markdown("#### Playing Time")
+
+            row1_spacer1, row1_1, row1_2, row1_3, row1_4, row1_spacer2 = st.columns((0.5, 1.5, 1, .5, 1, 0.5))
+            with row1_1:
+                st.subheader("Stat")
+                st.markdown("##### Total Matches ")
+                st.markdown("🔥 Total Matches Played:")
+                st.markdown("⌚ Total Minutes Played:")
+                st.markdown("⏲️ Minutes per Matches Played:")
+                st.markdown("🏋️ Percentage of Squad Minutes Played:")
+            with row1_2:
+                st.subheader("2022/23 Season")
+                st.markdown("# ")
+                st.markdown("           " + str(df1.iloc[0]['MP']))
+                st.markdown("           " + str(df1.iloc[0]['Min']))
+                st.markdown("           " + str(df1.iloc[0]['Mn/MP']))
+                st.markdown("           " + str(df1.iloc[0]['Min%']) + " %")
+            with row1_3:
+                st.subheader("vs")
+            with row1_4:
+                st.subheader("2021/22 Season")
+                st.markdown("# ")
+                st.markdown("           " + str(df2.iloc[0]['MP']))
+                st.markdown("           " + str(df2.iloc[0]['Min']))
+                st.markdown("           " + str(df2.iloc[0]['Mn/MP']))
+                st.markdown("           " + str(df2.iloc[0]['Min%']) + " %")
+
+            row2_spacer1, row2_1, row2_2, row2_3, row2_4, row2_spacer2 = st.columns((0.5, 1.5, 1, .5, 1, 0.5))
+            with row2_1:
+                st.markdown("##### Starts")
+                st.markdown("✅ Total Games Starts:")
+                st.markdown("⌚ Minutes per Start:")
+                st.markdown("💫 Completed Games from Start:")
+            with row2_2:
+                st.markdown("# ")
+                st.markdown("           " + str(df1.iloc[0]['Starts']))
+                st.markdown("           " + str(df1.iloc[0]['Mn/Start']))
+                st.markdown("           " + str(df1.iloc[0]['Compl']))
+            with row2_4:
+                st.markdown("# ")
+                st.markdown("           " + str(df2.iloc[0]['Starts']))
+                st.markdown("           " + str(df2.iloc[0]['Mn/Start']))
+                st.markdown("           " + str(df2.iloc[0]['Compl']))
+
+            row3_spacer1, row3_1, row3_2, row3_3, row3_4, row3_spacer2 = st.columns((0.5, 1.5, 1, .5, 1, 0.5))
+            with row3_1:
+                st.markdown("##### Substitute")
+                st.markdown("🏃 Total Games as Substitute:")
+                st.markdown("⌚ Minutes per Substitute:")
+                st.markdown("😭 Games as Unused Substitute:")
+            with row3_2:
+                st.markdown("# ")
+                st.markdown("           " + str(df1.iloc[0]['Subs']))
+                st.markdown("           " + str(df1.iloc[0]['Mn/Sub']))
+                st.markdown("           " + str(df1.iloc[0]['unSub']))
+            with row3_4:
+                st.markdown("# ")
+                st.markdown("           " + str(df2.iloc[0]['Subs']))
+                st.markdown("           " + str(df2.iloc[0]['Mn/Sub']))
+                st.markdown("           " + str(df2.iloc[0]['unSub']))
+
+            row4_spacer1, row4_1, row4_spacer2 = st.columns((.05, 3.2, .05))
+            with row4_1:
+                st.markdown("#### Actual Team Success Statistics - :green[↑]/:red[↓] from previous season")
+
+            row5_spacer1, row5_1, row5_spacer2 = st.columns((.1, 3.2, .1))
+            with row5_1:
+                fig = make_subplots(rows=1, cols=2, specs=[[{}, {}]], shared_xaxes=False,
+                                    shared_yaxes=True, horizontal_spacing=0)
+
+                df1.replace(str(self._name), str(self._name) + " 2022/23", inplace=True)
+                df2.replace(str(self._name), str(self._name) + " 2021/22", inplace=True)
+
+                dff1 = pd.melt(df1, id_vars='Player', value_vars=['onG', 'onGA', '+/-'], var_name=
+                              'Success', value_name='Stat')
+                dff1.replace(['onG', 'onGA'], ['Goals Scored by Team While on Pitch',
+                                               'Goals Conceded by Team While on Pitch'], inplace=True)
+
+                fig.add_trace(go.Bar(x=dff1['Stat'],
+                                     y=dff1['Success'],
+                                     orientation='h',
+                                     width=0.5,
+                                     showlegend=False,
+                                     marker_color="maroon"),
+                              1, 1)
+
+                dff2 = pd.melt(df2, id_vars='Player', value_vars=['onG', 'onGA', '+/-'], var_name=
+                'Success', value_name='Stat')
+                dff2.replace(['onG', 'onGA'], ['Goals Scored by Team While on Pitch',
+                                               'Goals Conceded by Team While on Pitch'], inplace=True)
+
+                fig.add_trace(go.Bar(x=dff2['Stat'],
+                                     y=dff2['Success'],
+                                     orientation='h',
+                                     width=0.5,
+                                     showlegend=False,
+                                     marker_color="green"),
+                              1, 2)
+
+                fig.update_layout(title_text='Team Success with ' + str(self._name), height= 300,
+                                  xaxis1={'side': 'top'},
+                                  xaxis2={'side': 'top'},
+                                  title_x=0.45,
+                                  title_y=.95)
+                fig.update_xaxes(showticklabels=True, row=1, col=1, autorange='reversed', title=str(self._name) + ' 2022/23')
+                fig.update_xaxes(showticklabels=True, row=1, col=2, title=str(self._name) + " 2021/22")
+                fig.update_yaxes(categoryorder='array', categoryarray=[ '+/-','Goals Conceded by Team While on Pitch',
+                                                                        'Goals Scored by Team While on Pitch'])
+
+                st.plotly_chart(fig, use_container_width=True)
+
         else:
             st.markdown("# WORK IN PROGRESS")
     # def data_visuals_gk(self, df1, df2):
