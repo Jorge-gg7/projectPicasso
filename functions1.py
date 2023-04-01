@@ -2178,7 +2178,7 @@ class dataFunc1:
 
             row4_spacer1, row4_1, row4_spacer2 = st.columns((.05, 3.2, .05))
             with row4_1:
-                st.markdown("#### Actual Team Success Statistics - :green[↑]/:red[↓] from previous season")
+                st.markdown("#### Actual Team Success Statistics")
 
             row5_spacer1, row5_1, row5_spacer2 = st.columns((.1, 3.2, .1))
             with row5_1:
@@ -2195,8 +2195,10 @@ class dataFunc1:
 
                 fig.add_trace(go.Bar(x=dff1['Stat'],
                                      y=dff1['Success'],
+                                     text=dff1["Stat"],
+                                     textposition='inside',
                                      orientation='h',
-                                     width=0.5,
+                                     width=0.7,
                                      showlegend=False,
                                      marker_color="maroon"),
                               1, 1)
@@ -2209,16 +2211,19 @@ class dataFunc1:
                 fig.add_trace(go.Bar(x=dff2['Stat'],
                                      y=dff2['Success'],
                                      orientation='h',
-                                     width=0.5,
+                                     text=dff2["Stat"],
+                                     textposition='inside',
+                                     width=0.7,
                                      showlegend=False,
                                      marker_color="green"),
                               1, 2)
 
-                fig.update_layout(title_text='Team Success with ' + str(self._name), height= 300,
+                fig.update_layout(title_text='Team Success with ' + str(self._name), height= 225,
                                   xaxis1={'side': 'top'},
                                   xaxis2={'side': 'top'},
                                   title_x=0.45,
-                                  title_y=.95)
+                                  title_y=.95,
+                                  margin=dict(b=0))
                 fig.update_xaxes(showticklabels=True, row=1, col=1, autorange='reversed', title=str(self._name) + ' 2022/23')
                 fig.update_xaxes(showticklabels=True, row=1, col=2, title=str(self._name) + " 2021/22")
                 fig.update_yaxes(categoryorder='array', categoryarray=[ '+/-','Goals Conceded by Team While on Pitch',
@@ -2226,6 +2231,157 @@ class dataFunc1:
 
                 st.plotly_chart(fig, use_container_width=True)
 
+                fig1 = make_subplots(rows=1, cols=2, specs=[[{}, {}]], shared_xaxes=False,
+                                    shared_yaxes=True, horizontal_spacing=0)
+                dff1 = pd.melt(df1, id_vars='Player', value_vars=['PPM', '+/-90', 'On-Off'], var_name=
+                'Success', value_name='Stat')
+                dff1.replace(['PPM', '+/-90'], ['Points Per Match', '+/- per 90'], inplace=True)
+
+                fig1.add_trace(go.Bar(x=dff1['Stat'],
+                                     y=dff1['Success'],
+                                     text=dff1["Stat"],
+                                     textposition='inside',
+                                     orientation='h',
+                                     width=0.7,
+                                     showlegend=False,
+                                     marker_color="maroon"),
+                              1, 1)
+
+                dff2 = pd.melt(df2, id_vars='Player', value_vars=['PPM', '+/-90', 'On-Off'], var_name=
+                'Success', value_name='Stat')
+                dff2.replace(['PPM', '+/-90'], ['Points Per Match', '+/- per 90'], inplace=True)
+
+                fig1.add_trace(go.Bar(x=dff2['Stat'],
+                                      y=dff2['Success'],
+                                      text=dff2["Stat"],
+                                      textposition='inside',
+                                      orientation='h',
+                                      width=0.7,
+                                      showlegend=False,
+                                      marker_color="green"),
+                               1, 2)
+                fig1.update_layout(height=150,
+                                  xaxis1={'side': 'top'},
+                                  xaxis2={'side': 'top'},
+                                  margin=dict(t=0, b=0))
+                fig1.update_xaxes(showticklabels=True, row=1, col=1, autorange='reversed')
+                fig1.update_xaxes(showticklabels=True, row=1, col=2)
+                fig1.update_yaxes(categoryorder='array')
+                st.plotly_chart(fig1, use_container_width=True)
+
+            row6_spacer1, row6_1, row6_spacer2 = st.columns((.05, 3.2, .05))
+            with row6_1:
+                st.markdown("#### Expected Team Success Statistics")
+
+            row7_spacer1, row7_1, row7_spacer2 = st.columns((.1, 3.2, .1))
+            with row7_1:
+                fig = make_subplots(rows=1, cols=2, specs=[[{}, {}]], shared_xaxes=False,
+                                    shared_yaxes=True, horizontal_spacing=0)
+
+                df1.replace(str(self._name), str(self._name) + " 2022/23", inplace=True)
+                df2.replace(str(self._name), str(self._name) + " 2021/22", inplace=True)
+
+                dff1 = pd.melt(df1, id_vars='Player', value_vars=['onxG', 'onxGA', 'xG+/-'], var_name=
+                'Success', value_name='Stat')
+                dff1.replace(['onxG', 'onxGA'], ['Expected Goals Scored by Team While on Pitch',
+                                                'Expected Goals Conceded by Team While on Pitch'], inplace=True)
+
+                fig.add_trace(go.Bar(x=dff1['Stat'],
+                                     y=dff1['Success'],
+                                     text=dff1["Stat"],
+                                     textposition='inside',
+                                     orientation='h',
+                                     width=0.7,
+                                     showlegend=False,
+                                     marker_color="maroon"),
+                              1, 1)
+
+                dff2 = pd.melt(df2, id_vars='Player', value_vars=['onxG', 'onxGA', 'xG+/-'], var_name=
+                'Success', value_name='Stat')
+                dff2.replace(['onxG', 'onxGA'], ['Expected Goals Scored by Team While on Pitch',
+                                                'Expected Goals Conceded by Team While on Pitch'], inplace=True)
+
+                fig.add_trace(go.Bar(x=dff2['Stat'],
+                                     y=dff2['Success'],
+                                     orientation='h',
+                                     text=dff2["Stat"],
+                                     textposition='inside',
+                                     width=0.7,
+                                     showlegend=False,
+                                     marker_color="green"),
+                              1, 2)
+
+                fig.update_layout(title_text='Expected Team Success with ' + str(self._name), height=225,
+                                  xaxis1={'side': 'top'},
+                                  xaxis2={'side': 'top'},
+                                  title_x=0.45,
+                                  title_y=.95,
+                                  margin=dict(b=0))
+                fig.update_xaxes(showticklabels=True, row=1, col=1, autorange='reversed',
+                                 title=str(self._name) + ' 2022/23')
+                fig.update_xaxes(showticklabels=True, row=1, col=2, title=str(self._name) + " 2021/22")
+                fig.update_yaxes(categoryorder='array', categoryarray=['xG+/-',
+                                                                       'Expected Goals Conceded by Team While on Pitch',
+                                                                       'Expected Goals Scored by Team While on Pitch'])
+
+                st.plotly_chart(fig, use_container_width=True)
+
+                fig1 = make_subplots(rows=1, cols=2, specs=[[{}, {}]], shared_xaxes=False,
+                                     shared_yaxes=True, horizontal_spacing=0)
+                dff1 = pd.melt(df1, id_vars='Player', value_vars=['xG+/-90', 'On-Off_xG'], var_name=
+                'Success', value_name='Stat')
+                dff1.replace(['xG+/-90', 'On-Off_xG'], ['Expected +/- per 90', 'Expected On-Off'], inplace=True)
+
+                fig1.add_trace(go.Bar(x=dff1['Stat'],
+                                      y=dff1['Success'],
+                                      text=dff1["Stat"],
+                                      textposition='inside',
+                                      orientation='h',
+                                      width=0.7,
+                                      showlegend=False,
+                                      marker_color="maroon"),
+                               1, 1)
+
+                dff2 = pd.melt(df2, id_vars='Player', value_vars=['xG+/-90', 'On-Off_xG'], var_name=
+                'Success', value_name='Stat')
+                dff2.replace(['xG+/-90', 'On-Off_xG'], ['Expected +/- per 90', 'Expected On-Off'], inplace=True)
+
+                fig1.add_trace(go.Bar(x=dff2['Stat'],
+                                      y=dff2['Success'],
+                                      text=dff2["Stat"],
+                                      textposition='inside',
+                                      orientation='h',
+                                      width=0.7,
+                                      showlegend=False,
+                                      marker_color="green"),
+                               1, 2)
+                fig1.update_layout(height=100,
+                                   xaxis1={'side': 'top'},
+                                   xaxis2={'side': 'top'},
+                                   margin=dict(t=0, b=0))
+                fig1.update_xaxes(showticklabels=True, row=1, col=1, autorange='reversed')
+                fig1.update_xaxes(showticklabels=True, row=1, col=2)
+                fig1.update_yaxes(categoryorder='array')
+                st.plotly_chart(fig1, use_container_width=True)
+
+            row8_spacer1, row8_1, row8_spacer2 = st.columns((.05, 3.2, .05))
+            with row8_1:
+                st.markdown("#### Actual Team Success vs Expected Team Success")
+                st.markdown("Compare the player's actual and expected team success statistics here. Choose the "
+                            "statistic that you want to focus on and we'll show you the player's rank for that.")
+
+            row9_spacer1, row9_1, row9_2, row9_spacer2 = st.columns((.05, 1.5, 1.5, 2))
+            with row9_1:
+                comp = ['Points Per Match',
+                        'Goals Scored by Team with Player vs Expected Goals Scored by Team with Player',
+                        'Goals Scored Against Team with Player vs Expected Goals Scored Against Team with Player',
+                        '+/- vs xG+/-', '+/-90 vs xG+/-90', 'On-Off vs Expected On-Off']
+                select = st.selectbox("Select the comparison you want to experiment! 👊", comp)
+            with row9_2:
+                if select == 'Points Per Match':
+                    st.markdown("")
+                else:
+                    stat = ['Goals Scored by Team with Player']
         else:
             st.markdown("# WORK IN PROGRESS")
     # def data_visuals_gk(self, df1, df2):
