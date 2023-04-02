@@ -2190,8 +2190,8 @@ class dataFunc1:
 
                 dff1 = pd.melt(df1, id_vars='Player', value_vars=['onG', 'onGA', '+/-'], var_name=
                               'Success', value_name='Stat')
-                dff1.replace(['onG', 'onGA'], ['Goals Scored by Team While on Pitch',
-                                               'Goals Conceded by Team While on Pitch'], inplace=True)
+                dff1.replace(['onG', 'onGA'], ['Goals Scored by Team While on Pitch (onG)',
+                                               'Goals Conceded by Team While on Pitch (onGA)'], inplace=True)
 
                 fig.add_trace(go.Bar(x=dff1['Stat'],
                                      y=dff1['Success'],
@@ -2205,8 +2205,8 @@ class dataFunc1:
 
                 dff2 = pd.melt(df2, id_vars='Player', value_vars=['onG', 'onGA', '+/-'], var_name=
                 'Success', value_name='Stat')
-                dff2.replace(['onG', 'onGA'], ['Goals Scored by Team While on Pitch',
-                                               'Goals Conceded by Team While on Pitch'], inplace=True)
+                dff2.replace(['onG', 'onGA'], ['Goals Scored by Team While on Pitch (onG)',
+                                               'Goals Conceded by Team While on Pitch (onGA)'], inplace=True)
 
                 fig.add_trace(go.Bar(x=dff2['Stat'],
                                      y=dff2['Success'],
@@ -2226,8 +2226,9 @@ class dataFunc1:
                                   margin=dict(b=0))
                 fig.update_xaxes(showticklabels=True, row=1, col=1, autorange='reversed', title=str(self._name) + ' 2022/23')
                 fig.update_xaxes(showticklabels=True, row=1, col=2, title=str(self._name) + " 2021/22")
-                fig.update_yaxes(categoryorder='array', categoryarray=[ '+/-','Goals Conceded by Team While on Pitch',
-                                                                        'Goals Scored by Team While on Pitch'])
+                fig.update_yaxes(categoryorder='array', categoryarray=['+/-',
+                                                                       'Goals Conceded by Team While on Pitch (onGA)',
+                                                                       'Goals Scored by Team While on Pitch (onG)'])
 
                 st.plotly_chart(fig, use_container_width=True)
 
@@ -2235,7 +2236,7 @@ class dataFunc1:
                                     shared_yaxes=True, horizontal_spacing=0)
                 dff1 = pd.melt(df1, id_vars='Player', value_vars=['PPM', '+/-90', 'On-Off'], var_name=
                 'Success', value_name='Stat')
-                dff1.replace(['PPM', '+/-90'], ['Points Per Match', '+/- per 90'], inplace=True)
+                dff1.replace(['PPM', '+/-90'], ['Points Per Match (PPM)', '+/- per 90'], inplace=True)
 
                 fig1.add_trace(go.Bar(x=dff1['Stat'],
                                      y=dff1['Success'],
@@ -2249,7 +2250,7 @@ class dataFunc1:
 
                 dff2 = pd.melt(df2, id_vars='Player', value_vars=['PPM', '+/-90', 'On-Off'], var_name=
                 'Success', value_name='Stat')
-                dff2.replace(['PPM', '+/-90'], ['Points Per Match', '+/- per 90'], inplace=True)
+                dff2.replace(['PPM', '+/-90'], ['Points Per Match (PPM)', '+/- per 90'], inplace=True)
 
                 fig1.add_trace(go.Bar(x=dff2['Stat'],
                                       y=dff2['Success'],
@@ -2283,8 +2284,8 @@ class dataFunc1:
 
                 dff1 = pd.melt(df1, id_vars='Player', value_vars=['onxG', 'onxGA', 'xG+/-'], var_name=
                 'Success', value_name='Stat')
-                dff1.replace(['onxG', 'onxGA'], ['Expected Goals Scored by Team While on Pitch',
-                                                'Expected Goals Conceded by Team While on Pitch'], inplace=True)
+                dff1.replace(['onxG', 'onxGA'], ['Expected Goals Scored by Team While on Pitch (onxG)',
+                                                'Expected Goals Conceded by Team While on Pitch (onxGA)'], inplace=True)
 
                 fig.add_trace(go.Bar(x=dff1['Stat'],
                                      y=dff1['Success'],
@@ -2298,8 +2299,8 @@ class dataFunc1:
 
                 dff2 = pd.melt(df2, id_vars='Player', value_vars=['onxG', 'onxGA', 'xG+/-'], var_name=
                 'Success', value_name='Stat')
-                dff2.replace(['onxG', 'onxGA'], ['Expected Goals Scored by Team While on Pitch',
-                                                'Expected Goals Conceded by Team While on Pitch'], inplace=True)
+                dff2.replace(['onxG', 'onxGA'], ['Expected Goals Scored by Team While on Pitch (onxG)',
+                                                'Expected Goals Conceded by Team While on Pitch (onxGA)'], inplace=True)
 
                 fig.add_trace(go.Bar(x=dff2['Stat'],
                                      y=dff2['Success'],
@@ -2321,8 +2322,8 @@ class dataFunc1:
                                  title=str(self._name) + ' 2022/23')
                 fig.update_xaxes(showticklabels=True, row=1, col=2, title=str(self._name) + " 2021/22")
                 fig.update_yaxes(categoryorder='array', categoryarray=['xG+/-',
-                                                                       'Expected Goals Conceded by Team While on Pitch',
-                                                                       'Expected Goals Scored by Team While on Pitch'])
+                                                                       'Expected Goals Conceded by Team While on Pitch (onxGA)',
+                                                                       'Expected Goals Scored by Team While on Pitch (onxG)'])
 
                 st.plotly_chart(fig, use_container_width=True)
 
@@ -2330,7 +2331,8 @@ class dataFunc1:
                                      shared_yaxes=True, horizontal_spacing=0)
                 dff1 = pd.melt(df1, id_vars='Player', value_vars=['xG+/-90', 'On-Off_xG'], var_name=
                 'Success', value_name='Stat')
-                dff1.replace(['xG+/-90', 'On-Off_xG'], ['Expected +/- per 90', 'Expected On-Off'], inplace=True)
+                dff1.replace(['xG+/-90', 'On-Off_xG'], ['Expected +/- per 90 (xG+/-90)', 'Expected On-Off'],
+                             inplace=True)
 
                 fig1.add_trace(go.Bar(x=dff1['Stat'],
                                       y=dff1['Success'],
@@ -2344,7 +2346,8 @@ class dataFunc1:
 
                 dff2 = pd.melt(df2, id_vars='Player', value_vars=['xG+/-90', 'On-Off_xG'], var_name=
                 'Success', value_name='Stat')
-                dff2.replace(['xG+/-90', 'On-Off_xG'], ['Expected +/- per 90', 'Expected On-Off'], inplace=True)
+                dff2.replace(['xG+/-90', 'On-Off_xG'], ['Expected +/- per 90 (xG+/-90)', 'Expected On-Off'],
+                             inplace=True)
 
                 fig1.add_trace(go.Bar(x=dff2['Stat'],
                                       y=dff2['Success'],
@@ -2370,18 +2373,222 @@ class dataFunc1:
                 st.markdown("Compare the player's actual and expected team success statistics here. Choose the "
                             "statistic that you want to focus on and we'll show you the player's rank for that.")
 
-            row9_spacer1, row9_1, row9_2, row9_spacer2 = st.columns((.05, 1.5, 1.5, 2))
+            row9_spacer1, row9_1, row9_2, row9_spacer2 = st.columns((.05, 1.25, 1.25, 2))
             with row9_1:
-                comp = ['Points Per Match',
-                        'Goals Scored by Team with Player vs Expected Goals Scored by Team with Player',
-                        'Goals Scored Against Team with Player vs Expected Goals Scored Against Team with Player',
-                        '+/- vs xG+/-', '+/-90 vs xG+/-90', 'On-Off vs Expected On-Off']
+                comp = ['Points Per Match (PPM)',
+                        'onG vs onxG', 'onGA vs onxGA', '+/- vs xG+/-', '+/-90 vs xG+/-90', 'On-Off vs Expected On-Off']
                 select = st.selectbox("Select the comparison you want to experiment! 👊", comp)
             with row9_2:
-                if select == 'Points Per Match':
+                if select == comp[0]:
                     st.markdown("")
-                else:
-                    stat = ['Goals Scored by Team with Player']
+                elif select == comp[1]:
+                    stat = ['onG', 'onxG']
+                    rank = st.selectbox("Select the stat you want to rank the players in! 🏅", stat)
+                elif select == comp[2]:
+                    stat = ['onGA','onxGA']
+                    rank = st.selectbox("Select the stat you want to rank the players! 🏅", stat)
+                elif select == comp[3]:
+                    stat = ['+/-', 'xG+/-']
+                    rank = st.selectbox("Select the stat you want to rank the players! 🏅", stat)
+                elif select == comp[4]:
+                    stat = ['+/-90', 'xG+/-90']
+                    rank = st.selectbox("Select the stat you want to rank the players! 🏅", stat)
+                elif select == comp[5]:
+                    stat = ['On-Off', 'Expected On-Off']
+                    rank = st.selectbox("Select the stat you want to rank the players! 🏅", stat)
+
+            row10_spacer1, row10_1, row10_spacer2 = st.columns((.1, 3.2, .1))
+            with row10_1:
+                dff1 = pd.concat([self._dataset1, self._dataset5]).reset_index(drop=True)
+                if select == comp[0]:
+                    dff1['Rank'] = dff1['PPM'].rank(ascending=False)
+                    dff1 = dff1.sort_values("Rank")
+                    dff1 = dff1.reset_index(drop=True)
+                    index = dff1[dff1['Player'] == self._name].index.values[0]
+                    colours = ['lightslategrey', ] * 26
+                    colours[index] = '#DA291C'
+                    x = dff1['Player'].values.tolist()
+                    y = dff1['PPM'].values.tolist()
+                    fig = go.Figure(data=[go.Bar(x=x, y=y, marker_color=colours)])
+                    fig.update_layout(title_text='Points Per Match Ranking', title_font_size=30)
+                    fig.update_xaxes(title_text="Player")
+                    fig.update_yaxes(title_text="Points")
+                    st.plotly_chart(fig, use_container_width=True)
+                elif select == comp[1]:
+                    dff1['Rank'] = dff1['onG'].rank(ascending=False)
+                    dff1['RankX'] = dff1['onxG'].rank(ascending=False)
+                    if rank == stat[0]:
+                        dff1 = dff1.sort_values("Rank")
+                        dff1 = dff1.reset_index(drop=True)
+                        index = dff1[dff1['Player'] == self._name].index.values[0]
+                        colours = ['lightslategrey', ] * 26
+                        blankcol = ['darkslategray', ] * 26
+                        colours[index] = '#DA291C'
+                        x = dff1['Player'].values.tolist()
+                        y1 = dff1['onG'].values.tolist()
+                        y2 = dff1['onxG'].values.tolist()
+                        fig = go.Figure(data=[go.Bar(x=x, y=y1, marker_color=colours, name='onG'),
+                                              go.Bar(x=x, y=y2, marker_color=blankcol, name='onxG')])
+                        fig.update_layout(barmode='relative',title_text='onG vs onxG Ranking', title_font_size=30)
+                        fig.update_xaxes(title_text="Player")
+                        fig.update_yaxes(title_text="Goals")
+                        st.plotly_chart(fig, use_container_width=True)
+                    elif rank == stat[1]:
+                        dff1 = dff1.sort_values("RankX")
+                        dff1 = dff1.reset_index(drop=True)
+                        index = dff1[dff1['Player'] == self._name].index.values[0]
+                        colours = ['lightslategrey', ] * 26
+                        blankcol = ['darkslategray', ] * 26
+                        colours[index] = '#DA291C'
+                        x = dff1['Player'].values.tolist()
+                        y2 = dff1['onG'].values.tolist()
+                        y1 = dff1['onxG'].values.tolist()
+                        fig = go.Figure(data=[go.Bar(x=x, y=y1, marker_color=colours, name='onxG'),
+                                              go.Bar(x=x, y=y2, marker_color=blankcol, name='onG')])
+                        fig.update_layout(barmode='relative', title_text='onG vs onxG Ranking', title_font_size=30)
+                        fig.update_xaxes(title_text="Player")
+                        fig.update_yaxes(title_text="Goals")
+                        st.plotly_chart(fig, use_container_width=True)
+                elif select == comp[2]:
+                    dff1['Rank'] = dff1['onGA'].rank(ascending=False)
+                    dff1['RankX'] = dff1['onxGA'].rank(ascending=False)
+                    if rank == stat[0]:
+                        dff1 = dff1.sort_values("Rank")
+                        dff1 = dff1.reset_index(drop=True)
+                        index = dff1[dff1['Player'] == self._name].index.values[0]
+                        colours = ['lightslategrey', ] * 26
+                        blankcol = ['darkslategray', ] * 26
+                        colours[index] = '#DA291C'
+                        x = dff1['Player'].values.tolist()
+                        y1 = dff1['onGA'].values.tolist()
+                        y2 = dff1['onxGA'].values.tolist()
+                        fig = go.Figure(data=[go.Bar(x=x, y=y1, marker_color=colours, name='onGA'),
+                                              go.Bar(x=x, y=y2, marker_color=blankcol, name='onxGA')])
+                        fig.update_layout(barmode='stack',title_text='onGA vs onxGA Ranking', title_font_size=30)
+                        fig.update_xaxes(title_text="Player")
+                        fig.update_yaxes(title_text="Goals")
+                        st.plotly_chart(fig, use_container_width=True)
+                    elif rank == stat[1]:
+                        dff1 = dff1.sort_values("RankX")
+                        dff1 = dff1.reset_index(drop=True)
+                        index = dff1[dff1['Player'] == self._name].index.values[0]
+                        colours = ['lightslategrey', ] * 26
+                        blankcol = ['darkslategray', ] * 26
+                        colours[index] = '#DA291C'
+                        x = dff1['Player'].values.tolist()
+                        y2 = dff1['onGA'].values.tolist()
+                        y1 = dff1['onxGA'].values.tolist()
+                        fig = go.Figure(data=[go.Bar(x=x, y=y1, marker_color=colours, name='onxGA'),
+                                              go.Bar(x=x, y=y2, marker_color=blankcol, name='onGA')])
+                        fig.update_layout(barmode='stack', title_text='onGA vs onxGA Ranking', title_font_size=30)
+                        fig.update_xaxes(title_text="Player")
+                        fig.update_yaxes(title_text="Goals")
+                        st.plotly_chart(fig, use_container_width=True)
+                elif select == comp[3]:
+                    dff1['Rank'] = dff1['+/-'].rank(ascending=False)
+                    dff1['RankX'] = dff1['xG+/-'].rank(ascending=False)
+                    if rank == stat[0]:
+                        dff1 = dff1.sort_values("Rank")
+                        dff1 = dff1.reset_index(drop=True)
+                        index = dff1[dff1['Player'] == self._name].index.values[0]
+                        colours = ['lightslategrey', ] * 26
+                        blankcol = ['darkslategray', ] * 26
+                        colours[index] = '#DA291C'
+                        x = dff1['Player'].values.tolist()
+                        y1 = dff1['+/-'].values.tolist()
+                        y2 = dff1['xG+/-'].values.tolist()
+                        fig = go.Figure(data=[go.Bar(x=x, y=y1, marker_color=colours, name='+/-'),
+                                              go.Bar(x=x, y=y2, marker_color=blankcol, name='xG+/-')])
+                        fig.update_layout(barmode='relative',title_text='+/- vs xG+/- Ranking', title_font_size=30)
+                        fig.update_xaxes(title_text="Player")
+                        fig.update_yaxes(title_text="Goals")
+                        st.plotly_chart(fig, use_container_width=True)
+                    elif rank == stat[1]:
+                        dff1 = dff1.sort_values("RankX")
+                        dff1 = dff1.reset_index(drop=True)
+                        index = dff1[dff1['Player'] == self._name].index.values[0]
+                        colours = ['lightslategrey', ] * 26
+                        blankcol = ['darkslategray', ] * 26
+                        colours[index] = '#DA291C'
+                        x = dff1['Player'].values.tolist()
+                        y2 = dff1['+/-'].values.tolist()
+                        y1 = dff1['xG+/-'].values.tolist()
+                        fig = go.Figure(data=[go.Bar(x=x, y=y1, marker_color=colours, name='xG+/-'),
+                                              go.Bar(x=x, y=y2, marker_color=blankcol, name='+/-')])
+                        fig.update_layout(barmode='relative', title_text='+/- vs xG+/- Ranking', title_font_size=30)
+                        fig.update_xaxes(title_text="Player")
+                        fig.update_yaxes(title_text="Goals")
+                        st.plotly_chart(fig, use_container_width=True)
+                elif select == comp[4]:
+                    dff1['Rank'] = dff1['+/-90'].rank(ascending=False)
+                    dff1['RankX'] = dff1['xG+/-90'].rank(ascending=False)
+                    if rank == stat[0]:
+                        dff1 = dff1.sort_values("Rank")
+                        dff1 = dff1.reset_index(drop=True)
+                        index = dff1[dff1['Player'] == self._name].index.values[0]
+                        colours = ['lightslategrey', ] * 26
+                        blankcol = ['darkslategray', ] * 26
+                        colours[index] = '#DA291C'
+                        x = dff1['Player'].values.tolist()
+                        y1 = dff1['+/-90'].values.tolist()
+                        y2 = dff1['xG+/-90'].values.tolist()
+                        fig = go.Figure(data=[go.Bar(x=x, y=y1, marker_color=colours, name='+/-90'),
+                                              go.Bar(x=x, y=y2, marker_color=blankcol, name='xG+/-90')])
+                        fig.update_layout(barmode='relative',title_text='+/-90 vs xG+/-90 Ranking', title_font_size=30)
+                        fig.update_xaxes(title_text="Player")
+                        fig.update_yaxes(title_text="Goals")
+                        st.plotly_chart(fig, use_container_width=True)
+                    elif rank == stat[1]:
+                        dff1 = dff1.sort_values("RankX")
+                        dff1 = dff1.reset_index(drop=True)
+                        index = dff1[dff1['Player'] == self._name].index.values[0]
+                        colours = ['lightslategrey', ] * 26
+                        blankcol = ['darkslategray', ] * 26
+                        colours[index] = '#DA291C'
+                        x = dff1['Player'].values.tolist()
+                        y2 = dff1['+/-90'].values.tolist()
+                        y1 = dff1['xG+/-90'].values.tolist()
+                        fig = go.Figure(data=[go.Bar(x=x, y=y1, marker_color=colours, name='xG+/-90'),
+                                              go.Bar(x=x, y=y2, marker_color=blankcol, name='+/-90')])
+                        fig.update_layout(barmode='relative', title_text='+/-90 vs xG+/-90 Ranking', title_font_size=30)
+                        fig.update_xaxes(title_text="Player")
+                        fig.update_yaxes(title_text="Goals")
+                        st.plotly_chart(fig, use_container_width=True)
+                elif select == comp[5]:
+                    dff1['Rank'] = dff1['On-Off'].rank(ascending=False)
+                    dff1['RankX'] = dff1['On-Off_xG'].rank(ascending=False)
+                    if rank == stat[0]:
+                        dff1 = dff1.sort_values("Rank")
+                        dff1 = dff1.reset_index(drop=True)
+                        index = dff1[dff1['Player'] == self._name].index.values[0]
+                        colours = ['lightslategrey', ] * 26
+                        blankcol = ['darkslategray', ] * 26
+                        colours[index] = '#DA291C'
+                        x = dff1['Player'].values.tolist()
+                        y1 = dff1['On-Off'].values.tolist()
+                        y2 = dff1['On-Off_xG'].values.tolist()
+                        fig = go.Figure(data=[go.Bar(x=x, y=y1, marker_color=colours, name='On-Off'),
+                                              go.Bar(x=x, y=y2, marker_color=blankcol, name='On-Off_xG')])
+                        fig.update_layout(barmode='relative',title_text='On-Off vs Exp On-Off Ranking', title_font_size=30)
+                        fig.update_xaxes(title_text="Player")
+                        fig.update_yaxes(title_text="Goals")
+                        st.plotly_chart(fig, use_container_width=True)
+                    elif rank == stat[1]:
+                        dff1 = dff1.sort_values("RankX")
+                        dff1 = dff1.reset_index(drop=True)
+                        index = dff1[dff1['Player'] == self._name].index.values[0]
+                        colours = ['lightslategrey', ] * 26
+                        blankcol = ['darkslategray', ] * 26
+                        colours[index] = '#DA291C'
+                        x = dff1['Player'].values.tolist()
+                        y2 = dff1['On-Off'].values.tolist()
+                        y1 = dff1['On-Off_xG'].values.tolist()
+                        fig = go.Figure(data=[go.Bar(x=x, y=y1, marker_color=colours, name='On-Off_xG'),
+                                              go.Bar(x=x, y=y2, marker_color=blankcol, name='On-Off')])
+                        fig.update_layout(barmode='relative', title_text='On-Off vs Exp On-Off Ranking', title_font_size=30)
+                        fig.update_xaxes(title_text="Player")
+                        fig.update_yaxes(title_text="Goals")
+                        st.plotly_chart(fig, use_container_width=True)
         else:
-            st.markdown("# WORK IN PROGRESS")
+            st.markdown("# WORK IN PROGRESS 🛠️")
     # def data_visuals_gk(self, df1, df2):
