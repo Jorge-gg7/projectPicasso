@@ -94,7 +94,10 @@ for i in range(21, 52, 5):
 
 df_2021_2022 = df_2021_2022[df_2021_2022['Player'].notna()]
 df_2021_2022.fillna(0, inplace=True)
+df_2021_2022.drop(columns=['Crs_51', 'Int_51', 'TklW_51'], inplace=True)
+df_2021_2022.drop(columns=["Cmp_26", "Att_26"], inplace=True)
 df_2021_2022.rename(columns=renaming, inplace=True)
+renaming1 = {'Off_51': 'Offsd', 'Won': 'Won_AD', 'Lost_51': 'Lost_AD', 'Fld_51': 'Fld'}
 df_2021_2022.rename(columns=renaming1, inplace=True)
 
 df_gk_2021_2022 = df_unclean_2021_2022[11]

@@ -2589,6 +2589,64 @@ class dataFunc1:
                         fig.update_xaxes(title_text="Player")
                         fig.update_yaxes(title_text="Goals")
                         st.plotly_chart(fig, use_container_width=True)
-        else:
-            st.markdown("# WORK IN PROGRESS 🛠️")
-    # def data_visuals_gk(self, df1, df2):
+
+        elif self._attribute == 'Miscellaneous 🏆':
+            row1_spacer1, row1_1, row1_spacer2 = st.columns((.05, 3.2, .05))
+            with row1_1:
+                st.markdown("##### Actual Statistics - :green[↑]/:red[↓] from previous season")
+
+            row0_spacer1, row0_1, row0_2, row0_3, row0_4, row0_5, row_spacer6 = st.columns((.01, 1, 1, 1, 1, 1, .01))
+            with row0_1:
+                diff1 = round(df1.iloc[0]["CrdY"] - df2.iloc[0]["CrdY"], 2)
+                st.metric("Yellow Cards", str(df1.iloc[0]["CrdY"]), diff1)
+                diff1 = round(df1.iloc[0]["Offsd"] - df2.iloc[0]["Offsd"], 2)
+                st.metric("Offsides", str(df1.iloc[0]["Offsd"]), diff1)
+            with row0_2:
+                diff1 = round(df1.iloc[0]["CrdR"] - df2.iloc[0]["CrdR"], 2)
+                st.metric("Red Cards", str(df1.iloc[0]["CrdR"]), diff1)
+                diff1 = round(df1.iloc[0]["PKwon"] - df2.iloc[0]["PKwon"], 2)
+                st.metric("Penalty Kicks Won", str(df1.iloc[0]["PKwon"]), diff1)
+            with row0_3:
+                diff1 = round(df1.iloc[0]["2CrdY"] - df2.iloc[0]["2CrdY"], 2)
+                st.metric("2 Yellow Cards", str(df1.iloc[0]["2CrdY"]), diff1)
+                diff1 = round(df1.iloc[0]["PKcon"] - df2.iloc[0]["PKcon"], 2)
+                st.metric("Penalty Kicks Conceded", str(df1.iloc[0]["PKcon"]), diff1)
+            with row0_4:
+                diff1 = round(df1.iloc[0]["Fls"] - df2.iloc[0]["Fls"], 2)
+                st.metric("Fouls Committed", str(df1.iloc[0]["Fls"]), diff1)
+                diff1 = round(df1.iloc[0]["OG"] - df2.iloc[0]["OG"], 2)
+                st.metric("Own Goals", str(df1.iloc[0]["OG"]), diff1)
+            with row0_5:
+                diff1 = round(df1.iloc[0]["Fld"] - df2.iloc[0]["Fld"], 2)
+                st.metric("Fouls Drawn", str(df1.iloc[0]["Fld"]), diff1)
+                diff1 = round(df1.iloc[0]["Recov"] - df2.iloc[0]["Recov"], 2)
+                st.metric("Ball Recoveries", str(df1.iloc[0]["Recov"]), diff1)
+
+            row2_spacer1, row2_1, row2_2, row2_spacer2 = st.columns((.05, 5, 5, .05))
+            with row2_1:
+                dff = pd.melt(df1, id_vars='Player', value_vars=['Won_AD', 'Lost_AD'], var_name='Aeriel Duels',
+                              value_name='Win / Loss')
+
+                dff.replace(['Won_AD', 'Lost_AD'], ['Aeriel Duel Wins', 'Aeriel Duel Loss'], inplace=True)
+
+                fig = px.pie(dff, values='Win / Loss', names='Aeriel Duels',
+                             color_discrete_sequence=px.colors.sequential.RdBu,
+                             title='Aeriel Duels Win-Loss % in the 2022/23 Season')
+                fig.update_traces(textposition='inside', textinfo='percent+label+value')
+                fig.update_layout(margin=dict(t=40, b=20), legend=dict(xanchor="right", x=0))
+                st.plotly_chart(fig, use_container_width=True)
+            with row2_2:
+                dff = pd.melt(df2, id_vars='Player', value_vars=['Won_AD', 'Lost_AD'], var_name='Aeriel Duels',
+                              value_name='Win / Loss')
+
+                dff.replace(['Won_AD', 'Lost_AD'], ['Aeriel Duel Wins', 'Aeriel Duel Loss'], inplace=True)
+
+                fig = px.pie(dff, values='Win / Loss', names='Aeriel Duels',
+                             color_discrete_sequence=px.colors.sequential.RdBu,
+                             title='Aeriel Duels Win-Loss % in the 2021/22 Season')
+                fig.update_traces(textposition='inside', textinfo='percent+label+value')
+                fig.update_layout(margin=dict(t=40, b=20), legend=dict(xanchor="right", x=0))
+                st.plotly_chart(fig, use_container_width=True)
+
+    def data_visuals_gk(self, df1, df2):
+        st.markdown("# WORK IN PROGRESS 🛠️")

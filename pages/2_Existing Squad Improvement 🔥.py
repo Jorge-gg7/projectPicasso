@@ -2,7 +2,7 @@
 import streamlit as st
 import pandas as pd
 import functions1 as f1
-import plotly_express as px
+import metric as mg
 
 st.set_page_config(layout="wide")
 dataset1 = pd.read_csv('data/data_2022_2023.csv', index_col='Unnamed: 0')
@@ -25,7 +25,8 @@ att_list = ['Shooting 👟', 'Passing ⚽', 'Pass Types 🛒', 'Shot-Creating Ac
 attribute = st.sidebar.selectbox('Select the attribute that you want to analyse', att_list)
 drop_gloss = st.sidebar.expander("Metric Glossary")
 with drop_gloss:
-    st.markdown("Metric Glossary")
+    m = mg.metric(attribute)
+    m.metric_glossary()
 
 x = f1.dataFunc1(player, attribute, dataset1, dataset2, dataset3, dataset4, dataset5)
 
@@ -54,17 +55,16 @@ with row2_1:
     st.markdown("### Analysis")
 
 df1, df2 = x.filter_data()
-x.data_visuals(df1, df2)
 
-# if attribute == Adv GK
-#   if player == DdG
-#       x.data_visuals_gk(df1,df2)
-#   else
-#       warning message
-# elif attribute == Shooting or GCA
-#   if player == DdG
-#       warning message
-#   else
-#       x.data_visuals(df1,df2)
-# else:
-#   x.data_visuals(df1,df2)
+if attribute == "Advanced Goalkeeping 🥅":
+    if player == "David de Gea":
+        x.data_visuals_gk(df1,df2)
+    else:
+        st.header("NO DATA FOR PLAYER")
+elif attribute == 'Shooting 👟' or 'Goal-Creating Actions 🫡':
+    if player == "David de Gea":
+        st.header("NO DATA FOR PLAYER")
+    else:
+        x.data_visuals(df1,df2)
+else:
+    x.data_visuals(df1,df2)
