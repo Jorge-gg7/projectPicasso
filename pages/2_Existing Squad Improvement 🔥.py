@@ -25,6 +25,23 @@ att_list = ['Shooting 👟', 'Passing ⚽', 'Pass Types 🛒', 'Shot-Creating Ac
 attribute = st.sidebar.selectbox('Select the attribute that you want to analyse', att_list)
 drop_gloss = st.sidebar.expander("Metric Glossary")
 with drop_gloss:
+    st.markdown("""
+                    <style>
+                        u {
+                            text-decoration: underline;
+                            text-decoration-color: #DA291C;
+                        }
+                        m {
+                            font-size: 15px;
+                            }
+                    </style>
+                    <h>How do I read the metrics?</h>
+                    
+                    <u>**Example Stat (Abbrev. in [Dataset](https://jorge-gg7-projectpicasso-introduction-qtmz0r.streamlit.app/#select-and-click-on-the-dropdown-menu-to-see-the-different-raw-datasets))**</u>
+                    <m>*Description explaining the stat.*</m>
+                    
+                    ---
+                     """,unsafe_allow_html=True)
     m = mg.metric(attribute)
     m.metric_glossary()
 
@@ -61,7 +78,7 @@ if attribute == "Advanced Goalkeeping 🥅":
         x.data_visuals_gk(df1,df2)
     else:
         st.header("NO DATA FOR PLAYER")
-elif attribute == 'Shooting 👟' or 'Goal-Creating Actions 🫡':
+elif attribute == 'Shooting 👟' or attribute == 'Goal-Creating Actions 🫡':
     if player == "David de Gea":
         st.header("NO DATA FOR PLAYER")
     else:

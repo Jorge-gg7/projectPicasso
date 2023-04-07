@@ -335,55 +335,392 @@ class metric:
                         """, unsafe_allow_html=True)
         elif self._attribute == 'Goal-Creating Actions 🫡':
             st.markdown("""
-                                    <style>
-                                        u {
-                                            text-decoration: underline;
-                                            text-decoration-color: #DA291C;
-                                        }
-                                        m {
-                                            font-size: 15px;
-                                            }
-                                    </style>
-                                    <u>**Goal-Creating Actions (GCA)**</u>
-                                    <m>*The two offensive actions directly leading to a goal, such as passes, take-ons and drawing 
-                                    fouls.*</m>
+                        <style>
+                            u {
+                                text-decoration: underline;
+                                text-decoration-color: #DA291C;
+                            }
+                            m {
+                                font-size: 15px;
+                                }
+                        </style>
+                        <u>**Goal-Creating Actions (GCA)**</u>
+                        <m>*The two offensive actions directly leading to a goal, such as passes, take-ons and drawing 
+                        fouls.*</m>
 
-                                    <m>Note: A single player can receive credit for multiple actions and the shot-taker can also
-                                     receive credit. </m>
+                        <m>Note: A single player can receive credit for multiple actions and the shot-taker can also
+                         receive credit. </m>
 
-                                    ---
-                                    <u>**Goal-Creating Actions per 90 (GCA90)**</u>
-                                    <m>*Goal-Creating Actions divided by 90 minutes.*</m>
+                        ---
+                        <u>**Goal-Creating Actions per 90 (GCA90)**</u>
+                        <m>*Goal-Creating Actions divided by 90 minutes.*</m>
 
-                                    <m>Minimum 30 minutes played per squad game to qualify as leader. </m>
+                        <m>Minimum 30 minutes played per squad game to qualify as leader. </m>
 
-                                    ---
-                                    <u>**Live Passes (PassLive_GCA)**</u>
-                                    <m>*Completed live-ball passes that lead to a goal.*</m>
+                        ---
+                        <u>**Live Passes (PassLive_GCA)**</u>
+                        <m>*Completed live-ball passes that lead to a goal.*</m>
 
-                                    ---
-                                    <u>**Dead Passes (PassDead_GCA)**</u>
-                                    <m>*Completed dead-ball passes that lead to a goal.*</m>
+                        ---
+                        <u>**Dead Passes (PassDead_GCA)**</u>
+                        <m>*Completed dead-ball passes that lead to a goal.*</m>
 
-                                    <m>Includes free kicks, corner kicks, kick offs, throw-ins and goal kicks. </m>
+                        <m>Includes free kicks, corner kicks, kick offs, throw-ins and goal kicks. </m>
 
-                                    ---
-                                    <u>**Take Ons (TO_GCA)**</u>
-                                    <m>*Successful take ons that lead to a goal.*</m>
+                        ---
+                        <u>**Take Ons (TO_GCA)**</u>
+                        <m>*Successful take ons that lead to a goal.*</m>
 
-                                    ---
-                                    <u>**Shots (Sh_GCA)**</u>
-                                    <m>*Shots that lead to another goal.*</m>
+                        ---
+                        <u>**Shots (Sh_GCA)**</u>
+                        <m>*Shots that lead to another goal.*</m>
 
-                                    ---
-                                    <u>**Fouls (Fld_GCA)**</u>
-                                    <m>*Fouls drawn that lead to a goal.*</m>
+                        ---
+                        <u>**Fouls (Fld_GCA)**</u>
+                        <m>*Fouls drawn that lead to a goal.*</m>
 
-                                    ---
-                                    <u>**Defensive Action (Def_GCA)**</u>
-                                    <m>*Defensive actions like tackles that lead to a goal.*</m>
+                        ---
+                        <u>**Defensive Action (Def_GCA)**</u>
+                        <m>*Defensive actions like tackles that lead to a goal.*</m>
 
-                                    ---
-                                    """, unsafe_allow_html=True)
+                        ---
+                        """, unsafe_allow_html=True)
+        elif self._attribute == 'Defensive Actions 💪':
+            st.markdown("""
+                        <style>
+                            u {
+                                text-decoration: underline;
+                                text-decoration-color: #DA291C;
+                            }
+                            m {
+                                font-size: 15px;
+                                }
+                        </style>
+                        <u>**Total Tackles (Tkl)**</u>
+                        <m>*Number of players tackled.*</m>
+
+                        ---
+                        <u>**Total Tackles Won (TklW)**</u>
+                        <m>*Tackles in which the tackler's team won possession of the ball.*</m>
+                        
+                        ---
+                        <u>**Interceptions (Int)**</u>
+                        <m>*Occurs when a player intercepts a pass of the opposing team.*</m>
+                        
+                        ---
+                        <u>**Clearances (Clr)**</u>
+                        <m>*Occurs when a player launches a ball towards the attacking penalty area from a defensive
+                        area of the pitch.*</m>
+                        
+                        ---
+                        <u>**Errors (Err)**</u>
+                        <m>*Mistakes leading to an opponent's shot.*</m>
+                        
+                        ---
+                        <u>**Defensive Third Tackles (Def 3rd_Tkls)**</u>
+                        <m>*Tackles in the defensive area of the team's pitch.*</m>
+                        
+                        ---
+                        <u>**Middle Third Tackles (Mid 3rd_Tkls)**</u>
+                        <m>*Tackles in the middle area of the team's pitch.*</m>
+                        
+                        ---
+                        <u>**Attacking Third Tackles (Att 3rd_Tkls)**</u>
+                        <m>*Tackles in the attacking area of the team's pitch.*</m>
+                        
+                        ---
+                        <u>**Challenges Won (Tkl_Chl)**</u>
+                        <m>*Number of dribblers successfully tackled.*</m>
+                        
+                        ---
+                        <u>**Challenges Lost (Lost)**</u>
+                        <m>*Number of dribblers unsuccessful tackled.*</m>
+                        
+                        ---
+                        <u>**Shots Blocked (Blocks_Sh)**</u>
+                        <m>*Number of times blocking a shot by standing in its path.*</m>
+                        
+                        ---
+                        <u>**Passes Blocked (Pass)**</u>
+                        <m>*Number of times blocking a pass by standing in its path.*</m>
+                        
+            """, unsafe_allow_html=True)
+        elif self._attribute == 'Possession 👻':
+            st.markdown("""
+                        <style>
+                            u {
+                                text-decoration: underline;
+                                text-decoration-color: #DA291C;
+                            }
+                            m {
+                                font-size: 15px;
+                                }
+                        </style>
+                        <u>**Total Touches (Touches)**</u>
+                        <m>*Number of times a player touched the ball.*</m>
+                        
+                        <m>Note: Receiving a pass, then dribbling, then sending a pass counts as one touch.</m>
+                        ---
+                        <u>**Total Live Touches (Live_Tch)**</u>
+                        <m>*Live-ball touches. Does not include corner kicks, free kicks, throw-ins, kick-offs, goal
+                        kicks or penalty kicks.*</m>
+
+                        ---
+                        <u>**Defensive Penalty Box Touches (Def Pen)**</u>
+                        <m>*Touches in the defensive penalty area (18-yard box).*</m>
+
+                        ---
+                        <u>**Defensive Third Touches (Def 3rd_Tch)**</u>
+                        <m>*Touches in the defensive third of the pitch including the defensive penalty area.*</m>
+
+                        ---
+                        <u>**Middle Third Touches (Mid 3rd_Tch)**</u>
+                        <m>*Touches in the middle third of the pitch.*</m>
+
+                        ---
+                        <u>**Attacking Third Touches (Att 3rd_Tch)**</u>
+                        <m>*Touches in the attacking third of the pitch including the attacking penalty area.*</m>
+
+                        ---
+                        <u>**Attacking Penalty Box Touches (Att Pen)**</u>
+                        <m>*Touches in the attacking penalty area (18-yard box).*</m>
+
+                        ---
+                        <u>**Successful Take-Ons (Succ)**</u>
+                        <m>*Number of defenders taken on successfully, by dribbling past them.*</m>
+
+                        ---
+                        <u>**Unsuccessful Take-Ons **</u>
+                        <m>*Number of defenders unsuccessfully taken on. Includes attempts where the dribblers retained 
+                        possession but was unable to get past the defender.*</m>
+
+                        ---
+                        <u>**Tackled During Take-On (Tkld)**</u>
+                        <m>*Number of times tackled by a defender during a take-on attempt. Does not mean that the 
+                        take-on was unsuccessful.*</m>
+
+                        ---
+                        <u>**Untackled During Take-On**</u>
+                        <m>*Number of times unchallenged while attempting a take-on.*</m>
+
+                        ---
+                        <u>**Total Carries (Carries)**</u>
+                        <m>*Number of times the player controlled the ball with their feet.*</m>
+
+                        ---
+                        <u>**Total Distance Carried (TotDist)**</u>
+                        <m>*Total distance, in yards, a player moved the ball while controlling it with their feet, 
+                        in any direction.*</m>
+
+                        ---
+                        <u>**Total Progressive Distance Carried (PrgDist)**</u>
+                        <m>*Total distance, in yards, a player moved the ball while controlling it with their feet 
+                        towards the opponent's goal.*</m>
+
+                        ---
+                        <u>**Total Progressive Carries (PrgC)**</u>
+                        <m>*Carries that move the ball towards the opponent's goal line at least 10 yards from its
+                        furthest point in the last six passes, or any carry into the penalty area.*</m>
+                        
+                        <m>Excludes carries which end in the defending 50% of the pitch. </m>
+
+                        ---
+                        <u>**Carries into the Final Third (1/3_Carr)**</u>
+                        <m>*Carries that enter the 1/3 of the pitch closest to the goal.*</m>
+
+                        ---
+                        <u>**Carries into Penalty Area (CPA)**</u>
+                        <m>*Carries into the 18-yard box.*</m>
+
+                        ---
+                        <u>**Miscontrols (Mis)**</u>
+                        <m>*Number of times a player failed when attempting to gain control of a ball.*</m>
+
+                        ---
+                        <u>**Dispossessed (Dis)**</u>
+                        <m>*Number of times a player loses control of the ball after being tackled by an opposing 
+                        player. Does not include attempted take-ons.*</m>
+
+                        ---
+                        <u>**Passes Received (Rec)**</u>
+                        <m>*Number of times a player successfully received a pass.*</m>
+
+                        ---
+                        <u>**Progressive Passes Received (PrgR)**</u>
+                        <m>*Completed passes that move the ball towards the opponent's goal line at least 10 yards from 
+                        its furthest point in the last six passes, or any completed pass into the penalty area.*</m>
+
+                        <m>Excludes passes from the defending 40% of the pitch. </m>
+            """,unsafe_allow_html=True)
+        elif self._attribute == 'Team Success with & without 🎇':
+            st.markdown("""
+                        <style>
+                            u {
+                                text-decoration: underline;
+                                text-decoration-color: #DA291C;
+                            }
+                            m {
+                                font-size: 15px;
+                                }
+                        </style>
+                        <u>**Total Matches Played (MP)**</u>
+                        <m>*Total matches played by the player.*</m>
+
+                        ---
+                        <u>**Total Minutes Played (Min)**</u>
+                        <m>*Total minutes played by the player.*</m>
+
+                        ---
+                        <u>**Minutes per Matches Played (Mn/MP)**</u>
+                        <m>*Total Minutes divided by total matches played.*</m>
+
+                        ---
+                        <u>**Percentage of Squad Minutes Played (Min%)**</u>
+                        <m>*Percentage of team's total minutes in which player was on the pitch. Player minutes divided
+                        by team total minutes played.*</m>
+                        
+                        <m>Minimum 30 minutes played per squad game to qualify as leader.</m>
+                        ---
+                        <u>**Total Games Starts (Starts)**</u>
+                        <m>*Game or games started by player.*</m>
+
+                        ---
+                        <u>**Minutes Per Start (Mn/Start)**</u>
+                        <m>*Average minutes for every match started.*</m>
+
+                        <m>Minimum 30 minutes played per squad game to qualify as a leader.</m>
+                        ---
+                        <u>**Completed Games from Start (Compl)**</u>
+                        <m>*Number of completed games when the player started for the squad.*</m>
+
+                        ---
+                        <u>**Total Games as Substitute (Subs)**</u>
+                        <m>*Game or games player did not start, so as a substitute.*</m>
+
+                        ---
+                        <u>**Minutes per Substitute (Mn/Sub)**</u>
+                        <m>*Average minutes for every match as a substitute.*</m>
+
+                        ---
+                        <u>**Games as Unused Substitute (unSub)**</u>
+                        <m>*Games that the player did not play and was only a substitute.*</m>
+
+                        ---
+                        <u>**Points Per Match (PPM)**</u>
+                        <m>*Average number of points earned by the team from matches in which the player played.*</m>
+
+                        <m>Minimum 30 minutes played per squad game to qualify as a leader. </m>
+                        ---
+                        <u>**Goals Scored by Team While on Pitch (onG)**</u>
+                        <m>*Goals scored by the team while the player is on the pitch.*</m>
+
+                        ---
+                        <u>**Goals Conceded by Team While on Pitch (onGA)**</u>
+                        <m>*Goals conceded by the team while the player is on the pitch.*</m>
+
+                        ---
+                        <u>**(+/-)**</u>
+                        <m>*Plus/Minus. Goals scored minus goals conceded by the team while player was on the pitch.*</m>
+
+                        ---
+                        <u>**+/- per 90 (+/-90)**</u>
+                        <m>*Plus/Minus divided by 90 minutes. Goals scored minus goals conceded by the team while player 
+                        was on the pitch per 90 minutes played. *</m>
+
+                        <m>Minimum 30 minutes played per squad game to qualify as leader.</m>
+                        ---
+                        <u>**(On-Off)**</u>
+                        <m>*Net goals per 90 minutes by the team while the player was on the pitch minus net goals 
+                        conceded per 90 minutes by the team while the player was off the pitch. *</m>
+
+                        <m>Minimum 30 minutes played per squad game to qualify as leader.</m>
+                        
+                        ---
+                        <u>**Expected Goals Scored by Team While on Pitch (onxG)**</u>
+                        <m>*xG totals include penalty kicks, but do not include penalty shootouts 
+                        (unless otherwise noted). *</m>
+                        
+                        ---
+                        <u>**Expected Goals Conceded by Team While on Pitch (onxGA)**</u>
+                        <m>*xG totals include penalty kicks, but do not include penalty shootouts 
+                        (unless otherwise noted). *</m>
+                        
+                        ---
+                        <u>**(xG+/-)**</u>
+                        <m>*Expected goals scored minus expected goals conceded by the team while the player was on the 
+                        pitch. *</m>
+                        
+                        ---
+                        <u>**Expected +/- per 90 (xG+/-90)**</u>
+                        <m>*Expected goals scored minus expected goals conceded by the team while the player was on the 
+                        pitch per 90 minutes played. *</m>
+                        
+                        ---
+                        <u>**Expected On-Off (On-Off_xG)**</u>
+                        <m>*Net expected goals per 90 minutes by the team while the player was on the pitch minus net 
+                        expected goals per 90 minutes by the team while the player was off the pitch. *</m>
+                        
+                        ---
+            """, unsafe_allow_html=True)
+        elif self._attribute == 'Miscellaneous 🏆':
+            st.markdown("""
+                        <style>
+                            u {
+                                text-decoration: underline;
+                                text-decoration-color: #DA291C;
+                            }
+                            m {
+                                font-size: 15px;
+                                }
+                        </style>
+                        <u>**Yellow Cards (CrdY)**</u>
+                        <m>*Number of single yellow cards obtained in a match.*</m>
+
+                        ---
+                        <u>**Red Cards (CrdR)**</u>
+                        <m>*Number of red cards obtained in a match.*</m>
+
+                        ---
+                        <u>**2 Yellow Cards (2CrdY)**</u>
+                        <m>*Number of second yellow cards obtained in a match.*</m>
+
+                        ---
+                        <u>**Fouls Committed (Fls)**</u>
+                        <m>*Number of fouls committed against an opponent in a match.*</m>
+
+                        ---
+                        <u>**Fouls Drawn (Fld)**</u>
+                        <m>*Number of fouls drawn by an opponent in a match.*</m>
+
+                        ---
+                        <u>**Offsides (Ofsd)**</u>
+                        <m>*Number of times the player is caught offside in a match.*</m>
+
+                        ---
+                        <u>**Penalty Kicks Won (PKwon)**</u>
+                        <m>*Number of penalty kicks won by getting fouled in a match.*</m>
+
+                        ---
+                        <u>**Penalty Kicks Conceded (PKcon)**</u>
+                        <m>*Number of penalty kicks given away to an opponent in a match.*</m>
+
+                        ---
+                        <u>**Own Goals (OG)**</u>
+                        <m>*Number of own goals scored against the team.*</m>
+
+                        ---
+                        <u>**Ball Recoveries (Recov)**</u>
+                        <m>*Number of loose balls recovered.*</m>
+
+                        ---
+                        <u>**Aeriel Duels Wins (Won_AD)**</u>
+                        <m>*Number of aeriel duels won.*</m>
+
+                        ---
+                        <u>**Aeriel Duels Lost (Lost_AD)**</u>
+                        <m>*Number of aeriel duels lost.*</m>
+
+                        ---
+            """, unsafe_allow_html=True)
         else:
             st.markdown("OTW")
