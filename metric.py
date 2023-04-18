@@ -722,5 +722,155 @@ class metric:
 
                         ---
             """, unsafe_allow_html=True)
+        elif self._attribute == 'Advanced Goalkeeping 🥅':
+            st.markdown("""
+                        <style>
+                            u {
+                                text-decoration: underline;
+                                text-decoration-color: #DA291C;
+                            }
+                            m {
+                                font-size: 15px;
+                                }
+                        </style>
+                        <u>**Goals Against (GA)**</u>
+                        <m>*Number of goals that were scored by the opposing team whilst the player was the goalkeeper.
+                        *</m>
+
+                        ---
+                        <u>**Penalty Kicks Allowed (PKA)**</u>
+                        <m>*Number of goals from Penalty Kicks
+                        that were scored by the opposing team whilst the player was the goalkeeper.*</m>
+
+                        ---
+                        <u>**Free Kicks Goal Against (FK)**</u>
+                        <m>*Number of goals from Free Kicks 
+                        that were scored by the opposing team whilst the player was the goalkeeper.*</m>
+                        
+                        ---
+                        <u>**Corner Kicks Goal Against (CK)**</u>
+                        <m>*Number of goals from Corner Kicks
+                        that were scored by the opposing team whilst the player was the goalkeeper.*</m>
+                        
+                        ---
+                        <u>**Own Goals Against (OG)**</u>
+                        <m>*Own goals scored against the goalkeeper.*</m>
+                        
+                        ---
+                        <u>**Free Kicks Goal Against (FK)**</u>
+                        <m>*Number of Free Kick goals 
+                        that were scored by the opposing team whilst the player was the goal keeper.*</m>
+                        
+                        ---
+                        <u>**Launch Passes [excluding Goal Kicks]**</u>
+                        <m>*Passes that were longer than 40 yards during a live ball play.*</m>
+                        
+                        ---
+                        <u>**Throw Passes [excluding Goal Kicks] (Thr)**</u>
+                        <m>*Passes that were thrown during a live ball play.*</m>
+                        
+                        ---
+                        <u>**Regular Passes [excluding Goal Kicks]**</u>
+                        <m>*Passes that were shorter than 40 yards and were kicked during a live ball play.*</m>
+                        
+                        ---
+                        <u>**Average Pass Length [excluding Goal Kicks] (AvgLen_Pass)**</u>
+                        <m>*Average length of a live ball play pass in yards.*</m>
+                        
+                        ---
+                        <u>**Total Passes Attempted [excluding Goal Kicks]**</u>
+                        <m>*Total number of passes that were attempted (not necessarily successful) from a live ball
+                        play.*</m>
+                        
+                        ---
+                        <u>**Completed Launch Passes (Cmp)**</u>
+                        <m>*Passes that were longer than 40 yards and were successfully received by a teammate 
+                        in any sort of play (including Goal Kicks).*</m>
+                        
+                        ---
+                        <u>**Incomplete Launch Passes**</u>
+                        <m>*Passes that were longer than 40 yards to a teammate but was not received 
+                        in any sort of play (including Goal Kicks).*</m>
+                        
+                        ---
+                        <u>**Total Launches Attempted (Att_Launch)**</u>
+                        <m>*Passes that were longer than 40 yards to a teammate in any sort of play (including Goal 
+                        Kicks).*</m>
+                        
+                        ---
+                        <u>**Short Pass Goal Kicks**</u>
+                        <m>*Passes that were shorter than 40 yards and were passed from a Goal Kick.*
+                        </m>
+                        
+                        ---
+                        <u>**Launched Goal Kicks**</u>
+                        <m>*Passes that were longer than 40 yards and were passed from a Goal Kick.*
+                        </m>
+                        
+                        ---
+                        <u>**Average Pass Length [Goal Kicks] (AvgLen_GKicks)**</u>
+                        <m>*Average length of a Goal Kick pass in yards*</m>
+                        
+                        ---
+                        <u>**Total Goal Kicks Attempted (Att_GKicks)**</u>
+                        <m>*Total number of Goal Kicks that were attempted (not necessarily successful).*</m>
+                        
+                        ---
+                        <u>**Crosses Challenged (Stp)**</u>
+                        <m>*Number of crosses into the penalty area which were successfully stopped by the goalkeeper*</m>
+                        
+                        ---
+                        <u>**Crosses Unchallenged**</u>
+                        <m>*Number of crosses into the penalty area which the goalkeeper did not challenge or attempt
+                        to stop by catching or deflecting the cross.*</m>
+                        
+                        ---
+                        <u>**Total Crosses Faced (Opp)**</u>
+                        <m>*Opponent's attempted crosses into the penalty area.*</m>
+                        
+                        ---
+                        <u>**Average Pass Length [Goal Kicks] (AvgLen_GKicks)**</u>
+                        <m>*Average length of a Goal Kick pass in yards.*</m>
+                        
+                        ---
+                        <u>**Total Defensive Actions (#OPA)**</u>
+                        <m>*Number of defensive actions outside of the penalty area. E.g. tackling defenders, clearing 
+                        balls.*</m>
+                        
+                        ---
+                        <u>**Total Defensive Actions/90 (#OPA/90)**</u>
+                        <m>*Number of defensive actions outside of the penalty area per 90 minutes. E.g. tackling 
+                        defenders, clearing balls.*</m>
+                        
+                        ---
+                        <u>**Average Distance of Defensive Action from Goal (AvgDist)**</u>
+                        <m>*Average distance from goal (in yards) of all defensive actions.*</m>
+                        
+                        ---
+                        <u>**Post-Shot Expected Goals (PSxG)**</u>
+                        <m>*PSxG is the expeceted goals based on how likely the goalkeeper is to save the shot. xG 
+                        totals include penalty kicks, but do not include penalty shootouts.*</m>
+                        
+                        <m>Provided by Opta</m>
+                        
+                        ---
+                        <u>**Post-Shot Expected Goals per Shot on Target (PSxG/SoT)**</u>
+                        <m>*PSxG divided by Shots on Target (not including penalty kicks).*</m>
+                        
+                        <m>Provided by Opta</m>
+                        
+                        ---
+                        <u>**Post-Shot Expected Goals Minus Goals Allowed(PSxG+/-)**</u>
+                        <m>*PSxG minus PSxGA. Positive numbers suggest better luck or an above average ability to stop 
+                        shots.*</m>
+                        
+                        <m>Provided by Opta</m>
+                        
+                        ---
+                        <u>**Post-Shot Expected Goals Minus Goals Allowed per 90 (/90)**</u>
+                        <m>*PSxG+/- divided by 90 minutes.*</m>
+                        
+                        <m>Provided by Opta</m>
+            """, unsafe_allow_html=True)
         else:
             st.markdown("OTW")

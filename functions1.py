@@ -100,7 +100,7 @@ class dataFunc1:
             if self._name == 'David de Gea':
                 df1 = self._dataset3.loc[self._dataset3['Player'] == str(self._name)]
                 df1 = df1.loc[:, att[self._attribute]]
-                df2 = self._dataset3.loc[self._dataset4['Player'] == str(self._name)]
+                df2 = self._dataset4.loc[self._dataset4['Player'] == str(self._name)]
                 df2 = df2.loc[:, att[self._attribute]]
             else:
                 df1 = pd.DataFrame(columns=att['Advanced Goalkeeping 🥅'])
@@ -571,7 +571,8 @@ class dataFunc1:
 
                 fig = px.bar(dff, x='Player', y=['Att_Shrt', 'Att_Med',
                                                  'Att_Long'], labels={'value': 'Number of Pass Attempts',
-                                                                      'variable': 'Variable'}, title='Attempted Passes')
+                                                                      'variable': 'Variable'}, title='Attempted Passes',
+                             color_discrete_sequence=px.colors.sequential.RdBu)
                 new_names = {'Att_Shrt': 'Short Pass Atmpt', 'Att_Med': 'Medium Pass Atmpt',
                              'Att_Long': 'Long Pass Atmpt'}
                 fig.for_each_trace(lambda t: t.update(name=new_names[t.name],
@@ -607,6 +608,7 @@ class dataFunc1:
 
                 fig = px.bar(dff, x='Player', y=['Player', 'Cmp%_Shrt', 'Cmp%_Med', 'Cmp%_Long'], labels={'value': '%',
                                                                                                           'variable': 'Variable'},
+                             color_discrete_sequence=px.colors.sequential.RdBu,
                              title='Pass Completion Rate %')
                 new_names = {'Cmp%_Shrt': 'Pass Completion % Short', 'Cmp%_Med': 'Pass Completion % Medium',
                              'Cmp%_Long': 'Pass Completion % Long'}
@@ -858,7 +860,8 @@ class dataFunc1:
                             ['Live Pass', 'Dead Pass', 'Freekick Pass', 'Through Balls', 'Switches', 'Crosses',
                              'Throw Ins', 'Corner Kicks'], inplace=True)
 
-                fig = px.bar(dff, x='Statistic', y='Amount of Passes', color='Player')
+                fig = px.bar(dff, x='Statistic', y='Amount of Passes', color='Player',
+                             color_discrete_sequence=px.colors.sequential.RdBu)
                 fig.update_layout(barmode='group', title='Pass Types')
                 st.plotly_chart(fig, use_container_width=True)
 
@@ -878,7 +881,8 @@ class dataFunc1:
                 dff = pd.concat([dff1, dff2], ignore_index=True)
                 dff.replace(['CK', 'In', 'Out', 'Str'], ['Corner Kicks', 'In-Swing Corner', 'Out-Swing Corner',
                                                          'Straight'], inplace=True)
-                fig = px.bar(dff, x='Statistic', y='Amount of Passes', color='Player')
+                fig = px.bar(dff, x='Statistic', y='Amount of Passes', color='Player',
+                             color_discrete_sequence=px.colors.sequential.RdBu)
                 fig.update_layout(legend=dict(orientation='h', yanchor="top", y=1.05, xanchor="right", x=1), barmode=
                 'group', title='Corner Kick Statistics')
                 st.plotly_chart(fig, use_container_width=True)
@@ -902,8 +906,6 @@ class dataFunc1:
             with row1_1:
                 diff = round(df1.iloc[0]['SCA'] - df2.iloc[0]['SCA'], 2)
                 st.metric('Shot Creating Actions', df1.iloc[0]['SCA'], diff)
-                st.markdown(" ")
-                st.metric('Example Stat', 'Value', '↑/↓ from prev season')
             with row1_2:
                 st.markdown("# ")
                 diff1 = round(df1.iloc[0]["SCA"] - (self._dataset1["SCA"].sum() + self._dataset5["SCA"].sum()) / 26, 2)
@@ -935,7 +937,7 @@ class dataFunc1:
                 dff1.replace(["PassLive_SCA", 'PassDead_SCA', 'TO_SCA', 'Sh_SCA', 'Fld_SCA', 'Def_SCA'],
                              ['Live Passes', 'Dead Passes', 'Take-Ons', 'Shots', 'Fouls Drawn', 'Defensive Actions'],
                              inplace=True)
-                fig = px.pie(dff1, values='Actions', names='SCA',
+                fig = px.pie(dff1, values='Actions', names='SCA', color_discrete_sequence=px.colors.sequential.RdBu,
                              title='% of Different Shot Creating Actions Created by'
                                    ' Player in 2022/23 Season')
                 fig.update_layout(margin=dict(t=30, b=20), height=350, title_font_size=14)
@@ -948,7 +950,7 @@ class dataFunc1:
                 dff1.replace(["PassLive_SCA", 'PassDead_SCA', 'TO_SCA', 'Sh_SCA', 'Fld_SCA', 'Def_SCA'],
                              ['Live Passes', 'Dead Passes', 'Take-Ons', 'Shots', 'Fouls Drawn', 'Defensive Actions'],
                              inplace=True)
-                fig = px.pie(dff1, values='Actions', names='SCA',
+                fig = px.pie(dff1, values='Actions', names='SCA', color_discrete_sequence=px.colors.sequential.RdBu,
                              title='% of Different Shot Creating Actions Created by'
                                    ' Player in 2021/22 Season')
                 fig.update_layout(margin=dict(t=30, b=20), height=350, title_font_size=14)
@@ -1144,8 +1146,6 @@ class dataFunc1:
             with row1_1:
                 diff = round(df1.iloc[0]['GCA'] - df2.iloc[0]['GCA'], 2)
                 st.metric('Goal Creating Actions', df1.iloc[0]['GCA'], diff)
-                st.markdown(" ")
-                st.metric('Example Stat', 'Value', '↑/↓ from prev season')
             with row1_2:
                 st.markdown("# ")
                 diff1 = round(df1.iloc[0]["GCA"] - (self._dataset1["GCA"].sum() + self._dataset5["GCA"].sum()) / 26, 2)
@@ -1177,7 +1177,7 @@ class dataFunc1:
                 dff1.replace(["PassLive_GCA", 'PassDead_GCA', 'TO_GCA', 'Sh_GCA', 'Fld_GCA', 'Def_GCA'],
                              ['Live Passes', 'Dead Passes', 'Take-Ons', 'Shots', 'Fouls Drawn', 'Defensive Actions'],
                              inplace=True)
-                fig = px.pie(dff1, values='Actions', names='GCA',
+                fig = px.pie(dff1, values='Actions', names='GCA', color_discrete_sequence=px.colors.sequential.RdBu,
                              title='% of Different Goal Creating Actions Created by'
                                    ' Player in 2022/23 Season')
                 fig.update_layout(margin=dict(t=30, b=20), height=350, title_font_size=14)
@@ -1190,7 +1190,7 @@ class dataFunc1:
                 dff1.replace(["PassLive_GCA", 'PassDead_GCA', 'TO_GCA', 'Sh_GCA', 'Fld_GCA', 'Def_GCA'],
                              ['Live Passes', 'Dead Passes', 'Take-Ons', 'Shots', 'Fouls Drawn', 'Defensive Actions'],
                              inplace=True)
-                fig = px.pie(dff1, values='Actions', names='GCA',
+                fig = px.pie(dff1, values='Actions', names='GCA', color_discrete_sequence=px.colors.sequential.RdBu,
                              title='% of Different Goal Creating Actions Created by'
                                    ' Player in 2021/22 Season')
                 fig.update_layout(margin=dict(t=30, b=20), height=350, title_font_size=14)
@@ -2649,4 +2649,232 @@ class dataFunc1:
                 st.plotly_chart(fig, use_container_width=True)
 
     def data_visuals_gk(self, df1, df2):
-        st.markdown("# WORK IN PROGRESS 🛠️")
+        row0_spacer1, row0_1, row0_spacer2 = st.columns((.01, 3.2, .01))
+        with row0_1:
+            st.markdown("#### Actual Statistics - :green[↑]/:red[↓] from previous season")
+
+        row1_spacer1, row1_1, row1_2, row1_3, row1_4, row1_5, row1_spacer2 = st.columns((.01, 1, 1, 1, 1, 1, .01))
+        with row1_1:
+            diff1 = int(round(df1.iloc[0]["GA"] - df2.iloc[0]["GA"], 2))
+            st.metric("Goals Against", str(df1.iloc[0]["CK"]), diff1)
+        with row1_2:
+            diff1 = int(round(df1.iloc[0]["PKA"] - df2.iloc[0]["PKA"], 2))
+            st.metric("Penalty Kicks Allowed", str(df1.iloc[0]["PKA"]), diff1)
+        with row1_3:
+            diff1 = round(df1.iloc[0]["FK"] - df2.iloc[0]["FK"], 2)
+            st.metric("Free Kick Goals Against", str(df1.iloc[0]["FK"]), diff1)
+        with row1_4:
+            diff1 = round(df1.iloc[0]["CK"] - df2.iloc[0]["CK"], 2)
+            st.metric("Corner Kick Goals Against", str(df1.iloc[0]["CK"]), diff1)
+        with row1_5:
+            diff1 = round(df1.iloc[0]["OG"] - df2.iloc[0]["OG"], 2)
+            st.metric("Own Goals Against", str(df1.iloc[0]["OG"]), diff1)
+
+        row1a_spacer1, row1a_1, row1a_spacer2 = st.columns((.01, 3.2, .01))
+        with row1a_1:
+            st.markdown("#### Types of Passes by Player (excluding Goal Kicks)")
+
+        row2_spacer1, row2_1, row2_spacer2, row2_2, row2_spacer3 = st.columns((.01, 5, 3, 5, .01))
+        with row2_1:
+            df1['Launch'] = round(df1['Att_Pass']*df1['Launch%_Pass']/100)
+            df1['Regular Pass'] = df1['Att_Pass'] - df1['Thr'] - df1['Launch']
+            dff1 = pd.melt(df1, id_vars='Player', value_vars=["Thr", "Regular Pass", 'Launch'], var_name='Types of Passes', value_name=
+                           'Passes')
+            dff1.replace(['Thr'], ['Throws'], inplace=True)
+            fig = px.pie(dff1, values='Passes', names='Types of Passes',
+                         color_discrete_sequence=px.colors.sequential.RdBu,
+                         title='2022/23 Season')
+            fig.update_layout(margin=dict(t=30, b=20), height=350)
+            fig.update_traces(textposition='inside', textinfo='percent+label+value')
+            st.plotly_chart(fig, use_container_width=True)
+
+            st.metric("Total Passes Attempted in 2022/23", df1.iloc[0]['Att_Pass'])
+        with row2_spacer2:
+            st.metric("👈Average Pass Length in 2022/23 Season", str(df1.iloc[0]["AvgLen_Pass"]) + " yrds")
+            st.metric("👉Average Pass Length in 2021/22 Season", str(df2.iloc[0]["AvgLen_Pass"]) + " yrds")
+        with row2_2:
+            df2['Launch'] = round(df2['Att_Pass'] * df2['Launch%_Pass'] / 100)
+            df2['Regular Pass'] = df2['Att_Pass'] - df2['Thr'] - df2['Launch']
+            dff1 = pd.melt(df2, id_vars='Player', value_vars=["Thr", "Regular Pass", 'Launch'],
+                           var_name='Types of Passes', value_name=
+                           'Passes')
+            dff1.replace(['Thr'], ['Throws'], inplace=True)
+            fig = px.pie(dff1, values='Passes', names='Types of Passes',
+                         color_discrete_sequence=px.colors.sequential.RdBu,
+                         title='2021/22 Season')
+            fig.update_layout(margin=dict(t=30, b=20), height=350)
+            fig.update_traces(textposition='inside', textinfo='percent+label+value')
+            st.plotly_chart(fig, use_container_width=True)
+
+            st.metric("Total Passes Attempted in 2021/22", df2.iloc[0]['Att_Pass'])
+
+        row3a_spacer1, row3a_1, row3a_spacer2 = st.columns((.01, 3.2, .01))
+        with row3a_1:
+            st.markdown("#### Launches")
+
+        row3_spacer1, row3_1, row3_2, row3_spacer2 = st.columns((.01, 5, 5, .01))
+        with row3_1:
+            df1['Incomplete Launch'] = df1['Att_Launch'] - df1['Cmp']
+            dff1 = pd.melt(df1, id_vars='Player', value_vars=["Cmp", 'Incomplete Launch'],
+                           var_name='Launch %', value_name=
+                           'Launch')
+            dff1.replace(['Cmp'], ['Completed Launch'], inplace=True)
+            fig = px.pie(dff1, values='Launch', names='Launch %',
+                         color_discrete_sequence=px.colors.sequential.RdBu,
+                         title='Launch Completion % in 2022/23 Season (including Goal Kicks)')
+            fig.update_layout(margin=dict(t=30, b=20), height=350, title_font_size=15)
+            fig.update_traces(textposition='inside', textinfo='percent+label+value')
+            st.plotly_chart(fig, use_container_width=True)
+
+            st.metric("Total Launches Attempted in 2022/23", df1.iloc[0]['Att_Launch'])
+
+        with row3_2:
+            df2['Incomplete Launch'] = df2['Att_Launch'] - df2['Cmp']
+            dff1 = pd.melt(df2, id_vars='Player', value_vars=["Cmp", 'Incomplete Launch'],
+                           var_name='Launch %', value_name=
+                           'Launch')
+            dff1.replace(['Cmp'], ['Completed Launch'], inplace=True)
+            fig = px.pie(dff1, values='Launch', names='Launch %',
+                         color_discrete_sequence=px.colors.sequential.RdBu,
+                         title='Launch Completion % in 2021/22 Season (including Goal Kicks)')
+            fig.update_layout(margin=dict(t=30, b=20), height=350, title_font_size=15)
+            fig.update_traces(textposition='inside', textinfo='percent+label+value')
+            st.plotly_chart(fig, use_container_width=True)
+
+            st.metric("Total Launches Attempted in 2021/22", df2.iloc[0]['Att_Launch'])
+
+        row4a_spacer1, row4a_1, row4a_spacer2 = st.columns((.01, 3.2, .01))
+        with row4a_1:
+            st.markdown("#### Goal Kicks")
+
+        row4_spacer1, row4_1, row4_spacer2, row4_2, row4_spacer3 = st.columns((.01, 5, 3, 5, .01))
+        with row4_1:
+            df1['Launches'] = round(df1['Att_GKicks'] * df1['Launch%_GKicks'] / 100)
+            df1['Short Pass'] = df1['Att_GKicks'] - df1['Launches']
+            dff1 = pd.melt(df1, id_vars='Player', value_vars=["Launches", 'Short Pass'],
+                           var_name='Goal Kick Types', value_name=
+                           'Passes')
+            fig = px.pie(dff1, values='Passes', names='Goal Kick Types',
+                         color_discrete_sequence=px.colors.sequential.RdBu,
+                         title='Types of Goal Kicks by Player in 2022/23 Season')
+            fig.update_layout(margin=dict(t=30, b=20), height=350, title_font_size=15)
+            fig.update_traces(textposition='inside', textinfo='percent+label+value')
+            st.plotly_chart(fig, use_container_width=True)
+
+            st.metric("Total Goal Kicks Attempted in 2022/23", df1.iloc[0]['Att_GKicks'])
+
+        with row4_2:
+            df2['Launches'] = round(df2['Att_GKicks'] * df2['Launch%_GKicks'] / 100)
+            df2['Short Pass'] = df2['Att_GKicks'] - df2['Launches']
+            dff1 = pd.melt(df2, id_vars='Player', value_vars=["Launches", 'Short Pass'],
+                           var_name='Goal Kick Types', value_name=
+                           'Passes')
+            fig = px.pie(dff1, values='Passes', names='Goal Kick Types',
+                         color_discrete_sequence=px.colors.sequential.RdBu,
+                         title='Types of Goal Kicks by Player in 2021/22 Season')
+            fig.update_layout(margin=dict(t=30, b=20), height=350, title_font_size=15)
+            fig.update_traces(textposition='inside', textinfo='percent+label+value')
+            st.plotly_chart(fig, use_container_width=True)
+
+            st.metric("Total Goal Kicks Attempted in 2021/22", df2.iloc[0]['Att_GKicks'])
+
+        with row4_spacer2:
+            st.metric("👈Average Pass Length in 2022/23 Season", str(df1.iloc[0]["AvgLen_GKicks"]) + " yrds")
+            st.metric("👉Average Pass Length in 2021/22 Season", str(df2.iloc[0]["AvgLen_GKicks"]) + " yrds")
+
+        row5_spacer1, row5_1, row5_spacer2 = st.columns((.01, 3.2, .01))
+        with row5_1:
+            st.markdown("#### Crosses Faced")
+
+        row6_spacer1, row6_1, row6_2, row6_spacer2 = st.columns((.01, 5, 5, .01))
+        with row6_1:
+            df1['Unchallenged'] = df1['Opp'] - df1['Stp']
+            dff1 = pd.melt(df1, id_vars='Player', value_vars=['Stp', 'Unchallenged'], var_name='Challenge',
+                           value_name='Crosses Stopped')
+            dff1.replace('Stp', 'Challenged', inplace=True)
+            fig = px.pie(dff1, values='Crosses Stopped', names='Challenge',
+                         color_discrete_sequence=px.colors.sequential.RdBu,
+                         title='% of Crosses Stopped in 2022/23 Season')
+            fig.update_layout(margin=dict(t=30, b=20), height=350, title_font_size=15)
+            fig.update_traces(textposition='inside', textinfo='percent+label+value')
+            st.plotly_chart(fig, use_container_width=True)
+
+            st.metric("Total Crosses Faced in 2022/23", df1.iloc[0]['Opp'])
+        with row6_2:
+            df2['Unchallenged'] = df2['Opp'] - df2['Stp']
+            dff1 = pd.melt(df2, id_vars='Player', value_vars=['Stp', 'Unchallenged'], var_name='Challenge',
+                           value_name='Crosses Stopped')
+            dff1.replace('Stp', 'Challenged', inplace=True)
+            fig = px.pie(dff1, values='Crosses Stopped', names='Challenge',
+                         color_discrete_sequence=px.colors.sequential.RdBu,
+                         title='% of Crosses Stopped in 2021/22 Season')
+            fig.update_layout(margin=dict(t=30, b=20), height=350, title_font_size=15)
+            fig.update_traces(textposition='inside', textinfo='percent+label+value')
+            st.plotly_chart(fig, use_container_width=True)
+
+            st.metric("Total Crosses Faced in 2021/22", df2.iloc[0]['Opp'])
+
+        row7_spacer1, row7_1, row7_spacer2 = st.columns((.01, 3.2, .01))
+        with row7_1:
+            st.markdown("#### Defensive Actions Outside Penalty Box")
+
+        row8_spacer1, row8_1, row8_2, row8_3, row8_spacer2 = st.columns((.01, 2, 5, 2, .01))
+        with row8_1:
+            st.metric("Total Defensive Actions 2022/23", df1.iloc[0]['#OPA'])
+            st.metric("Total Def. Actions/90 2022/23", df1.iloc[0]['#OPA/90'])
+        with row8_3:
+            st.metric("Total Defensive Actions 2021/22", df2.iloc[0]['#OPA'])
+            st.metric("Total Def. Actions/90 2021/22", df2.iloc[0]['#OPA/90'])
+        with row8_2:
+            df1 = df1.replace(str(self._name), str(self._name) + " 2022/23")
+            df2 = df2.replace(str(self._name), str(self._name) + " 2021/22")
+
+            x = [1, 3]
+
+            dff = pd.concat([df1, df2], ignore_index=True)
+            dff['x'] = x
+
+            img = Image.open("images/Penalty Box.png")
+            fig = px.scatter(dff, x='x', y='AvgDist', color='Player',hover_name='Player', size='#OPA',
+                             hover_data={'x': False, 'Player': False, '#OPA': False},
+                             color_discrete_sequence=px.colors.sequential.RdBu,
+                             title='Average Distance of Defensive Actions from Goal')
+            fig.update_layout(height= 350,margin=dict(t=50, b=0),
+                              showlegend=False)
+            fig.update_xaxes(range=[0, 4], visible=False)
+            fig.update_yaxes(title='Distance (yrds)',range=[0, 20], visible=True)
+            fig.update_traces(mode='markers', marker=dict(sizemode='area',
+                                                          line_width=2))
+
+            fig.add_layout_image(
+                dict(
+                    source=img,
+                    xref="x",
+                    yref="y",
+                    x=0,
+                    y=20,
+                    sizex=4,
+                    sizey=20,
+                    sizing='stretch',
+                    layer='below',
+                    opacity=.8
+                ))
+            st.plotly_chart(fig, use_container_width=True)
+
+        row9_spacer1, row9_1, row9_spacer2 = st.columns((.01, 3.2, .01))
+        with row9_1:
+            st.markdown("#### Expected Statistics")
+
+        row10_spacer1, row10_1, row10_2, row10_3, row10_4, row10_spacer2 = st.columns((.01, 2, 2, 2, 2, 0.01))
+        with row10_1:
+            diff = df1.iloc[0]['PSxG'] - df2.iloc[0]['PSxG']
+            st.metric('Post-Shot Expected Goals (PSxG)', df1.iloc[0]['PSxG'], diff)
+        with row10_2:
+            diff = df1.iloc[0]['PSxG/SoT'] - df2.iloc[0]['PSxG/SoT']
+            st.metric('PSxG per Shot on Target', df1.iloc[0]['PSxG/SoT'], diff)
+        with row10_3:
+            diff = df1.iloc[0]['PSxG+/-'] - df2.iloc[0]['PSxG+/-']
+            st.metric('PSxG Minus Goals Allowed', df1.iloc[0]['PSxG+/-'], diff)
+        with row10_4:
+            diff = df1.iloc[0]['/90'] - df2.iloc[0]['/90']
+            st.metric('PSxG Minus Goals Allowed per 90', df1.iloc[0]['/90'], diff)
