@@ -201,3 +201,14 @@ with row11_1:
         elif input == "Advanced Goalkeeper Stats 2021/22":
             st.dataframe(data=dataset4.reset_index(drop=True))
 
+row12_spacer1, row12_1, row12_spacer2 = st.columns((.1, 3.2, .1))
+with row12_1:
+    notes = st.expander("Notes on the datasets ⁉️ : ")
+    with notes:
+        st.markdown("1. Players with 0 minutes in each season are not included in the dataset.")
+        st.markdown("2. FA Cup and Carabao Cup statistics are unavailable, therefore the only goalkeeper that is "
+                    "included in the dataset is David De Gea .")
+        st.markdown("3. Abbreviations are explained in the Existing Squad Improvement 🔥 and New Signings Impact page.")
+        st.markdown("4. New signings include players that were newly signed in the 2022/23 season or players who were "
+                    "promoted to the first team from the youth team.")
+        st.markdown("5. All datasets were updated on 19/4/2023.")

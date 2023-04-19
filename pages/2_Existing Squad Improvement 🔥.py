@@ -61,7 +61,6 @@ with row3_1:
                 "from this season against the "
                 "statistics from the previous season. In some instances, some statistics "
                 "will be compared against team averages from the current 2022/23 season.")
-    st.markdown("FA Cup and Carabao Cup stats are not available at the moment.")
 
 row1_spacer1, row1_1, row1_spacer2 = st.columns((.05, 3.2, .05))
 with row1_1:
