@@ -211,4 +211,4 @@ with row12_1:
         st.markdown("3. Abbreviations are explained in the Existing Squad Improvement 🔥 and New Signings Impact page.")
         st.markdown("4. New signings include players that were newly signed in the 2022/23 season or players who were "
                     "promoted to the first team from the youth team.")
-        st.markdown("5. All datasets were updated on 11/5/2023.")
+        st.markdown("5. All datasets were updated on 5/1/2024.")
